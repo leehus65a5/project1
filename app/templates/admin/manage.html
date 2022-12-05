@@ -1,0 +1,27 @@
+{% extends 'admin/base.html' %}
+
+{%block content%}
+{%for mess in get_flashed_messages()%}
+<div class="flash">{{mess}}</div>
+{%endfor%}
+
+<table>
+{%for user in users%}
+	<tr>
+		<td>{{user.User.id}}</td>
+		<td>{{user.User.username}}</td>
+		<td>{{user.User.email}}</td>
+	</tr>
+{%endfor%}
+</table>
+
+<p> bên dưới là update basic (OLD) </p>
+<form method="POST">
+	{{ form.hidden_tag() }}
+	{{ form.username.label }} {{ form.username() }}
+	{{ form.userid.label }} {{ form.userid() }}
+	{{ form.email.label }} {{ form.email() }}
+	{{ form.submit() }}
+</form>
+
+{%endblock%}

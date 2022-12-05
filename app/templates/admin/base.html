@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	{%block title%}
+	<tilte> Admin </tilte>
+	{%endblock%}
+</head>
+<body>
+	<img src="{{url_for('static', filename = 'pictures/admin-banner.png')}}" alt="Banner">
+	<nav>
+		<p>Làm thanh bar công cụ ở đây</p>
+		<ul>
+			{%if g.user%}
+			<p>Tài Khoản: {{g.user.User.username}} </p>
+			<p>ID: {{ g.user.User.id }}</p>
+			<p>Trạng thái đăng nhập thành công</p>
+			<li><a href="{{url_for('logout')}}">Đăng xuất</a></li>
+			{%endif%}
+		</ul>
+		<ul>
+			<li><a href="{{url_for('index')}}"> Trang chủ</a></li>
+			<li><a href="{{url_for('admin.dashboard')}}"> Dashboard</a></li>
+		</ul>
+	</nav>
+	<h1>This is admin base html</h1>
+
+	{%block content%}
+	{%endblock%}
+	<footer>
+		<p>Footer ở chỗ này</p>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{%extends 'admin/base.html'%}
+
+<!-- {%block title%}
+<title> dashboard </title>
+{%endblock%} -->
+
+{%block content%}
+<h3>
+	Test
+	<p>
+		{% if g.user %}
+		{% with u = g.user %}
+	<p> {{ u.User.id }}</p>
+	<p>{{ u.User.username }}</p>
+	<p>{{ u.User.password }}</p>
+	{%endwith%}
+	{%endif%}
+	</p>
+	End test
+</h3>
+<ul>
+	<li><a href="{{url_for('admin.quan_ly_nhan_vien')}}">Quản lý nhân viên</a></li>
+	<li><a href="{{url_for('admin.sua_nhan_vien')}}">Update Nhân Viên</a></li>
+	<li><a href="">Thêm data</a></li>
+	<li><a href="">Update data</a></li>
+</ul>
+{%endblock%}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{%for mess in get_flashed_messages()%}
+<div class="flash">{{mess}}</div>
+{%endfor%}
+
+<h1>Kiểm tra trang đăng nhập</h1>
+
+<h4>
+	Các tài khoản có thể dùng để kiểm tra đăng nhập
+	<p>
+		superadmin: pass: abc123 <br>
+		dataadmin1: pass: data123 <br>
+		datamanage1: pass: data234 <br>
+		user1: pass: user123 <br>
+	</p>
+</h4>
+
+<form method="POST">
+	{{ form.hidden_tag() }}
+	{{ form.username.label }} {{ form.username() }}
+	{{ form.password.label }} {{ form.password() }}
+	{{ form.remember.label }} {{ form.remember() }}
+	{{ form.submit() }}
+</form>
+{% endblock %}
