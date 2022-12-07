@@ -8,4 +8,4 @@ class Config(object):
      MYSQL_DB = 'test'
      SQLALCHEMY_DATABASE_URI = 'mysql://root:''@localhost/finalproject'
      SQLALCHEMY_TRACK_MODIFICATIONS = False
-     
+     UPLOAD_FOLDER = 'static\\files'

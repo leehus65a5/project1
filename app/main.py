@@ -1,6 +1,6 @@
 from app import app, db, User
 from flask import redirect, url_for, render_template, request, flash, session, g
-from app.form import loginForm
+from app.form import LoginForm
 from werkzeug.security import check_password_hash
 
 #định nghĩa public function cho phép người ngoài chưa đăng nhập có thể view
@@ -14,16 +14,20 @@ def load_logged_in_user():
     user_id = session.get('user_id')
     if user_id is None:
         g.user = None
+     #    return redirect(url_for('login'))
     else:
         get_user_info = db.session.execute(db.select(User).where(User.id == user_id)).fetchone()
-        print(get_user_info)
         g.user = get_user_info
+
 
 #chặn tất cả những người dùng chưa đăng nhập vào các trang không hợp lệ
 #chỉ cho phép các tài khoản đã login có thể truy cập nội dung trang web
 @app.before_request
 def check_route_access():
-     if any([request.endpoint.startswith('static'), g.user,  getattr(app.view_functions[request.endpoint],'is_public',False)]):
+     if not request.endpoint:
+          print('no request')
+          return
+     elif any([request.endpoint.startswith('static'), g.user,  getattr(app.view_functions[request.endpoint],'is_public',False)]):
           return 
      else:
           return redirect(url_for('login'))
@@ -38,7 +42,7 @@ def index():
 @app.route('/login', methods=['POST','GET'])
 @public_route
 def login():
-     form = loginForm()
+     form = LoginForm()
      if form.validate_on_submit() and request.method == 'POST':
           username = form.username.data
           password = form.password.data

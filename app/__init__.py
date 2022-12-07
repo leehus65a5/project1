@@ -2,7 +2,7 @@ from flask import Flask
 from app.config import Config
 from flask_mysqldb import MySQL
 from flask_sqlalchemy import SQLAlchemy
-# from sqlalchemy.ext.automap import automap_base
+from sqlalchemy import select
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -14,17 +14,39 @@ with app.app_context():
 
 class User(db.Model):
      __table__ = db.metadata.tables['users']
+     
      def __repr__(self):
         return f'User({self.id} : {self.username})'
+
+class Files(db.Model):
+     __table__ = db.metadata.tables['files']
+     
+     def upFile(self):
+          get_id = "".join(self.id)
+          list_id = [i[0] for i in db.session.execute(select(Files.id)).fetchall()]
+          if get_id in list_id:
+               return False
+          db.session.add(self)
+          db.session.commit()
+     
+     def downloadFile(file_id):
+          get_file = Files.query.filter_by(id = file_id).first()
+          if not get_file:
+               return False
+          return get_file
+          
+     def __repr__(self) -> str:
+          return f'File = ({self.id} : {self.filename})'
+     
      
 from app.admin import admin 
-app.register_blueprint(admin, url_prefix='/admin',template_folder = 'templates/admin')
+app.register_blueprint(admin)
+
+from app.datamanager import datamanager
+app.register_blueprint(datamanager)
 
 from app.user import user
 app.register_blueprint(user, url_prefix = '/user')
-
-from app.datamanager import datamanager
-app.register_blueprint(datamanager, url_prefix = '/datamanager')
 
 from app import main
 
