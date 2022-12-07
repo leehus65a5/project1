@@ -1,7 +1,7 @@
-from app import db, mySql, app, User
+from app import db, mySql, User
 from flask import render_template, url_for, flash, redirect, g
 from app.admin import admin
-from app.form import insert_form
+from app.form import InsertForm
 from werkzeug.security import generate_password_hash
 from sqlalchemy import select, or_
 
@@ -18,7 +18,7 @@ def dashboard():
 
 @admin.route('/manage', methods=['GET','POST'])
 def quan_ly_nhan_vien():
-     form = insert_form()
+     form = InsertForm()
      check = db.session.execute(select(User).where(or_(User.id == form.userid.data, User.email == form.email.data, User.username == form.username.data))).fetchone()
      users = db.session.execute(select(User)).fetchall()
      
@@ -34,7 +34,7 @@ def quan_ly_nhan_vien():
      return render_template('admin/manage.html',form=form, users=users)
 
 @admin.route('/update', methods=['GET', 'POST'])
-def sua_nhan_vien():
+def update_nhan_vien():
      return render_template('admin/update.html')
 
 #-------------CHECK ZONE CODE----------------------

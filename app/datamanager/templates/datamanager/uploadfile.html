@@ -1,0 +1,15 @@
+{%extends 'datamanager/base.html'%}
+
+{%block content%}
+{%for mess in get_flashed_messages()%}
+<div class="flash">{{mess}}</div>
+{%endfor%}
+
+<form method="POST" , enctype="multipart/form-data">
+	{{ form.hidden_tag() }}
+	{{ form.fileup.lable }} {{ form.fileup()}} 
+	{{ form.submit_upload() }}
+</form>
+
+{%endblock%}
+
