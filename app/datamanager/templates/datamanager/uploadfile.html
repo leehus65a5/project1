@@ -5,7 +5,7 @@
 <div class="flash">{{mess}}</div>
 {%endfor%}
 
-<form method="POST" , enctype="multipart/form-data">
+<form method="POST", enctype="multipart/form-data">
 	{{ form.hidden_tag() }}
 	{{ form.fileup.lable }} {{ form.fileup()}} 
 	{{ form.submit_upload() }}

@@ -21,9 +21,12 @@ def dashboard():
 def uploadfile():
      form = UpLoadForm()
      if form.validate_on_submit() and request.method == 'POST':
-          file1 = form.fileup.data
+          # file1 = form.fileup.data
+          file1 = request.files['fileup']
           file1_data = request.files['fileup'].read()
-          file1.save(os.path.join(os.getcwd(), 'app' ,app.config['UPLOAD_FOLDER'],secure_filename(file1.filename)))
+          # file1.save(os.path.join(os.getcwd(), 'app' ,app.config['UPLOAD_FOLDER'],secure_filename(file1.filename)))
+          file1.save(os.path.join(app.root_path, 'static', 'files', secure_filename(file1.filename)))
+          print(os.path.join(app.root_path, 'static', 'files', secure_filename(file1.filename)))
           fileUp = Files(id = str(file1.filename.split('.')[0]), filename = file1.filename, data = file1_data)
           flag = fileUp.upFile()
           if not flag:
