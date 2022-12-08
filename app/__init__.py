@@ -42,6 +42,7 @@ class Files(db.Model):
           get_id = "".join(self.id)
           list_id = [i[0] for i in db.session.execute(select(Files.id)).fetchall()]
           if get_id in list_id:
+               print('fail in upFile function')
                return False
           db.session.add(self)
           db.session.commit()
