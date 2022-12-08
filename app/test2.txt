@@ -1,2 +1,3 @@
 hello
-Đây là nội dung thêm vào ở coffehouse
+đã xóa
+Và thêm nội dung mới
