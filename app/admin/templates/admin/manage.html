@@ -1,6 +1,6 @@
 {% extends 'admin/base.html' %}
 {% block script %}
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.css">
+    <link rel="stylesheet" type="text/css" href="/admin/static/css/bootstrapTable.css">
 {% endblock %}
 
 {%block cssfile%}
@@ -12,7 +12,7 @@
     <script type="text/javascript" charset="utf8"
             src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
     <script type="text/javascript" charset="utf8"
-            src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.js"></script>
+            src="/admin/static/js/bootstrapTable.js"></script>
 
 
     {% for mess in get_flashed_messages() %}
