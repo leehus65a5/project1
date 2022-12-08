@@ -40,10 +40,10 @@ def update_nhan_vien():
 
 #-------------CHECK ZONE CODE----------------------
 
-@admin.route('/')
+@admin.route('/test')
 def test():
-     x = check()
-     return x
+     # x = check()
+     return render_template('admin/base.html')
 
 def check():
      #this is code how we can connect to the mysql databases
