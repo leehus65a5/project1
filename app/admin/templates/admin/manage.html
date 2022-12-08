@@ -1,27 +1,60 @@
 {% extends 'admin/base.html' %}
+{% block script %}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.css">
+{% endblock %}
 
-{%block content%}
-{%for mess in get_flashed_messages()%}
-<div class="flash">{{mess}}</div>
-{%endfor%}
+{% block content %}
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.js"></script>
 
-<table>
-{%for user in users%}
-	<tr>
-		<td>{{user.User.id}}</td>
-		<td>{{user.User.username}}</td>
-		<td>{{user.User.email}}</td>
-	</tr>
-{%endfor%}
-</table>
 
-<p> bên dưới là update basic (OLD) </p>
-<form method="POST">
-	{{ form.hidden_tag() }}
-	{{ form.username.label }} {{ form.username() }}
-	{{ form.userid.label }} {{ form.userid() }}
-	{{ form.email.label }} {{ form.email() }}
-	{{ form.submit() }}
-</form>
+    {% for mess in get_flashed_messages() %}
+        <div class="flash">{{ mess }}</div>
+    {% endfor %}
+    <a id="addbtn">ADD</a>
+    <table id="data">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Options</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.User.id }} </td>
+                <td>{{ user.User.username }}</td>
+                <td>{{ user.User.email }}</td>
+                <td><a id="editbtn">edit</a>
+                    <a id="deletebtn">delete</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <script>
+        $(document).ready(function () {
+            $('#data').DataTable({
+                columns: [
+                    {orderable: true, searchable: true},
+                    {searchable: true},
+                    {orderable: false, searchable: false},
+                    {orderable: false, searchable: false},
+                ],
+            });
+        });
+    </script>
 
-{%endblock%}
+    <p> bên dưới là update basic (OLD) </p>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.username.label }} {{ form.username() }}
+        {{ form.userid.label }} {{ form.userid() }}
+        {{ form.email.label }} {{ form.email() }}
+        {{ form.submit() }}
+    </form>
+{% endblock %}
