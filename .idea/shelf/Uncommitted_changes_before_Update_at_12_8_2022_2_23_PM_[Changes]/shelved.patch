@@ -1,0 +1,20 @@
+Index: app/test2.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>hello\r\nĐây là nội dung thêm vào ở coffehouse\r\nTheem moi vao day\r\n\r\n2:17'\r\nTrung1205
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/test2.txt b/app/test2.txt
+--- a/app/test2.txt	(revision deab2e5dbdf1f4f7094cc5e2d0bfffe5a607b599)
++++ b/app/test2.txt	(date 1670484174362)
+@@ -3,4 +3,6 @@
+ Theem moi vao day
+ 
+ 2:17'
+-Trung1205
+\ No newline at end of file
++Trung1205
++
++ádjfaksldjf
+\ No newline at end of file
