@@ -3,6 +3,10 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.css">
 {% endblock %}
 
+{%block cssfile%}
+    <link href="/admin/static/css/table.css" rel="stylesheet">
+{%endblock%}
+
 {% block content %}
     <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" charset="utf8"
@@ -15,6 +19,7 @@
         <div class="flash">flash messeger : {{ mess }}</div>
     {% endfor %}
     <button><a id="addbtn">ADD</a></button>
+
     <table id="data">
         <thead>
         <tr>
