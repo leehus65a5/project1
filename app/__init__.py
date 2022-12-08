@@ -23,6 +23,14 @@ class User(db.Model):
           db.session.add(self)
           db.session.commit()
           return True
+
+     def updateUser(user_id, *args):
+          get_id = "".join(user_id)
+          get_user = User.query.filter_by(id = get_id).fetchone()
+          if not get_user:
+               return False
+          
+          pass
      
      def __repr__(self):
         return f'User({self.id} : {self.username})'
