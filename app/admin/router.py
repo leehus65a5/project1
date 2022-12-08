@@ -1,5 +1,5 @@
 from app import db, mySql, User
-from flask import render_template, url_for, flash, redirect, g
+from flask import render_template, url_for, flash, redirect, g, request
 from app.admin import admin
 from app.form import InsertForm
 from werkzeug.security import generate_password_hash
@@ -19,14 +19,15 @@ def dashboard():
 @admin.route('/manage', methods=['GET','POST'])
 def quan_ly_nhan_vien():
      form = InsertForm()
-     check = db.session.execute(select(User).where(or_(User.id == form.userid.data, User.email == form.email.data, User.username == form.username.data))).fetchone()
      users = db.session.execute(select(User)).fetchall()
      
-     if form.validate_on_submit() and not check:
+     if form.validate_on_submit() and request.method == 'POST':
           passw = generate_password_hash(form.password.data)
           new_user = User(id=form.userid.data, email=form.email.data, username=form.username.data,password=passw)
-          db.session.add(new_user)
-          db.session.commit()
+          flag = new_user.creatUser()
+          if not flag:
+               flash('User exit')
+               return redirect(url_for('admin.quan_ly_nhan_vien'))
           flash('Đã thêm thành công 1 nhân viên')
      else:
           flash('có lỗi khi nhập dữ liệu')
