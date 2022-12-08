@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98eef63e-4177-4544-984a-50a9396301b1" name="Changes" comment="t-14h32">
+    <list default="true" id="98eef63e-4177-4544-984a-50a9396301b1" name="Changes" comment="thêm css manage table">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/static/css/table.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/static/css/table.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/admin/templates/admin/manage.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/templates/admin/manage.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -15,6 +17,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="JavaScript File" />
         <option value="CSS File" />
       </list>
     </option>
@@ -66,6 +69,12 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\PycharmProjects\AnhToan2\app\admin\static" />
+      <recent name="C:\Users\Admin\PycharmProjects\AnhToan2\app\admin\static\css" />
+    </key>
+  </component>
   <component name="RunManager" selected="Python.myapp">
     <configuration name="AnhToan2" type="PythonConfigurationType" factoryName="Python">
       <module name="AnhToan2" />
@@ -130,7 +139,7 @@
       <workItem from="1670471017020" duration="1585000" />
       <workItem from="1670472658888" duration="1565000" />
       <workItem from="1670474260536" duration="2712000" />
-      <workItem from="1670483408310" duration="5848000" />
+      <workItem from="1670483408310" duration="25278000" />
     </task>
     <task id="LOCAL-00001" summary="upfile">
       <created>1670463292102</created>
@@ -216,7 +225,21 @@
       <option name="project" value="LOCAL" />
       <updated>1670484946364</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="thêm css manage table">
+      <created>1670489425616</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1670489425616</updated>
+    </task>
+    <task id="LOCAL-00014" summary="thêm css manage table">
+      <created>1670489569160</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1670489569160</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -280,7 +303,8 @@
     <MESSAGE value="t-14h23" />
     <MESSAGE value="t-14h30" />
     <MESSAGE value="t-14h32" />
-    <option name="LAST_COMMIT_MESSAGE" value="t-14h32" />
+    <MESSAGE value="thêm css manage table" />
+    <option name="LAST_COMMIT_MESSAGE" value="thêm css manage table" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/AnhToan2$myapp.coverage" NAME="myapp Coverage Results" MODIFIED="1670485563669" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
