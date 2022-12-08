@@ -15,6 +15,15 @@ with app.app_context():
 class User(db.Model):
      __table__ = db.metadata.tables['users']
      
+     def creatUser(self):
+          get_id = "".join(self.id)
+          list_id = [i[0] for  i in db.session.execute(select(User.id)).fetchall()]
+          if get_id in list_id:
+               return False
+          db.session.add(self)
+          db.session.commit()
+          return True
+     
      def __repr__(self):
         return f'User({self.id} : {self.username})'
 
