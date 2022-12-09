@@ -1,4 +1,5 @@
-from app import app, Files
+from app import app
+from app.model import Files
 from app.datamanager import datamanager
 from app.form import UpLoadForm, DownloadForm
 from flask import render_template, url_for, flash, redirect, g, request, send_file

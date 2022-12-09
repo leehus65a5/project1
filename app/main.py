@@ -1,4 +1,5 @@
-from app import app, db, User
+from app import app, db
+from app.model import User
 from flask import redirect, url_for, render_template, request, flash, session, g
 from app.form import LoginForm
 from werkzeug.security import check_password_hash

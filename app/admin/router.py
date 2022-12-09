@@ -1,4 +1,5 @@
-from app import db, mySql, User
+from app import db, mySql
+from app.model import User
 from flask import render_template, url_for, flash, redirect, g, request
 from app.admin import admin
 from app.form import InsertForm
@@ -36,7 +37,7 @@ def quan_ly_nhan_vien():
 
 @admin.route('/update', methods=['GET', 'POST'])
 def update_nhan_vien():
-     return render_template('admin/update.html')
+     return render_template('admin/test.html')
 
 #-------------CHECK ZONE CODE----------------------
 
