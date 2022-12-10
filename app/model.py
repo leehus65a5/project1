@@ -46,3 +46,11 @@ class Files(db.Model):
           
      def __repr__(self) -> str:
           return f'File = ({self.id} : {self.filename})'
+
+class A10(db.Model):
+     __table__ = db.metadata.tables['a10']
+     
+     # def __repr__(self) -> str:
+     #      return f'A10 = ({self.DEPT} : {self.PERM})'
+     
+     
