@@ -25,11 +25,9 @@ def quan_ly_nhan_vien():
      if form.validate_on_submit() and request.method == 'POST':
           passw = generate_password_hash(form.password.data)
           new_user = User(id=form.userid.data, email=form.email.data, username=form.username.data,password=passw)
-          flag = new_user.creatUser()
-          if not flag:
-               flash('User exit')
-               return redirect(url_for('admin.quan_ly_nhan_vien'))
-          flash('Đã thêm thành công 1 nhân viên')
+          mess = new_user.creatUser()
+          flash(mess)
+          return redirect(url_for('admin.quan_ly_nhan_vien'))
      else:
           flash('có lỗi khi nhập dữ liệu')
      

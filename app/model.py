@@ -9,12 +9,12 @@ class User(db.Model):
      
      def creatUser(self):
           get_id = "".join(self.id)
-          list_id = [i[0] for  i in db.session.execute(select(User.id)).fetchall()]
+          list_id = [str(i[0]).lower() for  i in db.session.execute(select(User.id)).fetchall()]
           if get_id in list_id:
-               return False
+               return 'User đã tồn tại trong database', False
           db.session.add(self)
           db.session.commit()
-          return True
+          return 'Tạo User thành công', True
 
      def updateUser(user_id, *args):
           get_id = "".join(user_id)
