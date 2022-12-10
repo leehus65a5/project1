@@ -1,0 +1,248 @@
+Index: app/admin/templates/admin/manage.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{% extends 'admin/base.html' %}\r\n{% block script %}\r\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"/admin/static/css/bootstrapTable.css\">\r\n{% endblock %}\r\n\r\n{%block cssfile%}\r\n    <link href=\"/admin/static/css/table.css\" rel=\"stylesheet\">\r\n{%endblock%}\r\n\r\n{% block content %}\r\n    <script type=\"text/javascript\" charset=\"utf8\" src=\"https://code.jquery.com/jquery-3.6.0.min.js\"></script>\r\n    <script type=\"text/javascript\" charset=\"utf8\"\r\n            src=\"https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js\"></script>\r\n    <script type=\"text/javascript\" charset=\"utf8\"\r\n            src=\"/admin/static/js/bootstrapTable.js\"></script>\r\n\r\n\r\n    {% for mess in get_flashed_messages() %}\r\n        <div class=\"flash\">flash messeger : {{ mess }}</div>\r\n    {% endfor %}\r\n    <button><a id=\"addbtn\">ADD</a></button>\r\n\r\n    <table id=\"data\">\r\n        <thead>\r\n        <tr>\r\n            <th>Id</th>\r\n            <th>Username</th>\r\n            <th>Email</th>\r\n            <th>Options</th>\r\n        </tr>\r\n        </thead>\r\n        <tbody>\r\n        {% for user in users %}\r\n            <tr>\r\n                <td>{{ user.User.id }} </td>\r\n                <td>{{ user.User.username }}</td>\r\n                <td>{{ user.User.email }}</td>\r\n                <td><button><a id=\"editbtn\">edit</a></button>\r\n                    <button><a id=\"deletebtn\">delete</a></button></td>\r\n            </tr>\r\n        {% endfor %}\r\n        </tbody>\r\n    </table>\r\n    <script>\r\n        $(document).ready(function () {\r\n            $('#data').DataTable({\r\n                columns: [\r\n                    {orderable: true, searchable: true},\r\n                    {searchable: true},\r\n                    {orderable: false, searchable: false},\r\n                    {orderable: false, searchable: false},\r\n                ],\r\n            });\r\n        });\r\n    </script>\r\n\r\n    <p> bên dưới là update basic (OLD) </p>\r\n    <form method=\"POST\">\r\n        {{ form.hidden_tag() }}\r\n        {{ form.username.label }} {{ form.username() }}\r\n        {{ form.userid.label }} {{ form.userid() }}\r\n        {{ form.email.label }} {{ form.email() }}\r\n        {{ form.submit() }}\r\n    </form>\r\n{% endblock %}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/admin/templates/admin/manage.html b/app/admin/templates/admin/manage.html
+--- a/app/admin/templates/admin/manage.html	(revision 9876d44737b7310ef0963b1324495eaf5746a3a2)
++++ b/app/admin/templates/admin/manage.html	(date 1670600435527)
+@@ -3,11 +3,12 @@
+     <link rel="stylesheet" type="text/css" href="/admin/static/css/bootstrapTable.css">
+ {% endblock %}
+ 
+-{%block cssfile%}
++{% block cssfile %}
+     <link href="/admin/static/css/table.css" rel="stylesheet">
+-{%endblock%}
++{% endblock %}
+ 
+ {% block content %}
++    <script type="text/javascript" charset="utf8" src="/admin/static/js/add"></script>
+     <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     <script type="text/javascript" charset="utf8"
+             src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+@@ -18,7 +19,23 @@
+     {% for mess in get_flashed_messages() %}
+         <div class="flash">flash messeger : {{ mess }}</div>
+     {% endfor %}
+-    <button><a id="addbtn">ADD</a></button>
++    <button data-modal-target="#modal">ADD</button>
++    <div class="modal" id="modal">
++        <div class="header">
++            <button data-close-button class="close-button">X</button>
++        </div>
++        <div class="modal-body">
++            <form>
++                <label for="name">Name:</label>
++                <input type="text" id="name" name="name"><br><br>
++                <label for="email">Email:</label>
++                <input type="text" id="email" name="email"><br><br>
++                <input type="submit" value="submit">
++            </form>
++        </div>
++    </div>
++    <div id="overlay"></div>
++    <script type="text/javascript" charset="utf8" src="/admin/static/js/add"></script>
+ 
+     <table id="data">
+         <thead>
+@@ -35,8 +52,10 @@
+                 <td>{{ user.User.id }} </td>
+                 <td>{{ user.User.username }}</td>
+                 <td>{{ user.User.email }}</td>
+-                <td><button><a id="editbtn">edit</a></button>
+-                    <button><a id="deletebtn">delete</a></button></td>
++                <td>
++                    <button><a id="editbtn">edit</a></button>
++                    <button><a id="deletebtn">delete</a></button>
++                </td>
+             </tr>
+         {% endfor %}
+         </tbody>
+Index: app/admin/static/css/table.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>.flash {\r\n    text-align: center;\r\n    box-sizing: border-box;\r\n    background:mediumseagreen;\r\n    width: 400px;\r\n    justify-items: center;\r\n    border-radius: 20px;\r\n    margin-left: 35%;\r\n}\r\n\r\n#data {\r\n    border-collapse: collapse;\r\n    width: 100%;\r\n}\r\n\r\n#data td, #data th {\r\n    border: 1px solid #ddd;\r\n    padding: 8px;\r\n    text-align: center;\r\n}\r\n\r\n#data th {\r\n    padding-top: 12px;\r\n    padding-bottom: 12px;\r\n    text-align: left;\r\n    background-color: #04AA6D;\r\n    color: white;\r\n    text-align: center;\r\n}\r\n.row1 {\r\n    display: grid;\r\n    grid-template-columns: auto auto;\r\n}\r\n.row1 #data_filter label {\r\n\r\n\r\n}\r\n.row3{\r\n    display: grid;\r\n    grid-template-columns: auto auto;\r\n}\r\n\r\n.pagination{\r\n    padding-top: 0;\r\n    list-style-type: none;\r\n    display: flex;\r\n    margin-top: 0;\r\n\r\n}\r\n.pagination a{\r\n    padding-left: 0;\r\n    margin: 0 10px ;\r\n    display: flex;\r\n    text-decoration: none;\r\n    list-style-type: none;\r\n}\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/admin/static/css/table.css b/app/admin/static/css/table.css
+--- a/app/admin/static/css/table.css	(revision 9876d44737b7310ef0963b1324495eaf5746a3a2)
++++ b/app/admin/static/css/table.css	(date 1670600400366)
+@@ -55,5 +55,52 @@
+     list-style-type: none;
+ }
+ 
++*,*::after,*::before{
++    box-sizing: border-box;
++}
++.modal{
++    padding: 10px;
++    position: fixed;
++    top:50%;
++    left: 50%;
++    transform: translate(-50%,-50%) scale(0);
++    transition: 200ms ease-in-out;
++    border: 1px solid black;
++    border-radius: 10px;
++    z-index: 10;
++    background-color: white;
++    width: 500px;
++    max-width: 80%;
++}
++.modal.active{
++    transform: translate(-50%,-50%) scale(1);
++}
++.close-button{
++    cursor: pointer;
++    padding: 5px 10px;
++    border: none;
++    outline: none;
++    background: none;
++    font-size: 1.25rem;
++}
++.header{
++    padding-left: 430px;
++}
++#overlay{
++    position: fixed;
++    opacity: 0;
++     transition: 200ms ease-in-out;
++    top:0;
++    left: 0;
++    right: 0;
++    bottom: 0;
++    background: rgba(0,0,0,.5);
++    pointer-events: none;
++}
++#overlay.active{
++    opacity: 1;
++    pointer-events: all;
++}
++
+ 
+ 
+Index: app/admin/static/js/add.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/admin/static/js/add.js b/app/admin/static/js/add.js
+new file mode 100644
+--- /dev/null	(date 1670600109755)
++++ b/app/admin/static/js/add.js	(date 1670600109755)
+@@ -0,0 +1,33 @@
++const openModalButtons = document.querySelectorAll('[data-modal-target]')
++const closeModalButtons = document.querySelectorAll('[data-close-button]')
++const overlay = document.getElementById('overlay')
++
++openModalButtons.forEach(button => {
++    button.addEventListener('click',() =>{
++        const modal = document.querySelector(button.dataset.modalTarget)
++        openModal(modal)
++    })
++})
++overlay.addEventListener('click',() =>{
++    const modals = document.querySelectorAll('.modal.active')
++    modals.forEach(modal =>{
++        closeModal(modal)
++    })
++})
++closeModalButtons.forEach(button => {
++    button.addEventListener('click',() =>{
++        const modal = button.closest('.modal')
++        closeModal(modal)
++    })
++})
++function openModal(modal){
++    if(modal = null) return
++    modal.classList.add('active')
++    overlay.classList.add('active')
++}
++
++function closeModal(modal){
++    if(modal = null) return
++    modal.classList.remove('active')
++    overlay.classList.remove('active')
++}
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"98eef63e-4177-4544-984a-50a9396301b1\" name=\"Changes\" comment=\"&quot;noi dung moi&quot;\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"JavaScript File\" />\r\n        <option value=\"CSS File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"FlaskConsoleOptions\" custom-start-script=\"import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\\nApp: %s [%s]\\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))\">\r\n    <envs>\r\n      <env key=\"FLASK_APP\" value=\"app\" />\r\n    </envs>\r\n    <option name=\"myCustomStartScript\" value=\"import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\\nApp: %s [%s]\\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))\" />\r\n    <option name=\"myEnvs\">\r\n      <map>\r\n        <entry key=\"FLASK_APP\" value=\"app\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"PREVIOUS_COMMIT_AUTHORS\">\r\n      <list>\r\n        <option value=\"lengoctoan_t65@hus.edu.vn &lt;lengoctoan_t65@hus.edu.vn&gt;\" />\r\n      </list>\r\n    </option>\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"Trung\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"UPDATE_TYPE\" value=\"REBASE\" />\r\n  </component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"file://$PROJECT_DIR$/app/__init__.py\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/app/admin/templates/admin/manage.html\" root0=\"FORCE_HIGHLIGHTING\" root1=\"FORCE_HIGHLIGHTING\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2IbvIs6Mmnn4dvfXuvkkSJWLrW2\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/PycharmProjects/AnhToan2&quot;,\r\n    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;fileTemplates&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\Admin\\PycharmProjects\\AnhToan2\\app\\admin\\static\" />\r\n      <recent name=\"C:\\Users\\Admin\\PycharmProjects\\AnhToan2\\app\\admin\\static\\css\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Python.myapp\">\r\n    <configuration name=\"AnhToan2\" type=\"PythonConfigurationType\" factoryName=\"Python\">\r\n      <module name=\"AnhToan2\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"false\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <EXTENSION ID=\"PythonCoverageRunConfigurationExtension\" runner=\"coverage.py\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/app/__init__.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"myapp\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"AnhToan2\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <EXTENSION ID=\"PythonCoverageRunConfigurationExtension\" runner=\"coverage.py\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/myapp.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Python.myapp\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"98eef63e-4177-4544-984a-50a9396301b1\" name=\"Changes\" comment=\"\" />\r\n      <created>1670463021046</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1670463021046</updated>\r\n      <workItem from=\"1670463022785\" duration=\"666000\" />\r\n      <workItem from=\"1670463705934\" duration=\"4840000\" />\r\n      <workItem from=\"1670471017020\" duration=\"1585000\" />\r\n      <workItem from=\"1670472658888\" duration=\"1565000\" />\r\n      <workItem from=\"1670474260536\" duration=\"2712000\" />\r\n      <workItem from=\"1670483408310\" duration=\"25278000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"upfile\">\r\n      <created>1670463292102</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670463292102</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"upfile\">\r\n      <created>1670463392184</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670463392184</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"upfile\">\r\n      <created>1670463429241</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670463429241</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"upfile\">\r\n      <created>1670465885866</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670465885866</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"upfile\">\r\n      <created>1670465919934</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670465919934</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"t-14h12\">\r\n      <created>1670483499498</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670483499498</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"t-14h17\">\r\n      <created>1670483893163</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670483893163</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"t-14h17\">\r\n      <created>1670483946479</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670483946479</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"t-14h23\">\r\n      <created>1670484240834</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670484240834</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"t-14h30\">\r\n      <created>1670484600572</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670484600572</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"t-14h32\">\r\n      <created>1670484747861</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670484747861</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"t-14h32\">\r\n      <created>1670484946364</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670484946364</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"thêm css manage table\">\r\n      <created>1670489425616</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670489425616</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"thêm css manage table\">\r\n      <created>1670489569160</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670489569160</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"&quot;noi dung moi&quot;\">\r\n      <created>1670589164524</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670589164524</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\"&quot;noi dung moi&quot;\">\r\n      <created>1670589257382</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670589257382</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"17\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.History.Properties\">\r\n    <option name=\"COLUMN_ID_ORDER\">\r\n      <list>\r\n        <option value=\"Default.Root\" />\r\n        <option value=\"Default.Author\" />\r\n        <option value=\"Default.Date\" />\r\n        <option value=\"Default.Subject\" />\r\n        <option value=\"Space.CommitStatus\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"origin/main\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_FILTERS\">\r\n      <map>\r\n        <entry key=\"Paths\">\r\n          <value>\r\n            <list>\r\n              <RecentGroup>\r\n                <option name=\"FILTER_VALUES\">\r\n                  <option value=\"dir:C:/Users/Admin/PycharmProjects/AnhToan2/app\" />\r\n                </option>\r\n              </RecentGroup>\r\n            </list>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"upfile\" />\r\n    <MESSAGE value=\"trung file 2\" />\r\n    <MESSAGE value=\"remvoved merger conflig\" />\r\n    <MESSAGE value=\"t-14h12\" />\r\n    <MESSAGE value=\"t-14h17\" />\r\n    <MESSAGE value=\"t-14h23\" />\r\n    <MESSAGE value=\"t-14h30\" />\r\n    <MESSAGE value=\"t-14h32\" />\r\n    <MESSAGE value=\"thêm css manage table\" />\r\n    <MESSAGE value=\"&quot;noi dung moi&quot;\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"&quot;noi dung moi&quot;\" />\r\n  </component>\r\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\r\n    <SUITE FILE_PATH=\"coverage/AnhToan2$myapp.coverage\" NAME=\"myapp Coverage Results\" MODIFIED=\"1670485563669\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 9876d44737b7310ef0963b1324495eaf5746a3a2)
++++ b/.idea/workspace.xml	(date 1670599460663)
+@@ -4,7 +4,12 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="98eef63e-4177-4544-984a-50a9396301b1" name="Changes" comment="&quot;noi dung moi&quot;" />
++    <list default="true" id="98eef63e-4177-4544-984a-50a9396301b1" name="Changes" comment="trung 20h20 12/9/22">
++      <change afterPath="$PROJECT_DIR$/app/admin/static/js/add.js" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/admin/static/css/table.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/static/css/table.css" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/admin/templates/admin/manage.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/templates/admin/manage.html" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -13,8 +18,8 @@
+   <component name="FileTemplateManagerImpl">
+     <option name="RECENT_TEMPLATES">
+       <list>
++        <option value="CSS File" />
+         <option value="JavaScript File" />
+-        <option value="CSS File" />
+       </list>
+     </option>
+   </component>
+@@ -41,7 +46,6 @@
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+-    <option name="UPDATE_TYPE" value="REBASE" />
+   </component>
+   <component name="HighlightingSettingsPerFile">
+     <setting file="file://$PROJECT_DIR$/app/__init__.py" root0="FORCE_HIGHLIGHTING" />
+@@ -77,7 +81,7 @@
+       <recent name="C:\Users\Admin\PycharmProjects\AnhToan2\app\admin\static\css" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Python.myapp">
++  <component name="RunManager" selected="Python.AnhToan2">
+     <configuration name="AnhToan2" type="PythonConfigurationType" factoryName="Python">
+       <module name="AnhToan2" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+@@ -255,7 +259,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1670589257382</updated>
+     </task>
+-    <option name="localTasksCounter" value="17" />
++    <task id="LOCAL-00017" summary="trung 20h20 12/9/22">
++      <created>1670592041839</created>
++      <option name="number" value="00017" />
++      <option name="presentableId" value="LOCAL-00017" />
++      <option name="project" value="LOCAL" />
++      <updated>1670592041839</updated>
++    </task>
++    <option name="localTasksCounter" value="18" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -321,7 +332,9 @@
+     <MESSAGE value="t-14h32" />
+     <MESSAGE value="thêm css manage table" />
+     <MESSAGE value="&quot;noi dung moi&quot;" />
+-    <option name="LAST_COMMIT_MESSAGE" value="&quot;noi dung moi&quot;" />
++    <MESSAGE value="trung 20h06 12/9/22" />
++    <MESSAGE value="trung 20h20 12/9/22" />
++    <option name="LAST_COMMIT_MESSAGE" value="trung 20h20 12/9/22" />
+   </component>
+   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+     <SUITE FILE_PATH="coverage/AnhToan2$myapp.coverage" NAME="myapp Coverage Results" MODIFIED="1670485563669" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
