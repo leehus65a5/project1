@@ -13,6 +13,7 @@ def check_auth():
           if not str(g.user.User.id).lower().startswith('ad'):
                return redirect(url_for('index'))
 
+@admin.route('/')
 @admin.route('/dashboard')
 def dashboard():
      return render_template('admin/dashboard.html')
@@ -37,12 +38,16 @@ def quan_ly_nhan_vien():
 def update_nhan_vien():
      return render_template('admin/test.html')
 
+@admin.route('/delete')
+def delete_nhan_vien():
+     pass
+
 #-------------CHECK ZONE CODE----------------------
 
-@admin.route('/test')
+@admin.route('/test', methods=['GET','POST'])
 def test():
-     # x = check()
-     return render_template('admin/base.html')
+    return "<h1>abc</h1>"
+
 
 def check():
      #this is code how we can connect to the mysql databases
