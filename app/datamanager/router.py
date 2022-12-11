@@ -1,11 +1,12 @@
-from app import app
-from app.model import Files
+from app import app, db
+from app.model import Files, A10
 from app.datamanager import datamanager
 from app.form import UpLoadForm, DownloadForm
 from flask import render_template, url_for, flash, redirect, g, request, send_file
 from werkzeug.utils import secure_filename
 import os
 from io import BytesIO
+from sqlalchemy import select
 
 @datamanager.before_request
 def check_auth():
@@ -48,3 +49,8 @@ def downloadfile():
           flash('download file thành công')
           return send_file(BytesIO(get_file.data),download_name=get_file.filename,as_attachment=True)
      return render_template('datamanager/downloadfile.html', form=form)
+
+@datamanager.route('/test', methods = ['GET','POST'])
+def test():
+     a10_data2 = A10.query.all()
+     return render_template('datamanager/test.html', datas = a10_data2)

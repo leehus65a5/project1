@@ -1,0 +1,26 @@
+{%extends 'datamanager/base.html'%}
+
+{%block content%}
+<input type="text" placeholder="start">
+<input type="text" placeholder="end">
+<table>
+    {% for data in datas %}
+    <tr>
+        <td>{{data.DEPT}}</td>
+        <td>{{data.PERM}}</td>
+        <td>{{data.GAMMA}}</td>
+        <td>{{data.POROSITY}}</td>
+        <td>{{data.FLUVIALFACIES}}</td>
+        <td>{{data.NETGROSS}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{%endblock%}
+
+<!-- <td>{{data.A10.DEPT}}</td>
+                <td>{{data.A10.PERM}}</td>
+                <td>{{data.A10.GAMMA}}</td>
+                <td>{{data.A10.POROSITY}}</td>
+                <td>{{data.A10.FLUVIALFACIES}}</td>
+                <td>{{data.A10.NETGROSS}}</td> -->

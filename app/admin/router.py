@@ -22,7 +22,7 @@ def dashboard():
 def quan_ly_nhan_vien():
      form = InsertForm()
      users = db.session.execute(select(User)).fetchall()
-     
+     print(users)
      if form.validate_on_submit() and request.method == 'POST':
           passw = generate_password_hash(form.password.data)
           new_user = User(id=form.userid.data, email=form.email.data, username=form.username.data,password=passw)
