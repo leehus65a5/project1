@@ -43,7 +43,8 @@ def update_nhan_vien():
           print('----------------')
           update = {}
           for i in User.__table__.columns:
-               update[i.key] = form.data[i.key]
+               if form.data[i.key]:
+                    update[i.key] = form.data[i.key]
           print(update)
           mess = User.updateUser(**update)[0]
           flash(mess)
