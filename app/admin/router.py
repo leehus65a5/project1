@@ -58,7 +58,7 @@ def delete_nhan_vien():
 
 @admin.route('/test', methods=['GET','POST'])
 def test():
-    return "<h1>abc</h1>"
+    return render_template('admin/test.html')
 
 
 def check():
