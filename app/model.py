@@ -25,8 +25,11 @@ class User(db.Model):
                if att != 'id':
                     if hasattr(get_user, att):
                          setattr(get_user, att, args[att])
-          db.session.add(get_user)
-          db.session.commit()
+          try:
+               db.session.add(get_user)
+               db.session.commit()
+          except:
+               return f'Update failse', False
           return f'Update thành công User {args["username"]}', True
      
      def deleteUser(user_id):

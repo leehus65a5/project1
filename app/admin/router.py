@@ -48,7 +48,7 @@ def update_nhan_vien():
           mess = User.updateUser(**update)[0]
           flash(mess)
           return redirect(url_for('admin.update_nhan_vien'))
-     return render_template('admin/test.html', users=get_all_user, form = form)
+     return render_template('admin/update.html', users=get_all_user, form = form)
 
 @admin.route('/delete')
 def delete_nhan_vien():
