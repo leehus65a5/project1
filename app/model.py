@@ -16,11 +16,20 @@ class User(db.Model):
           db.session.commit()
           return 'Tạo User thành công', True
 
-     def updateUser(user_id, *args):
-          get_id = "".join(user_id)
-          get_user = User.query.filter_by(id = get_id).fetchone()
+     def updateUser(**args):
+          get_id = args['id']
+          get_user = User.query.filter_by(id = get_id).first()
           if not get_user:
-               return False
+               return 'Không tồn tại User', False
+          for att in args:
+               if att != 'id':
+                    if hasattr(get_user, att):
+                         setattr(get_user, att, args[att])
+          db.session.add(get_user)
+          db.session.commit()
+          return f'Update thành công User {args["username"]}', True
+     
+     def deleteUser(user_id):
           pass
      
      def __repr__(self):

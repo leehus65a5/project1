@@ -16,6 +16,13 @@ class InsertForm(FlaskForm):
      email = StringField("email",validators=[DataRequired()])
      password = PasswordField('Mật khẩu', validators=[DataRequired()])
      submit = SubmitField("Thêm nhân viên")
+     
+class UpdateForm(FlaskForm):
+     id = StringField("id", validators=[DataRequired()])
+     username = StringField("Tên Nhân Viên")
+     email = StringField("email")
+     password = PasswordField('Mật khẩu')
+     submit = SubmitField("Update nhân viên")
 
 class UpLoadForm(FlaskForm):
      fileup = FileField('Chọn file bạn muốn tải lên', validators=[FileRequired()])
