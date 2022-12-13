@@ -1,6 +1,7 @@
 from app import db, app
 from sqlalchemy import select
 
+
 with app.app_context():
      db.reflect()
 
@@ -44,10 +45,10 @@ class Files(db.Model):
           get_id = "".join(self.id)
           list_id = [i[0] for i in db.session.execute(select(Files.id)).fetchall()]
           if get_id in list_id:
-               return False
+               return False, 'Upload file thất bại'
           db.session.add(self)
           db.session.commit()
-          return True
+          return True, 'Upload file thành công'
      
      def downloadFile(file_id):
           get_file = Files.query.filter_by(id = file_id).first()
