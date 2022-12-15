@@ -1,4 +1,5 @@
 {% extends 'admin/base.html' %}
+{%from 'admin/marco.html' import addButom, editButom %}
 {% block script %}
     <link rel="stylesheet" type="text/css" href="/admin/static/css/bootstrapTable.css">
 {% endblock %}
@@ -20,6 +21,7 @@
     {% endfor %}
 
     {% include "admin/Popup1.html" %}
+    {{addButom()}}
 
     <table id="data">
         <thead>
@@ -55,7 +57,7 @@
         });
     </script>
 
-    <p> bên dưới là update basic (OLD) </p>
+    <p> bên dưới là thêm nhân viên basic (OLD) </p>
     <form method="POST">
         {{ form.hidden_tag() }}
         {{ form.username.label }} {{ form.username() }}
