@@ -2,7 +2,6 @@ from app import db, mySql
 from flask import render_template, url_for, flash, redirect, g, request
 from app.user import user
 from app.model import A10
-from app.form import GetInfoForm
 from sqlalchemy import select, and_
 
 @user.route('/')
