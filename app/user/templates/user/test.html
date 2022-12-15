@@ -4,17 +4,17 @@
 
 {% if datas %}
 
-<form action="POST">
-	<input type="text" placeholder="start">
-	<input type="text" placeholder="end">
-</form>
+<form method="POST">
+	<input type="text" name="start" placeholder="start"/>
+	<input type="text" name="stop" placeholder="stop"/>
+	{% for i in listkey %}
+	<input type="checkbox" name="{{i}}" id="{{i}}"/>
+	<label for="{{i}}">{{i}}</label>
+	{%endfor%}
+	<input type="submit"/>
+ </form>
 
 <table>
-	{% set x = datas[0] %}
-	<h3>test : {{x.__dict__.keys()}}</h3>
-	{% for i in x.__dict__.keys() %}
-	<h4>{{x[i]}}</h4>
-	{%endfor%}
 	{% for data in datas %}
 	<tr>
 		<td>{{data.DEPT}}</td>

@@ -51,5 +51,4 @@ def downloadfile():
 
 @datamanager.route('/test', methods = ['GET','POST'])
 def test():
-     a10_data2 = A10.query.all()
-     return render_template('datamanager/test.html', datas = a10_data2)
+     return render_template('datamanager/test.html')

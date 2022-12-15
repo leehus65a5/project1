@@ -1,5 +1,5 @@
 {% extends 'admin/base.html' %}
-{%from 'admin/marco.html' import addButom, editButom %}
+
 {% block script %}
     <link rel="stylesheet" type="text/css" href="/admin/static/css/bootstrapTable.css">
 {% endblock %}
@@ -21,7 +21,6 @@
     {% endfor %}
 
     {% include "admin/Popup1.html" %}
-    {{addButom()}}
 
     <table id="data">
         <thead>
