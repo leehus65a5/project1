@@ -61,9 +61,9 @@ def login():
                if get_id.startswith('ad'):
                     return redirect(url_for('admin.dashboard', user_id = get_id))
                elif get_id.startswith('dm'):
-                    return redirect(url_for('index'))
+                    return redirect(url_for('datamanager.dashboard'))
                elif get_id.startswith('da'):
-                    return redirect(url_for('index'))
+                    return redirect(url_for('datamanager.dashboard'))
                return redirect(url_for('index'))
           
      return render_template('login.html',form=form)

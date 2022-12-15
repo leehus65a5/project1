@@ -2,7 +2,7 @@ from app import db, mySql
 from app.model import User
 from flask import render_template, url_for, flash, redirect, g, request
 from app.admin import admin
-from app.form import InsertForm
+from app.form import InsertForm, UpdateForm
 from werkzeug.security import generate_password_hash
 from sqlalchemy import select, or_
 
@@ -26,17 +26,30 @@ def quan_ly_nhan_vien():
      if form.validate_on_submit() and request.method == 'POST':
           passw = generate_password_hash(form.password.data)
           new_user = User(id=form.userid.data, email=form.email.data, username=form.username.data,password=passw)
-          mess = new_user.creatUser()
+          mess, flag = new_user.creatUser()
+          if not flag:
+               mess = 'có lỗi khi nhập dữ liệu'
           flash(mess)
           return redirect(url_for('admin.quan_ly_nhan_vien'))
-     else:
-          flash('có lỗi khi nhập dữ liệu')
      
      return render_template('admin/manage.html',form=form, users=users)
 
 @admin.route('/update', methods=['GET', 'POST'])
 def update_nhan_vien():
-     return render_template('admin/test.html')
+     get_all_user = User.query.all()
+     form = UpdateForm()
+     if request.method == 'POST' and form.validate_on_submit():
+          print(form.data)
+          print('----------------')
+          update = {}
+          for i in User.__table__.columns:
+               if form.data[i.key]:
+                    update[i.key] = form.data[i.key]
+          print(update)
+          mess = User.updateUser(**update)[0]
+          flash(mess)
+          return redirect(url_for('admin.update_nhan_vien'))
+     return render_template('admin/update.html', users=get_all_user, form = form)
 
 @admin.route('/delete')
 def delete_nhan_vien():
@@ -46,7 +59,7 @@ def delete_nhan_vien():
 
 @admin.route('/test', methods=['GET','POST'])
 def test():
-    return "<h1>abc</h1>"
+    return render_template('admin/test.html')
 
 
 def check():
