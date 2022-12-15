@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98eef63e-4177-4544-984a-50a9396301b1" name="Changes" comment="trung 20h20 12/9/22" />
+    <list default="true" id="98eef63e-4177-4544-984a-50a9396301b1" name="Changes" comment="trung 20h20 12/9/22">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/static/js/Popup.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/static/js/Popup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/templates/admin/Popup.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/templates/admin/Popup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/templates/admin/manage.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/templates/admin/manage.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,7 +46,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/app/__init__.py" root0="FORCE_HIGHLIGHTING" />

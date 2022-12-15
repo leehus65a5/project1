@@ -18,7 +18,8 @@
     {% for mess in get_flashed_messages() %}
         <div class="flash">flash messeger : {{ mess }}</div>
     {% endfor %}
-    <button><a id="addbtn">ADD</a></button>
+
+    {% include "admin/Popup1.html" %}
 
     <table id="data">
         <thead>
