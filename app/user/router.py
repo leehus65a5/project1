@@ -18,9 +18,13 @@ def showdata():
      
      if request.method == 'POST':
           form = request.form
-          cols = [i for i in form if i not in ['start', 'stop']]
-          sql = select(A10.DEPT,*[getattr(A10, i) for i in cols]).where(and_(A10.DEPT >= form['start'], A10.DEPT <= form['stop']))
-          r = db.session.execute(sql).fetchall()
-          a10_data2 = r
+          if 'all' not in form:
+               cols = [i for i in form if i not in ['start', 'stop','all','save']]
+               sql = select(A10.DEPT,*[getattr(A10, i) for i in cols]).where(and_(A10.DEPT >= form['start'], A10.DEPT <= form['stop']))
+               r = db.session.execute(sql).fetchall()
+               a10_data2 = r
+          if 'save' in form:
+               pass
+          return render_template('user/test.html', datas = a10_data2, listkey = listkey)
           
      return render_template('user/test.html', datas = a10_data2, listkey = listkey)

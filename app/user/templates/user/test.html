@@ -5,6 +5,11 @@
 {% if datas %}
 
 <form method="POST">
+	<p>
+		<input type="submit" value="Toàn bộ bảng" name="all">
+		<input type="submit" value="Lưu file csv" name="save">
+	</p>
+	<br>
 	<input type="text" name="start" placeholder="start"/>
 	<input type="text" name="stop" placeholder="stop"/>
 	{% for i in listkey %}
