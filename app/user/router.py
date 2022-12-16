@@ -1,8 +1,10 @@
-from app import db, mySql
-from flask import render_template, url_for, flash, redirect, g, request
+from app import db, mySql, app
+from flask import render_template, url_for, flash, redirect, g, request, jsonify
 from app.user import user
 from app.model import A10
 from sqlalchemy import select, and_
+import csv, os
+
 
 @user.route('/')
 @user.route('/dashboard')
@@ -23,8 +25,20 @@ def showdata():
                sql = select(A10.DEPT,*[getattr(A10, i) for i in cols]).where(and_(A10.DEPT >= form['start'], A10.DEPT <= form['stop']))
                r = db.session.execute(sql).fetchall()
                a10_data2 = r
-          if 'save' in form:
-               pass
-          return render_template('user/test.html', datas = a10_data2, listkey = listkey)
-          
+               
+          # return render_template('user/test.html', datas = a10_data2, listkey = listkey)
+     # if 'save' in request.form:
+     #           d = []
+     #           for i in a10_data2:
+     #                d.append(i.to_dict())
+                    
+     #           path1 = os.path.join(app.root_path, 'user/static/files/', 'saveFiles.csv')
+     #           print(path1)
+     #           with open(path1, 'w', newline='') as f:
+     #                dict_writer = csv.DictWriter(f, d[0].keys())
+     #                dict_writer.writeheader()
+     #                dict_writer.writerows(d)
+                    
      return render_template('user/test.html', datas = a10_data2, listkey = listkey)
+
+
