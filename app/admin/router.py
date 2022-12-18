@@ -51,9 +51,17 @@ def update_nhan_vien():
           return redirect(url_for('admin.update_nhan_vien'))
      return render_template('admin/update.html', users=get_all_user, form = form)
 
-@admin.route('/delete')
+@admin.route('/delete', methods = ['GET','POST'])
 def delete_nhan_vien():
-     pass
+     get_all_user = User.query.all()
+     if request.method == 'POST':
+          details = request.form
+          user_id = details['user_id']
+          mess = User.deleteUser(str(user_id))[0]
+          flash(mess)
+          return redirect(url_for('admin.delete_nhan_vien'))
+          
+     return render_template('admin/delete.html', users=get_all_user)
 
 #-------------CHECK ZONE CODE----------------------
 

@@ -1,0 +1,28 @@
+{% extends 'admin/base.html' %}
+
+{%block content%}
+
+{% for mess in get_flashed_messages() %}
+<div class="flash">flash messeger : {{ mess }}</div>
+{% endfor %}
+
+<form method="POST">
+	<input type="text" name="user_id">
+	<input type="submit">
+</form>
+<table>
+	<tbody>
+		{% for user in users %}
+		<tr>
+		    <td>{{ user.id }} </td>
+		    <td>{{ user.username }}</td>
+		    <td>{{ user.email }}</td>
+		    <td><button><a id="editbtn">edit</a></button>
+			   <button><a id="deletebtn">delete</a></button></td>
+		</tr>
+		{% endfor %}
+	</tbody>
+	
+</table>
+
+{%endblock%}
