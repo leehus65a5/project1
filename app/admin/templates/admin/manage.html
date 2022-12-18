@@ -1,10 +1,15 @@
 {% extends 'admin/base.html' %}
+{%from 'admin/add_button.html' import addbutton %}
 {% block script %}
     <link rel="stylesheet" type="text/css" href="/admin/static/css/bootstrapTable.css">
 {% endblock %}
 
 {%block cssfile%}
     <link href="/admin/static/css/table.css" rel="stylesheet">
+    <link href="/admin/static/css/add_button.css" type="text/css" rel="stylesheet">
+        <link href="/admin/static/css/edit_button.css" type="text/css" rel="stylesheet">
+
+
 {%endblock%}
 
 {% block content %}
@@ -19,7 +24,7 @@
         <div class="flash">flash messeger : {{ mess }}</div>
     {% endfor %}
 
-    {% include "admin/Popup1.html" %}
+    {% include "admin/add_button.html" %}
 
     <table id="data">
         <thead>
@@ -36,12 +41,17 @@
                 <td>{{ user.User.id }} </td>
                 <td>{{ user.User.username }}</td>
                 <td>{{ user.User.email }}</td>
-                <td><button><a id="editbtn">edit</a></button>
+                <td>
+                    {% include "admin/edit_button.html" %}
                     <button><a id="deletebtn">delete</a></button></td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    <script src="/admin/static/js/add_button.js" type="text/javascript"></script>
+    <script src="/admin/static/js/edit_button.js" type="text/javascript"></script>
+
+
     <script>
         $(document).ready(function () {
             $('#data').DataTable({

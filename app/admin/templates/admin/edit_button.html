@@ -1,0 +1,17 @@
+{% extends "admin/Popup2.html" %}
+
+{% block edit_button %}
+    <button data-modal-target="#modal1">
+        Edit
+    </button>
+    <div class="modal1" id="modal1">
+        <div class="modal-header">
+            <div class="title">Example Modal</div>
+            <button data-close-button-edit class="close-button">&times;</button>
+        </div>
+        <div class="modal-body">
+            <input>
+        </div>
+    </div>
+    <div id="overlay1"></div>
+{% endblock %}
