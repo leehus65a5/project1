@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98eef63e-4177-4544-984a-50a9396301b1" name="Changes" comment="trung commit 17h10 21/12">
-      <change beforePath="$PROJECT_DIR$/app/user/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/user/router.py" afterDir="false" />
-    </list>
+    <list default="true" id="98eef63e-4177-4544-984a-50a9396301b1" name="Changes" comment="trung commit 17h10 21/12" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -164,7 +162,7 @@
       <workItem from="1670483408310" duration="25278000" />
       <workItem from="1671197667784" duration="3410000" />
       <workItem from="1671266725432" duration="7163000" />
-      <workItem from="1671603014622" duration="13876000" />
+      <workItem from="1671603014622" duration="14179000" />
     </task>
     <task id="LOCAL-00001" summary="upfile">
       <created>1670463292102</created>
@@ -376,7 +374,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671618123048</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="trung commit 17h10 21/12">
+      <created>1671618611832</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1671618611832</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
