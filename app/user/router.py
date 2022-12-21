@@ -29,7 +29,7 @@ def showdata():
                r = db.session.execute(sql).fetchall()
                a10_data2 = r
                
-          # return render_template('user/test.html', datas = a10_data2, listkey = listkey)
+          return render_template('user/test.html', datas = a10_data2, listkey = listkey)
      
      # for i in a10_data2:
      #      d.append(i.to_dict())
@@ -40,7 +40,12 @@ def showdata():
      #      dict_writer = csv.DictWriter(f, d[0].keys())
      #      dict_writer.writeheader()
      #      dict_writer.writerows(d)
-                    
+     
+     print(type(a10_data2[0]))
+     print(a10_data2[0])
+     print(a10_data2[0].__dict__)
+     print(sorted(a10_data2[0].__dict__))
+     
      return render_template('user/test.html', datas = a10_data2, listkey = listkey)
 
 
@@ -48,8 +53,8 @@ def showdata():
 def check():
      a10 = db.Table('a10', db.metadata,autoload=True,autoload_with=db.engine)
      
-     sql = select(getattr(a10.columns, 'DEPT'), getattr(a10.columns, 'PERM'))
+     sql = select(a10)
      r = db.session.execute(sql).fetchall()
      for i in r:
           print(i)
-     return render_template('user/check.html', datas = 'ac')
+     return render_template('user/check.html', datas = r)
