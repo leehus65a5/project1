@@ -17,6 +17,7 @@ def showdata():
      x = a10_data2[0]
      listkey = x.__dict__.keys()
      listkey = sorted(listkey)[1:-1]
+     # d = []
      
      if request.method == 'POST':
           form = request.form
@@ -27,17 +28,16 @@ def showdata():
                a10_data2 = r
                
           # return render_template('user/test.html', datas = a10_data2, listkey = listkey)
-     # if 'save' in request.form:
-     #           d = []
-     #           for i in a10_data2:
-     #                d.append(i.to_dict())
-                    
-     #           path1 = os.path.join(app.root_path, 'user/static/files/', 'saveFiles.csv')
-     #           print(path1)
-     #           with open(path1, 'w', newline='') as f:
-     #                dict_writer = csv.DictWriter(f, d[0].keys())
-     #                dict_writer.writeheader()
-     #                dict_writer.writerows(d)
+     
+     # for i in a10_data2:
+     #      d.append(i.to_dict())
+          
+     # path1 = os.path.join(app.root_path, 'user/static/files/', 'saveFiles.csv')
+     # print(path1)
+     # with open(path1, 'w', newline='') as f:
+     #      dict_writer = csv.DictWriter(f, d[0].keys())
+     #      dict_writer.writeheader()
+     #      dict_writer.writerows(d)
                     
      return render_template('user/test.html', datas = a10_data2, listkey = listkey)
 
