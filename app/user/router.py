@@ -64,19 +64,9 @@ def check():
      check_table = session.get('table')
      
      print('form = ', form)
+     print(dir(form))
+     print(form.__dict__)
      print('check table', check_table)
-     
-     # if not check_table:
-     #      print('not check table')
-     #      if 'name' in form:
-     #           print('name in form')
-     #           session['table'] = form['name']
-     
-     # if check_table:
-     #      print('đã có table')
-     #      if 'name' in form:
-     #           if len(form['name']) >= 1 and form['name'] != check_table:
-     #                session['table'] = form['name']
      
      if 'name' not in form and not check_table:
           print('no name and check table')
