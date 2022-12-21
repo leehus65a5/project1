@@ -43,6 +43,19 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="962fe314-b23b-4e4a-b3aa-1ecbb60ae628" />
+        <option name="url" value="https://github.com/leehus65a5/project1.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/app/__init__.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/app/admin/templates/admin/manage.html" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
@@ -162,7 +175,7 @@
       <workItem from="1670483408310" duration="25278000" />
       <workItem from="1671197667784" duration="3410000" />
       <workItem from="1671266725432" duration="7163000" />
-      <workItem from="1671603014622" duration="14179000" />
+      <workItem from="1671603014622" duration="14606000" />
     </task>
     <task id="LOCAL-00001" summary="upfile">
       <created>1670463292102</created>
@@ -381,7 +394,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671618611832</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="trung commit 17h10 21/12">
+      <created>1671618925935</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1671618925935</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
