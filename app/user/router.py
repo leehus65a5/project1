@@ -80,7 +80,7 @@ def check():
     if request.method == 'POST':
         pass
         print('check form', form)
-        data = db.session.execute(select(cls)).fetchall()
+        # data = db.session.execute(select()).fetchall()
 
     # a10 = db.Table('a10', db.metadata,autoload=True,autoload_with=db.engine)
     # sql = select(a10)
