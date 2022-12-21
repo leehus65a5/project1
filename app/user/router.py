@@ -11,9 +11,10 @@ from sqlalchemy.orm import mapper
 @user.route('/')
 @user.route('/dashboard')
 def dashboard():
-     return render_template('user/dashboard.html')
+    return render_template('user/dashboard.html')
 
-@user.route('/test', methods = ['GET','POST'])
+
+@user.route('/test', methods=['GET', 'POST'])
 def showdata():
      a10_data2 = A10.query.all()
      x = a10_data2[0]
@@ -53,41 +54,35 @@ def showdata():
      return render_template('user/test.html', datas = a10_data2, listkey = listkey, listTable = listTable)
 
 
-@user.route('/check', methods = ['GET','POST'])
+
+@user.route('/check', methods=['GET', 'POST'])
 def check():
      
-     data = None
-     listk = None
-     form = request.form
-     check_table = session.get('table')
-     
-     if not check_table:
-          print('not check table')
-          if 'name' in form:
-               print('name in form')
-               session['table'] = form['name']
-     
-     if check_table:
-          print('đã có table')
-          if 'name' in form:
-               if len(form['name']) >= 1 and form['name'] != check_table:
-                    session['table'] = form['name']
-     
-     if request.method == 'POST':
-          if 'name' in form:
-               if form['name'] != check_table and len(form['name']) > 0:
-                    session['table'] = form['name']
-          elif not check_table:
-               flash('chưa chọn bảng dữ liệu')
-               return redirect('user/check/html', datas = None, listkey = None)
-          else:
-               pass
-               
+    data = None
+    listk = None
+    form = request.form
+    check_table = session.get('table')
 
-     # a10 = db.Table('a10', db.metadata,autoload=True,autoload_with=db.engine)
-     # sql = select(a10)
-     # r = db.session.execute(sql).fetchall()
-     # for i in r:
-     #      print(i)
-     
-     return render_template('user/check.html', datas = data, listkey = listk)
+    if not check_table:
+        print('not check table')
+    if 'name' in form:
+        print('name in form')
+        session['table'] = form['name']
+
+    if check_table:
+        print('đã có table')
+    if 'name' in form:
+        if len(form['name']) >= 1 and form['name'] != check_table:
+            session['table'] = form['name']
+
+    if request.method == 'POST':
+        if 'name' in form:
+            if form['name'] != check_table and len(form['name']) > 0:
+                session['table'] = form['name']
+        elif not check_table:
+            flash('chưa chọn bảng dữ liệu')
+            return redirect('user/check/html', datas = None, listkey = None)
+        else:
+            pass
+
+    return render_template('user/check.html', datas=data, listkey=listk)

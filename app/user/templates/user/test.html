@@ -1,46 +1,59 @@
 {% extends 'user/base.html' %}
 
-{%block content%}
 
-{%if listTable%}
-	<p>list table</p>
-	{%for i in listTable%}
-	<p>{{i}}</p>
-	{%endfor%}
-	<p>end list table</p>
-{%endif%}
+{% block content %}
+    <link href="/user/static/css/table.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/user/static/css/bootstrapTable.css">
 
-{% if datas %}
+    {% if datas %}
 
-<form method="POST">
-	<p>
-		<input type="submit" value="Toàn bộ bảng" name="all">
-		<input type="submit" value="Lưu file csv" name="save">
-	</p>
-	<br>
-	<input type="text" name="start" placeholder="start"/>
-	<input type="text" name="stop" placeholder="stop"/>
-	{% for i in listkey %}
-	<input type="checkbox" name="{{i}}" id="{{i}}"/>
-	<label for="{{i}}">{{i}}</label>
-	{%endfor%}
-	<input type="submit"/>
- </form>
+        <form method="POST">
+            <p>
+                <input type="submit" value="Toàn bộ bảng" name="all">
+                <input type="submit" value="Lưu file csv" name="save">
+            </p>
 
-<table>
-	{%set x = datas[0]%}
-	{{x}}
-	{% for data in datas %}
-	<tr>
-		<td>{{data.DEPT}}</td>
-		<td>{{data.PERM}}</td>
-		<td>{{data.GAMMA}}</td>
-		<td>{{data.POROSITY}}</td>
-		<td>{{data.FLUVIALFACIES}}</td>
-		<td>{{data.NETGROSS}}</td>
-	</tr>
-	{% endfor %}
-</table>
-{%endif%}
+            <input type="text" name="start" placeholder="start"/>
+            <input type="text" name="stop" placeholder="stop"/>
+            <br>
+            {% for i in listkey %}
+                <input type="checkbox" name="{{ i }}" id="{{ i }}"/>
+                <label for="{{ i }}">{{ i }}</label>
+            {% endfor %}
+            <input type="submit"/>
+        </form>
 
-{%endblock%}
+        <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" charset="utf8"
+                src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+        <script type="text/javascript" charset="utf8"
+                src="/user/static/js/bootstrapTable.js"></script>
+        <table id="data">
+            {% for data in datas %}
+                <tr>
+                    <td>{{ data.DEPT }}</td>
+                    <td>{{ data.PERM }}</td>
+                    <td>{{ data.GAMMA }}</td>
+                    <td>{{ data.POROSITY }}</td>
+                    <td>{{ data.FLUVIALFACIES }}</td>
+                    <td>{{ data.NETGROSS }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <script>
+            $(document).ready(function () {
+                $('#data').DataTable({
+                    columns: [
+                        {orderable: true, searchable: true},
+                        {orderable: false, searchable: false},
+                        {orderable: false, searchable: false},
+                        {orderable: false, searchable: false},
+                        {orderable: false, searchable: false},
+                        {orderable: false, searchable: false},
+                    ],
+                });
+            });
+        </script>
+    {% endif %}
+
+{% endblock %}
