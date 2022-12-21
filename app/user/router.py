@@ -23,10 +23,7 @@ def showdata():
      
      uid = session.get('user_id')
      listTable = db.session.execute(select(Udata.tableid).where(Udata.userid == uid))
-     print('this is listTable', listTable)
      listTable = [i.tableid for i in listTable]
-     print(listTable)
-     print('uid' , uid)
      
      if request.method == 'POST':
           form = request.form
@@ -58,6 +55,7 @@ def showdata():
 
 @user.route('/check', methods = ['GET','POST'])
 def check():
+     
      data = None
      listk = None
      form = request.form
@@ -76,10 +74,15 @@ def check():
                     session['table'] = form['name']
      
      if request.method == 'POST':
-          pass
-          print('check form', form)
-          data = db.session.execute(select(cls)).fetchall()
-
+          if 'name' in form:
+               if form['name'] != check_table and len(form['name']) > 0:
+                    session['table'] = form['name']
+          elif not check_table:
+               flash('chưa chọn bảng dữ liệu')
+               return redirect('user/check/html', datas = None, listkey = None)
+          else:
+               pass
+               
 
      # a10 = db.Table('a10', db.metadata,autoload=True,autoload_with=db.engine)
      # sql = select(a10)
