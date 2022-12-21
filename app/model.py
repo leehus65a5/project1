@@ -75,3 +75,7 @@ class A10(db.Model):
      # def __repr__(self) -> str:
      #      return f'A10 = ({self.DEPT} : {self.PERM})'
 
+class Udata(db.Model):
+     
+     __table__ = db.metadata.tables['truycapdata']
+     

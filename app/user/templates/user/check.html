@@ -2,23 +2,28 @@
 
 {%block content%}
 
-{% if datas %}
-
-<form method="POST">
+<form method="POST" autocomplete="off">
+	<input type="text" name="name">
 	<p>
-		<input type="submit" value="Toàn bộ bảng" name="all">
-		<input type="submit" value="Lưu file csv" name="save">
+		<input type="checkbox" name="all" id ='all'>
+		<label for="csv">Show all</label>
+
+		<input type="checkbox" name="save" id ='csv'>
+		<label for="csv">Lưu file csv</label>
 	</p>
 	<br>
 	<input type="text" name="start" placeholder="start"/>
 	<input type="text" name="stop" placeholder="stop"/>
+	{%if listkey%}
 	{% for i in listkey %}
 	<input type="checkbox" name="{{i}}" id="{{i}}"/>
 	<label for="{{i}}">{{i}}</label>
 	{%endfor%}
+	{%endif%}
 	<input type="submit"/>
  </form>
 
+{%if datas%}
 <table>
 	{% for data in datas %}
 	<tr>
@@ -31,6 +36,6 @@
 	</tr>
 	{% endfor %}
 </table>
-{%endif%}
 
+{%endif%}
 {%endblock%}
