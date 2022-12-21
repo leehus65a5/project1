@@ -58,31 +58,51 @@ def showdata():
 @user.route('/check', methods=['GET', 'POST'])
 def check():
      
-    data = None
-    listk = None
-    form = request.form
-    check_table = session.get('table')
+     data = None
+     listk = None
+     form = request.form
+     check_table = session.get('table')
+     
+     print('form = ', form)
+     print('check table', check_table)
+     
+     # if not check_table:
+     #      print('not check table')
+     #      if 'name' in form:
+     #           print('name in form')
+     #           session['table'] = form['name']
+     
+     # if check_table:
+     #      print('đã có table')
+     #      if 'name' in form:
+     #           if len(form['name']) >= 1 and form['name'] != check_table:
+     #                session['table'] = form['name']
+     
+     if 'name' not in form and not check_table:
+          print('no name and check table')
+          return render_template('user/check.html', datas = None, listkey = None)
+     
+     print('here')
+     
+     if request.method == 'POST':
+          if 'name' in form and len(form['name']) > 1:
+               print('get in')
+               print('name = ', form['name'])
+               print('name in table')
+               session['table'] = form['name']
+               tb_cls = db.Table(session['table'], db.metadata,autoload=True,autoload_with=db.engine)
+               data = db.session.execute(select(tb_cls)).fetchall()
+               print('data = ', data)
+               
+               return render_template('user/check.html', datas = data, listkey = listk)
+          
+          print('đi đến đây')
+               
 
-    if not check_table:
-        print('not check table')
-    if 'name' in form:
-        print('name in form')
-        session['table'] = form['name']
-
-    if check_table:
-        print('đã có table')
-    if 'name' in form:
-        if len(form['name']) >= 1 and form['name'] != check_table:
-            session['table'] = form['name']
-
-    if request.method == 'POST':
-        if 'name' in form:
-            if form['name'] != check_table and len(form['name']) > 0:
-                session['table'] = form['name']
-        elif not check_table:
-            flash('chưa chọn bảng dữ liệu')
-            return redirect('user/check/html', datas = None, listkey = None)
-        else:
-            pass
-
-    return render_template('user/check.html', datas=data, listkey=listk)
+     # a10 = db.Table('a10', db.metadata,autoload=True,autoload_with=db.engine)
+     # sql = select(a10)
+     # r = db.session.execute(sql).fetchall()
+     # for i in r:
+     #      print(i)
+     
+     return render_template('user/check.html', datas = data, listkey = listk)
