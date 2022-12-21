@@ -38,12 +38,14 @@
         <tbody>
         {% for user in users %}
             <tr>
-                <td>{{ user.User.id }} </td>
+                <td>{{ user.User.id }} </td> 
                 <td>{{ user.User.username }}</td>
                 <td>{{ user.User.email }}</td>
                 <td>
                     {% include "admin/edit_button.html" %}
-                    <button><a id="deletebtn">delete</a></button></td>
+                    <button><a id="deletebtn">delete</a></button>
+                    <input type="text" value="{{user.User.username}}" name="name">
+                </td>
             </tr>
         {% endfor %}
         </tbody>

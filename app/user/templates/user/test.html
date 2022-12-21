@@ -2,6 +2,14 @@
 
 {%block content%}
 
+{%if listTable%}
+	<p>list table</p>
+	{%for i in listTable%}
+	<p>{{i}}</p>
+	{%endfor%}
+	<p>end list table</p>
+{%endif%}
+
 {% if datas %}
 
 <form method="POST">
