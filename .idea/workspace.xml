@@ -42,6 +42,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/app/__init__.py" root0="FORCE_HIGHLIGHTING" />
@@ -162,7 +163,7 @@
       <workItem from="1670483408310" duration="25278000" />
       <workItem from="1671197667784" duration="3410000" />
       <workItem from="1671266725432" duration="7163000" />
-      <workItem from="1671603014622" duration="13242000" />
+      <workItem from="1671603014622" duration="13563000" />
     </task>
     <task id="LOCAL-00001" summary="upfile">
       <created>1670463292102</created>
@@ -339,7 +340,28 @@
       <option name="project" value="LOCAL" />
       <updated>1671617463260</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="trung commit 17h10 21/12">
+      <created>1671617776398</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1671617776398</updated>
+    </task>
+    <task id="LOCAL-00027" summary="trung commit 17h10 21/12">
+      <created>1671617891205</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1671617891205</updated>
+    </task>
+    <task id="LOCAL-00028" summary="trung commit 17h10 21/12">
+      <created>1671617993040</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1671617993040</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
