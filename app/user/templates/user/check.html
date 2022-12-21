@@ -1,0 +1,36 @@
+{% extends 'user/base.html' %}
+
+{%block content%}
+
+{% if datas %}
+
+<form method="POST">
+	<p>
+		<input type="submit" value="Toàn bộ bảng" name="all">
+		<input type="submit" value="Lưu file csv" name="save">
+	</p>
+	<br>
+	<input type="text" name="start" placeholder="start"/>
+	<input type="text" name="stop" placeholder="stop"/>
+	{% for i in listkey %}
+	<input type="checkbox" name="{{i}}" id="{{i}}"/>
+	<label for="{{i}}">{{i}}</label>
+	{%endfor%}
+	<input type="submit"/>
+ </form>
+
+<table>
+	{% for data in datas %}
+	<tr>
+		<td>{{data.DEPT}}</td>
+		<td>{{data.PERM}}</td>
+		<td>{{data.GAMMA}}</td>
+		<td>{{data.POROSITY}}</td>
+		<td>{{data.FLUVIALFACIES}}</td>
+		<td>{{data.NETGROSS}}</td>
+	</tr>
+	{% endfor %}
+</table>
+{%endif%}
+
+{%endblock%}

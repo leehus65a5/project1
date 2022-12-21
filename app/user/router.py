@@ -4,6 +4,8 @@ from app.user import user
 from app.model import A10
 from sqlalchemy import select, and_
 import csv, os
+from sqlalchemy.ext.automap import automap_base
+from sqlalchemy.orm import mapper
 
 
 @user.route('/')
@@ -42,3 +44,12 @@ def showdata():
      return render_template('user/test.html', datas = a10_data2, listkey = listkey)
 
 
+@user.route('/check')
+def check():
+     a10 = db.Table('a10', db.metadata,autoload=True,autoload_with=db.engine)
+     
+     sql = select(getattr(a10.columns, 'DEPT'), getattr(a10.columns, 'PERM'))
+     r = db.session.execute(sql).fetchall()
+     for i in r:
+          print(i)
+     return render_template('user/check.html', datas = 'ac')

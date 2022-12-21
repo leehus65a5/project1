@@ -75,4 +75,6 @@ class A10(db.Model):
      # def __repr__(self) -> str:
      #      return f'A10 = ({self.DEPT} : {self.PERM})'
      
-     
+
+# class WellLog(db.Model):
+#      pass
