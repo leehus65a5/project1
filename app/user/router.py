@@ -11,9 +11,10 @@ from sqlalchemy.orm import mapper
 @user.route('/')
 @user.route('/dashboard')
 def dashboard():
-     return render_template('user/dashboard.html')
+    return render_template('user/dashboard.html')
 
-@user.route('/test', methods = ['GET','POST'])
+
+@user.route('/test', methods=['GET', 'POST'])
 def showdata():
      a10_data2 = A10.query.all()
      x = a10_data2[0]
@@ -53,7 +54,8 @@ def showdata():
      return render_template('user/test.html', datas = a10_data2, listkey = listkey, listTable = listTable)
 
 
-@user.route('/check', methods = ['GET','POST'])
+
+@user.route('/check', methods=['GET', 'POST'])
 def check():
      
      data = None

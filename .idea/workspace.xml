@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98eef63e-4177-4544-984a-50a9396301b1" name="Changes" comment="trung commit 10h21 18/12" />
+    <list default="true" id="98eef63e-4177-4544-984a-50a9396301b1" name="Changes" comment="trung commit 17h10 21/12" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,6 +43,19 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="962fe314-b23b-4e4a-b3aa-1ecbb60ae628" />
+        <option name="url" value="https://github.com/leehus65a5/project1.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/app/__init__.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/app/admin/templates/admin/manage.html" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
@@ -74,6 +87,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\PycharmProjects\AnhToan2\app\user\static\css" />
+      <recent name="C:\Users\Admin\PycharmProjects\AnhToan2\app\user\static\js" />
       <recent name="C:\Users\Admin\PycharmProjects\AnhToan2\app\admin\static" />
       <recent name="C:\Users\Admin\PycharmProjects\AnhToan2\app\admin\static\css" />
     </key>
@@ -130,7 +145,7 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -159,7 +174,8 @@
       <workItem from="1670474260536" duration="2712000" />
       <workItem from="1670483408310" duration="25278000" />
       <workItem from="1671197667784" duration="3410000" />
-      <workItem from="1671266725432" duration="1231000" />
+      <workItem from="1671266725432" duration="7163000" />
+      <workItem from="1671603014622" duration="14606000" />
     </task>
     <task id="LOCAL-00001" summary="upfile">
       <created>1670463292102</created>
@@ -308,7 +324,84 @@
       <option name="project" value="LOCAL" />
       <updated>1671376908455</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="trung commit 10h26 18/12">
+      <created>1671377189129</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1671377189129</updated>
+    </task>
+    <task id="LOCAL-00023" summary="trung commit 16h14 21/12">
+      <created>1671614057134</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1671614057134</updated>
+    </task>
+    <task id="LOCAL-00024" summary="trung commit 17h08 21/12">
+      <created>1671617248796</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1671617248796</updated>
+    </task>
+    <task id="LOCAL-00025" summary="trung commit 17h10 21/12">
+      <created>1671617463260</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1671617463260</updated>
+    </task>
+    <task id="LOCAL-00026" summary="trung commit 17h10 21/12">
+      <created>1671617776398</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1671617776398</updated>
+    </task>
+    <task id="LOCAL-00027" summary="trung commit 17h10 21/12">
+      <created>1671617891205</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1671617891205</updated>
+    </task>
+    <task id="LOCAL-00028" summary="trung commit 17h10 21/12">
+      <created>1671617993040</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1671617993040</updated>
+    </task>
+    <task id="LOCAL-00029" summary="trung commit 17h10 21/12">
+      <created>1671618093945</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1671618093945</updated>
+    </task>
+    <task id="LOCAL-00030" summary="trung commit 17h10 21/12">
+      <created>1671618123048</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1671618123048</updated>
+    </task>
+    <task id="LOCAL-00031" summary="trung commit 17h10 21/12">
+      <created>1671618611832</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1671618611832</updated>
+    </task>
+    <task id="LOCAL-00032" summary="trung commit 17h10 21/12">
+      <created>1671618925935</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1671618925935</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -378,7 +471,11 @@
     <MESSAGE value="test commit" />
     <MESSAGE value="trung commit" />
     <MESSAGE value="trung commit 10h21 18/12" />
-    <option name="LAST_COMMIT_MESSAGE" value="trung commit 10h21 18/12" />
+    <MESSAGE value="trung commit 10h26 18/12" />
+    <MESSAGE value="trung commit 16h14 21/12" />
+    <MESSAGE value="trung commit 17h08 21/12" />
+    <MESSAGE value="trung commit 17h10 21/12" />
+    <option name="LAST_COMMIT_MESSAGE" value="trung commit 17h10 21/12" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/AnhToan2$myapp.coverage" NAME="myapp Coverage Results" MODIFIED="1670485563669" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
