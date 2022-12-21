@@ -7,14 +7,14 @@
     margin: 0;
     padding: 0;
     display: grid;
-    min-height: 100vh;
-    grid-template-columns: repeat(5,20%);
+    min-height: 50vh;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 60px 1.5fr 1.5fr 1.5fr;
     grid-template-areas:
-  "nav nav nav nav  nav"
-  "left main main main  right"
-  "left main main main  right"
-  "left main main main  right";
+  "nav nav nav nav nav"
+  "left main main main right"
+  "left main main main right"
+  "left main main main right";
 
 }
 
@@ -25,7 +25,7 @@ nav {
 
 main {
     padding: 10px;
-    overflow: auto;
+    overflow: hidden;
     position: static;
     grid-area: main;
      border: 1px solid black;
@@ -40,3 +40,5 @@ main {
     grid-area: right;
      border: 1px solid black;
 }
+
+@media screen and (max-height: 450px){}

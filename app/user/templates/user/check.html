@@ -1,0 +1,41 @@
+{% extends 'user/base.html' %}
+
+{%block content%}
+
+<form method="POST" autocomplete="off">
+	<input type="text" name="name">
+	<p>
+		<input type="checkbox" name="all" id ='all'>
+		<label for="csv">Show all</label>
+
+		<input type="checkbox" name="save" id ='csv'>
+		<label for="csv">Lưu file csv</label>
+	</p>
+	<br>
+	<input type="text" name="start" placeholder="start"/>
+	<input type="text" name="stop" placeholder="stop"/>
+	{%if listkey%}
+	{% for i in listkey %}
+	<input type="checkbox" name="{{i}}" id="{{i}}"/>
+	<label for="{{i}}">{{i}}</label>
+	{%endfor%}
+	{%endif%}
+	<input type="submit"/>
+ </form>
+
+{%if datas%}
+<table>
+	{% for data in datas %}
+	<tr>
+		<td>{{data.DEPT}}</td>
+		<td>{{data.PERM}}</td>
+		<td>{{data.GAMMA}}</td>
+		<td>{{data.POROSITY}}</td>
+		<td>{{data.FLUVIALFACIES}}</td>
+		<td>{{data.NETGROSS}}</td>
+	</tr>
+	{% endfor %}
+</table>
+
+{%endif%}
+{%endblock%}

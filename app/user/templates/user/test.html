@@ -1,36 +1,32 @@
 {% extends 'user/base.html' %}
 
 {% block content %}
+    <link href="/user/static/css/table.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/user/static/css/bootstrapTable.css">
 
     {% if datas %}
-        <link rel="stylesheet" type="text/css" href="/admin/static/css/bootstrapTable.css">
 
-        <link href="/admin/static/css/table.css" rel="stylesheet">
         <form method="POST">
             <p>
                 <input type="submit" value="Toàn bộ bảng" name="all">
                 <input type="submit" value="Lưu file csv" name="save">
             </p>
-            {#	<br>#}
+
             <input type="text" name="start" placeholder="start"/>
             <input type="text" name="stop" placeholder="stop"/>
             <br>
-            <div>
-                {% for i in listkey %}
-                    <input type="checkbox" name="{{ i }}" id="{{ i }}"/>
-                    <label for="{{ i }}">{{ i }}</label>
-                {% endfor %}
-                <input type="submit"/>
-            </div>
+            {% for i in listkey %}
+                <input type="checkbox" name="{{ i }}" id="{{ i }}"/>
+                <label for="{{ i }}">{{ i }}</label>
+            {% endfor %}
+            <input type="submit"/>
         </form>
 
         <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script type="text/javascript" charset="utf8"
                 src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
         <script type="text/javascript" charset="utf8"
-                src="/admin/static/js/bootstrapTable.js"></script>
-
-
+                src="/user/static/js/bootstrapTable.js"></script>
         <table id="data">
             {% for data in datas %}
                 <tr>
@@ -48,7 +44,7 @@
                 $('#data').DataTable({
                     columns: [
                         {orderable: true, searchable: true},
-                        {searchable: true},
+                        {orderable: false, searchable: false},
                         {orderable: false, searchable: false},
                         {orderable: false, searchable: false},
                         {orderable: false, searchable: false},

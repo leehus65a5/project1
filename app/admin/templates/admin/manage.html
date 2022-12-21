@@ -1,13 +1,15 @@
 {% extends 'admin/base.html' %}
 {%from 'admin/add_button.html' import addbutton %}
 {% block script %}
-    <link rel="stylesheet" type="text/css" href="/admin/static/css/bootstrapTable.css">
+    <link rel="stylesheet" type="text/css" href="/user/static/css/bootstrapTable.css">
 {% endblock %}
 
 {%block cssfile%}
-    <link href="/admin/static/css/table.css" rel="stylesheet">
+    <link href="/user/static/css/table.css" rel="stylesheet">
     <link href="/admin/static/css/add_button.css" type="text/css" rel="stylesheet">
     <link href="/admin/static/css/edit_button.css" type="text/css" rel="stylesheet">
+
+
 {%endblock%}
 
 {% block content %}
@@ -15,7 +17,7 @@
     <script type="text/javascript" charset="utf8"
             src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
     <script type="text/javascript" charset="utf8"
-            src="/admin/static/js/bootstrapTable.js"></script>
+            src="/user/static/js/bootstrapTable.js"></script>
 
 
     {% for mess in get_flashed_messages() %}
@@ -36,12 +38,13 @@
         <tbody>
         {% for user in users %}
             <tr>
-                <td>{{ user.User.id }} </td>
+                <td>{{ user.User.id }} </td> 
                 <td>{{ user.User.username }}</td>
                 <td>{{ user.User.email }}</td>
                 <td>
                     {% include "admin/edit_button.html" %}
                     <button><a id="deletebtn">delete</a></button>
+                    <input type="text" value="{{user.User.username}}" name="name">
                 </td>
             </tr>
         {% endfor %}
