@@ -1,0 +1,42 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    min-height: 100vh;
+    grid-template-columns: repeat(5,20%);
+    grid-template-rows: 60px 1.5fr 1.5fr 1.5fr;
+    grid-template-areas:
+  "nav nav nav nav  nav"
+  "left main main main  right"
+  "left main main main  right"
+  "left main main main  right";
+
+}
+
+nav {
+    grid-area: nav;
+    border: 1px solid black;
+}
+
+main {
+    padding: 10px;
+    overflow: auto;
+    position: static;
+    grid-area: main;
+     border: 1px solid black;
+}
+
+.left {
+    grid-area: left;
+     border: 1px solid black;
+}
+
+.right {
+    grid-area: right;
+     border: 1px solid black;
+}

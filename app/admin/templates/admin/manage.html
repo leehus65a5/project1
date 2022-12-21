@@ -7,9 +7,7 @@
 {%block cssfile%}
     <link href="/admin/static/css/table.css" rel="stylesheet">
     <link href="/admin/static/css/add_button.css" type="text/css" rel="stylesheet">
-        <link href="/admin/static/css/edit_button.css" type="text/css" rel="stylesheet">
-
-
+    <link href="/admin/static/css/edit_button.css" type="text/css" rel="stylesheet">
 {%endblock%}
 
 {% block content %}
@@ -43,7 +41,8 @@
                 <td>{{ user.User.email }}</td>
                 <td>
                     {% include "admin/edit_button.html" %}
-                    <button><a id="deletebtn">delete</a></button></td>
+                    <button><a id="deletebtn">delete</a></button>
+                </td>
             </tr>
         {% endfor %}
         </tbody>
