@@ -31,10 +31,7 @@
     display: grid;
     grid-template-columns: auto auto;
 }
-.row1 #data_filter label {
 
-
-}
 .row3{
     display: grid;
     grid-template-columns: auto auto;

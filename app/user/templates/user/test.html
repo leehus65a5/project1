@@ -2,15 +2,18 @@
 
 {% block list_of_wells %}
     {%if listTable%}
-        <!-- {%for i in listTable%}
-            <datalist id="well_list">
-                <option></option>
-            </datalist>
-        {%endfor%} -->
-        <datalist id="well_list">
-            <option> {%for i in listTable%}{{i}}{%endfor%}</option>
-        </datalist>
-        <input type="text" list="well_list"> 
+        <script>   
+            $(function() {
+                var $select = $('.select2');
+                
+                $select.select2({
+                theme: 'paper'
+                });
+            });
+        </script>
+        <select class="select2 form-control" aria-placeholder="well">
+            {%for i in listTable%}<option>{{i}}</option>{%endfor%}
+        </select>
     {%endif%}  
 {% endblock %}
 
@@ -19,7 +22,6 @@
     <link rel="stylesheet" type="text/css" href="/user/static/css/bootstrapTable.css">
 
     {% if datas %}
-
         <form method="POST">
             <p>
                 <input type="submit" value="Toàn bộ bảng" name="all">

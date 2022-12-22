@@ -1,6 +1,10 @@
 {% extends 'user/base.html' %}
 
 {%block content%}
+	<link href="/user/static/css/table.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" type="text/css" href="/user/static/css/bootstrapTable.css"> -->
+
+
 
 {% for mess in get_flashed_messages() %}
 <div class="flash">flash messeger : {{ mess }}</div>
@@ -37,7 +41,7 @@
  </form>
 
 {%if datas%}
-<table>
+<table id="data">
 	<th>
 		{%for header in listkey %}
 		<td>{{header}}</td>
@@ -51,6 +55,28 @@
 		</tr>
 	{%endfor%}
 </table>
+<!-- <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" charset="utf8"
+		src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script> -->
+<!-- <script type="text/javascript" charset="utf8"
+		src="/user/static/js/bootstrapTable.js"></script> -->
+
+
+		<!-- <script>
+            $(document).ready(function () {
+                $('#data').DataTable({
+                    columns: [
+                        {orderable: true, searchable: true},
+                        {orderable: false, searchable: false},
+                        {orderable: false, searchable: false},
+                        {orderable: false, searchable: false},
+                        {orderable: false, searchable: false},
+                        {orderable: false, searchable: false},
+                    ],
+                });
+            });
+        </script> -->
+
 
 
 <!-- <table>
