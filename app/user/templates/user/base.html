@@ -83,7 +83,9 @@
     </nav>
 
     {#    <h1>This is user base html</h1>#}
-    <div class="left"></div>
+    <div class="left">
+        {% block list_of_wells%}{% endblock %}
+    </div>
     <div class="right"></div>
     <main>
         {% block content %}{% endblock %}

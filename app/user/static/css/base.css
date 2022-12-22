@@ -32,6 +32,7 @@ main {
 }
 
 .left {
+    padding: 20px;
     grid-area: left;
      border: 1px solid black;
 }

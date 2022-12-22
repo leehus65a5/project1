@@ -1,17 +1,20 @@
 {% extends 'user/base.html' %}
 
+{% block list_of_wells %}
+    {%if listTable%}
+        {%for i in listTable%}
+            <datalist id="well_list">
+                <option>{{i}}</option>
+            </datalist>
+        {%endfor%}
+    {%endif%}  
+<input type="text" list="well_list"> 
+
+{% endblock %}
 
 {% block content %}
     <link href="/user/static/css/table.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/user/static/css/bootstrapTable.css">
-
-{%if listTable%}
-	<p>list table</p>
-	{%for i in listTable%}
-	<p>{{i}}</p>
-	{%endfor%}
-	<p>end list table</p>
-{%endif%}
 
     {% if datas %}
 
