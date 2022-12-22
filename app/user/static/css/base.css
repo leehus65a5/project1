@@ -1,9 +1,11 @@
-*{
+body{
     padding: 0;
     margin: 0;
+    -webkit-text-size-adjust: 0%;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.container {
+.container1 {
     margin: 0;
     padding: 0;
     display: grid;
@@ -21,10 +23,10 @@
 nav {
     grid-area: nav;
     border: 1px solid black;
+    border-bottom: opx;
 }
 
 main {
-    padding: 10px;
     overflow: hidden;
     position: static;
     grid-area: main;
