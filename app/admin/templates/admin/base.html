@@ -29,42 +29,59 @@
         </div>
 
         <div class="w-100">
-          	<nav class="navbar navbar-expand-lg bg-light">
-            	<div class="container-fluid">
-              		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                	<span class="navbar-toggler-icon"></span>
-              		</button>
-              		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-							<li class="nav-item">
-								<form class="d-flex" role="search">
-								<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-								<button class="btn btn-outline-success" type="submit">Search</button>
-								</form>
-							</li>
-						</ul>
-              		</div>
-					<ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-						<li class="nav-item" style="padding-right: 25px;">
-							<i class="bi bi-envelope"></i>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-							aria-expanded="false" style="padding-top: 0; padding-right: 20px;">
-								<i class="bi bi-person-circle"></i> Admin
-							</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#">Thông tin</a></li>
-								<li>
-									<hr class="dropdown-divider">
+			<nav class="navbar navbar-expand-lg bg-light" style="padding-left: 75px; padding-right: 75px;">
+				<div class="container">
+					<div class="container-fluid">
+						<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+								data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+								aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse" id="navbarSupportedContent">
+							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+								<li class="nav-item">
+									<a class="nav-link active" aria-current="page" href="#">HOME</a>
 								</li>
-								<li><a class="dropdown-item" href="{{url_for('logout')}}">Đăng xuất</a></li>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
+									aria-expanded="false">
+										IMPORT
+									</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#">Nhập dữ liệu</a></li>
+										<li>
+											<hr class="dropdown-divider">
+										</li>
+										<li><a class="dropdown-item" href="#">Upload File</a></li>
+									</ul>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link active" href="#">QUERY</a>
+								</li>
 							</ul>
-						</li>
-					</ul>
-            	</div>
-          	</nav>
-			  <main>	
+							<ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+								<li class="nav-item" style="padding-right: 25px;">
+									<i class="bi bi-envelope"></i>
+								</li>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+									aria-expanded="false" style="padding-top: 0;">
+										<i class="bi bi-person-circle"></i> {{g.user.User.username}}
+									</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#">Thông tin</a></li>
+										<li>
+											<hr class="dropdown-divider">
+										</li>
+										<li><a class="dropdown-item" href="{{url_for('logout')}}">Đăng xuất</a></li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</nav>
+			<main>	
 				{%block content%}
 				{%endblock%}
 			</main>
