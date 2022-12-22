@@ -16,7 +16,7 @@ def check_auth():
 @admin.route('/')
 @admin.route('/dashboard')
 def dashboard():
-     return render_template('admin/dashboard.html')
+     return render_template('admin/base.html')
 
 @admin.route('/manage', methods=['GET','POST'])
 def quan_ly_nhan_vien():
