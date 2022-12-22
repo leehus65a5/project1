@@ -1,3 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+#message{
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    text-align: center; 
+    margin: auto;
+    height: 10%;
+    width: 20%;
+    font-family: 'Roboto'; 
+    color: white; 
+    background-color: #212529; 
+    border-radius: 8px 8px;
+    font-weight: 20%;
+}
+
 .modal-body{
     padding: 0;
 }
@@ -60,7 +76,7 @@ h1{
     color: #333;
 }
 
-p{
+.myform p{
     text-align: center;
     padding-top: 2em;
     color: grey;
@@ -73,20 +89,4 @@ p a{
 
 p:a:hover{
     color: #fff;
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-#box{
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    text-align: center; 
-    margin: auto; 
-    height: 80px; 
-    width: 260px; 
-    font-family: 'Roboto'; 
-    color: white; 
-    background-color: #212529; 
-    border-radius: 8px 8px;
-    
 }
