@@ -13,9 +13,14 @@ body{
     color: var(--primary);
 }
 
+a{
+    text-decoration: none;
+}
+
 a:hover{
     text-decoration: none;
 }
+
 .bg-primary{
     background-color: var(--primary) !important;
 }
