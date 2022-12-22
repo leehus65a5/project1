@@ -38,11 +38,11 @@
 
 {%if datas%}
 <table>
-	<th>
+	<tr>
 		{%for header in listkey %}
-		<td>{{header}}</td>
+		<th>{{header}}</th>
 		{%endfor%}
-	</th>
+	</tr>
 	{%for data in datas %}
 		<tr>
 			{%for header in listkey %}
