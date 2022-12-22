@@ -2,14 +2,16 @@
 
 {% block list_of_wells %}
     {%if listTable%}
-        {%for i in listTable%}
+        <!-- {%for i in listTable%}
             <datalist id="well_list">
-                <option>{{i}}</option>
+                <option></option>
             </datalist>
-        {%endfor%}
+        {%endfor%} -->
+        <datalist id="well_list">
+            <option> {%for i in listTable%}{{i}}{%endfor%}</option>
+        </datalist>
+        <input type="text" list="well_list"> 
     {%endif%}  
-<input type="text" list="well_list"> 
-
 {% endblock %}
 
 {% block content %}
