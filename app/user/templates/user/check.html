@@ -2,8 +2,7 @@
 
 {%block content%}
 	<link href="/user/static/css/table.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" type="text/css" href="/user/static/css/bootstrapTable.css"> -->
-
+    <link rel="stylesheet" type="text/css" href="/user/static/css/bootstrapTable.css">
 
 
 {% for mess in get_flashed_messages() %}
@@ -28,9 +27,9 @@
 </form>
 
 <form method="POST" autocomplete="off">
-	<br>
 	<input type="text" name="start" placeholder="start"/>
 	<input type="text" name="stop" placeholder="stop"/>
+	<br>
 	{%if listkey%}
 	{% for i in listkey %}
 	<input type="checkbox" name="{{i}}" id="{{i}}"/>
@@ -44,7 +43,7 @@
 <table id="data">
 	<tr>
 		{%for header in listkey %}
-		<th>{{header}}</th>
+		<th id="columns">{{header}}</th>
 		{%endfor%}
 	</tr>
 	{%for data in datas %}
@@ -55,27 +54,27 @@
 		</tr>
 	{%endfor%}
 </table>
-<!-- <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" charset="utf8"
-		src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script> -->
-<!-- <script type="text/javascript" charset="utf8"
-		src="/user/static/js/bootstrapTable.js"></script> -->
+	<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" charset="utf8"
+			src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>	
+	<script type="text/javascript" charset="utf8"src="/user/static/js/bootstrapTable.js"></script>
 
 
-		<!-- <script>
-            $(document).ready(function () {
-                $('#data').DataTable({
-                    columns: [
+	<script>
+		$(document).ready(function () {
+			$('#data').DataTable({
+				columns: [
                         {orderable: true, searchable: true},
                         {orderable: false, searchable: false},
                         {orderable: false, searchable: false},
                         {orderable: false, searchable: false},
                         {orderable: false, searchable: false},
                         {orderable: false, searchable: false},
-                    ],
-                });
-            });
-        </script> -->
+                ],
+			});
+		});
+
+	</script>
 
 
 
