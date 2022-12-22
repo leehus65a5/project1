@@ -5,30 +5,30 @@ const overlay = document.getElementById('overlay')
 openModalButtons.forEach(button => {
   button.addEventListener('click', () => {
     const modal = document.querySelector(button.dataset.modalTarget)
-    openModal(modal)
+    openModal_add(modal)
   })
 })
 
 overlay.addEventListener('click', () => {
   const modals = document.querySelectorAll('.modal.active')
   modals.forEach(modal => {
-    closeModal(modal)
+    closeModal_add(modal)
   })
 })
 
 closeModalButtons.forEach(button => {
   button.addEventListener('click', () => {
     const modal = button.closest('.modal')
-    closeModal(modal)
+    closeModal_add(modal)
   })
 })
 
-function openModal(modal) {
+function openModal_add(modal) {
   if (modal == null) return
   modal.classList.add('active')
   overlay.classList.add('active')
 }
-function closeModal(modal) {
+function closeModal_add(modal) {
   if (modal == null) return
   modal.classList.remove('active')
   overlay.classList.remove('active')
