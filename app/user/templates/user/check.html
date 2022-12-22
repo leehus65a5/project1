@@ -12,14 +12,18 @@
 	<input type="submit"/>
 </form>
 
-<form method="POST" autocomplete="off">
-	<p>
-		<input type="checkbox" name="all" id ='all'>
-		<label for="csv">Show all</label>
+<form method="POST" autocomplete="off" class="wellname">
+<p>
+	<input type="checkbox" name="all" id ='all'>
+	<label for="all">Show all</label>
 
-		<input type="checkbox" name="save" id ='csv'>
-		<label for="csv">Lưu file csv</label>
-	</p>
+	<input type="checkbox" name="save" id ='csv'>
+	<label for="csv">Lưu file csv</label>
+	<input type="submit"/>
+</p>
+</form>
+
+<form method="POST" autocomplete="off">
 	<br>
 	<input type="text" name="start" placeholder="start"/>
 	<input type="text" name="stop" placeholder="stop"/>
@@ -34,6 +38,22 @@
 
 {%if datas%}
 <table>
+	<th>
+		{%for header in listkey %}
+		<td>{{header}}</td>
+		{%endfor%}
+	</th>
+	{%for data in datas %}
+		<tr>
+			{%for header in listkey %}
+			<td>{{data[header]}}</td>
+			{%endfor%}
+		</tr>
+	{%endfor%}
+</table>
+
+
+<!-- <table>
 	{% for data in datas %}
 	<tr>
 		<td>{{data.DEPT}}</td>
@@ -44,7 +64,7 @@
 		<td>{{data.NETGROSS}}</td>
 	</tr>
 	{% endfor %}
-</table>
+</table> -->
 
 {%endif%}
 {%endblock%}

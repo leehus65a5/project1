@@ -75,20 +75,31 @@ def check():
      print('here')
      
      if request.method == 'POST':
-          if 'name' in form and len(form['name']) > 1:
-               print('get in')
-               print('name = ', form['name'])
-               print('name in table')
+          if 'name' in form and len(form['name']) >= 1:
                session['table'] = form['name']
                tb_cls = db.Table(session['table'], db.metadata,autoload=True,autoload_with=db.engine)
                data = db.session.execute(select(tb_cls)).fetchall()
-               print('data = ', data)
-               
+               listk = [i.name for i in tb_cls.columns]
+               listk = sorted(listk)
+               print(listk)
                return render_template('user/check.html', datas = data, listkey = listk)
-          
-          print('đi đến đây')
+          elif 'start' in form:
+               print('check 2 name not in table, get selected collums')
+               print(form)
+               listk = [i for i in form if i not in ['start', 'stop']]
+               print(listk)
+               tb_cls = db.Table(session['table'], db.metadata,autoload=True,autoload_with=db.engine)
+               sql = select(*[getattr(tb_cls.c, i) for i in listk]).where(and_(tb_cls.c.DEPT >= form['start'], tb_cls.c.DEPT <= form['stop']))
+               data = db.session.execute(sql).fetchall()
+               return render_template('user/check.html', datas = data, listkey = listk)
+          else:
+               tb_cls = db.Table(session['table'], db.metadata,autoload=True,autoload_with=db.engine)
+               data = db.session.execute(select(tb_cls)).fetchall()
+               listk = [i.name for i in tb_cls.columns]
+               listk = sorted(listk)
+               print(listk)
+               return render_template('user/check.html', datas = data, listkey = listk)
                
-
      # a10 = db.Table('a10', db.metadata,autoload=True,autoload_with=db.engine)
      # sql = select(a10)
      # r = db.session.execute(sql).fetchall()
