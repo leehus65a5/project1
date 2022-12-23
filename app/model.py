@@ -76,6 +76,7 @@ class A10(db.Model):
      #      return f'A10 = ({self.DEPT} : {self.PERM})'
 
 class Udata(db.Model):
-     
      __table__ = db.metadata.tables['truycapdata']
-     
+
+class Files2(db.Model):
+     __table__ = db.metadata.tables['files2']
