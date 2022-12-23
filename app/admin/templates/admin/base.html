@@ -73,91 +73,10 @@
 				</nav>
 
 				<main>
-					
-					<div class="add-buton">
-						<!-- Button trigger modal -->
-						<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-							Add
-						</button>
-				
-							{% include "admin/edit_button.html" %}
-					
-
-						<!-- Modal -->
-						<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h1 class="modal-title fs-5" id="exampleModalLabel">Thêm nhân viên</h1>
-										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-									</div>
-									<form method="POST">
-										<div class="modal-body">
-											
-												{{ form.username.label }} {{ form.username() }}
-												{{ form.userid.label }} {{ form.userid() }}
-												{{ form.email.label }} {{ form.email() }}
-												{{ form.password.label }} {{ form.password() }}
-										</div>
-										<div class="modal-footer">
-											{{ form.submit(class="btn btn-primary") }}
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-
-						<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-						<script type="text/javascript" charset="utf8"
-								src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
-						<script type="text/javascript" charset="utf8"
-								src="/user/static/js/bootstrapTable.js"></script>
-						
-					</div>
-
-					<table class="table table-striped" id="data">
-						<thead class="table-active">
-							<tr>
-								<th scope="col">ID</th>
-								<th scope="col">USERNAME</th>
-								<th scope="col">EMAIL</th>
-								<th scope="col">OPTIONS</th>
-							</tr>
-						</thead>
-						<tbody>
-							{% for user in users %}
-							<tr>
-								<td>{{ user.User.id }} </td> 
-								<td>{{ user.User.username }}</td>
-								<td>{{ user.User.email }}</td>
-								<td>
-									{% include "admin/edit_button.html" %}
-									<button><a id="deletebtn">delete</a></button>
-									<!-- <input type="text" value="{{user.User.username}}" name="name"> -->
-								</td>
-							</tr>
-							{% endfor %}
-						</tbody>
-					</table>
-
-
-					<!-- {%block content%}
-					{%endblock%} -->
+					{%block content %}
+					{%endblock%}
 				</main>
-			</div>
-		</div>
 		<script>
-			$(document).ready(function () {
-				$('#data').DataTable({
-					columns: [
-						{orderable: true, searchable: true},
-						{searchable: true},
-						{orderable: false, searchable: false},
-						{orderable: false, searchable: false},
-					],
-				});
-			});
-
 			function myFunction() {
 				var x = document.getElementById("sidebar-container");
 				if (x.style.width === "200px") {
