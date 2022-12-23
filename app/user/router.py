@@ -57,7 +57,6 @@ def showdata():
 
 @user.route('/check', methods=['GET', 'POST'])
 def check():
-     
      data = None
      listk = None
      form = request.form

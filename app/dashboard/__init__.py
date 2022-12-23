@@ -1,17 +1,20 @@
 import dash
 from dash import dcc, html, Input, Output
-import os
 import lasio
-import pandas as pd
 import plotly.express as px
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
-
+from app import app
+import os
 # r"C:\Users\clone\OneDrive\javaproject\web\final_git\app\static\files\"
 
 def getfile(filename):
-     path = "C:\\Users\\clone\\OneDrive\\javaproject\\web\\final_git\\app\\static\\files\\" + filename
-     file1 = lasio.read(path)
+     path1 = ''
+     path1 = os.path.join(os.getcwd(), 'app\\static\\files', filename)
+     # path1 = os.path.join(app.root_path, "\\static\\files\\", filename)
+     # path = "C:\\Users\\clone\\OneDrive\\javaproject\\web\\final_git\\app\\static\\files\\" + filename
+     # path = path1 + filename
+     file1 = lasio.read(path1)
      lasdf = file1.df()
      lasdf['WELL'] = file1.well.WELL.value
      lasdf = lasdf.reset_index()
@@ -44,7 +47,7 @@ def init_dashboard(server):
      dash_app1.layout = html.Div([
           dcc.Dropdown(
 			['A10.las','A15.las'],
-			'A10',
+			'A10.las',
 			id = 'input'
 		),
           html.H3(id = 'name1'),
@@ -53,6 +56,15 @@ def init_dashboard(server):
 			# figure= fig
 		),
     		# generate_table(getfile())
+      	html.H3('checklist'),
+
+		dcc.Checklist(
+        		id='x-axis', 
+        		options=['PERM', 'GAMMA', 'POROSITY', 'NETGROSS'],
+        		value='PERM', 
+        		inline=True
+    		),
+  
       ]
 	)
      
@@ -78,7 +90,7 @@ def init_dashboard(server):
 		Input('input','value')
 	)
      def get_well_name(input_value):
-          return f'bảng dữ liệu của giếng {input_value}'
+          return f'Trực quan hóa : {input_value}'
      
      return dash_app1.server
 
