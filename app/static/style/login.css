@@ -14,28 +14,10 @@
     font-weight: 20%;
 }
 
-.modal-body{
-    padding: 0;
-}
-
-.moform{
-    box-shadow: 0 4px 6px 0px rgba(22,22,26,0.18);
-}
-
 .btn-close{
     position: absolute;
-    right: 30%;
-    padding: 1em;
-
-}
-
-.modal-content{
-    width: 80%;
-    margin: 0px auto;
-}
-
-.modal-body{
-    padding: 0px;
+    right: 32%;
+    top: 5%;
 }
 
 h1{
@@ -44,7 +26,7 @@ h1{
 }
 
 .myform{
-    margin: 150px auto;
+    margin: 0 auto;
     width: 40%;
     padding: 2em;
     max-width: 100%;
@@ -89,4 +71,11 @@ p a{
 
 p:a:hover{
     color: #fff;
+}
+
+.myform-bg{
+    position: fixed;
+    left:0%;
+    right:0%;
+    top:17%;
 }

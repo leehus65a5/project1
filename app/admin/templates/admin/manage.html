@@ -1,5 +1,4 @@
 {% extends 'admin/base.html' %}
-{%from 'admin/add_button.html' import addbutton %}
 {% block script %}
     <link rel="stylesheet" type="text/css" href="/user/static/css/bootstrapTable.css">
 {% endblock %}
@@ -22,7 +21,6 @@
         <div class="flash">flash messeger : {{ mess }}</div>
     {% endfor %}
 
-    {% include "admin/add_button.html" %}
 
     <table id="data">
         <thead>
@@ -65,14 +63,4 @@
             });
         });
     </script>
-
-    <p> bên dưới là update basic (OLD) </p>
-    <form method="POST">
-        {{ form.hidden_tag() }}
-        {{ form.username.label }} {{ form.username() }}
-        {{ form.userid.label }} {{ form.userid() }}
-        {{ form.email.label }} {{ form.email() }}
-        {{ form.password.label }} {{ form.password() }}
-        {{ form.submit() }}
-    </form>
 {% endblock %}
