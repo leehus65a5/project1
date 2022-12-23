@@ -23,43 +23,38 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ID:<input type="text" name="id" id="id"><br><br>    
-                Username:<input type="text" name="username" id="username"><br><br>
-                Email:<input type="text" name="email" id="email"><br><br>
-                <!-- <button onclick="editRow();">Edit Row</button><br><br> -->
-                <script> 
-                
-                    // get selected row
-                    // display selected row data in text input
+                <form method="POST"> 
+                    {{ form.hidden_tag() }}
+                    <!-- ID:<input required type="text" name="userid" id="userid"><br><br>    
+                    Username:<input required type="text" name="username" id="username"><br><br>
+                    Email:<input type="text" name="email" id="email"><br><br> -->
+                    {{ form.userid.label }} {{ form.userid() }}
+                    {{ form.username.label }} {{ form.username() }}
+                    {{ form.email.label }} {{ form.email() }}
                     
-                    var table = document.getElementById("data"),rIndex;
                     
-                    for(var i = 1; i < table.rows.length; i++)
-                    {
-                        table.rows[i].onclick = function()
+                    <!-- để hiển thị lại dữ liệu trong input -->
+                    <script> 
+                        var table = document.getElementById("data"),rIndex;
+                        
+                        for(var i = 1; i < table.rows.length; i++)
                         {
-                            rIndex = this.rowIndex;
-                            console.log(rIndex);
-                            
-                            document.getElementById("id").value = this.cells[0].innerHTML;
-                            document.getElementById("username").value = this.cells[1].innerHTML;
-                            document.getElementById("email").value = this.cells[2].innerHTML;
-                        };
-                    }
-                    
-                    
-                     // edit the row
-                    function editRow()
-                    {
-                        table.rows[rIndex].cells[0].innerHTML = document.getElementById("id").value;
-                        table.rows[rIndex].cells[1].innerHTML = document.getElementById("username").value;
-                        table.rows[rIndex].cells[2].innerHTML = document.getElementById("email").value;
-                    }
-                    
-                </script>  
-            </div>
-            <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" class="btn-close" onclick="editRow();">Save changes</button>
+                            table.rows[i].onclick = function()
+                            {
+                                rIndex = this.rowIndex;
+                                console.log(rIndex);
+                                
+                                document.getElementById("userid").value = this.cells[0].innerHTML;
+                                document.getElementById("username").value = this.cells[1].innerHTML;
+                                document.getElementById("email").value = this.cells[2].innerHTML;
+                            };
+                        }
+                    </script> 
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" class="btn-close" onclick="editRow();">Save changes</button>
+                    </div>
+                </form>
+                <!-- <button onclick="editRow();">Edit Row</button><br><br> -->
             </div>
         </div>
         </div>
