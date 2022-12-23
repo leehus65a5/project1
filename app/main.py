@@ -81,6 +81,8 @@ def test():
      check = db.session.query(User).all()
      return render_template('test.html', user=userList, check = check)
 
+# @app.router('/dash1/')
+# @public_route
 
 # @app.route('/user/<name>')
 # def user(name):
