@@ -2,9 +2,7 @@
 
 {% block content %}
     <div class="add-buton">
-        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Add
-        </button>
+        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><a id="addbtn">Add</a></button>
 
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -15,14 +13,14 @@
                     </div>
                     <form method="POST">
                         <div class="modal-body">
-                                {{ form.hidden_tag() }}
-                                {{ form.username.label }} {{ form.username() }}
-                                {{ form.userid.label }} {{ form.userid() }}
-                                {{ form.email.label }} {{ form.email() }}
-                                {{ form.password.label }} {{ form.password() }}
+                                {{ add_form.hidden_tag() }}
+                                {{ add_form.username.label }} {{ add_form.username() }}
+                                {{ add_form.userid.label }} {{ add_form.userid() }}
+                                {{ add_form.email.label }} {{ add_form.email() }}
+                                {{ add_form.password.label }} {{ add_form.password() }}
                         </div>
                         <div class="modal-footer">
-                            {{ form.submit(class="btn btn-primary") }}
+                            {{ add_form.submit(class="btn btn-primary") }}
                         </div>
                     </form>
                 </div>
@@ -48,17 +46,15 @@
 			</tr>
 		</thead>
 		<tbody>
-			{% for user in users %}
+			{% for user in users_add %}
 			<tr>
 				<td>{{ user.User.id }} </td> 
 				<td>{{ user.User.username }}</td>
 				<td>{{ user.User.email }}</td>
-				<td>
-                    <div class="edit-buton">
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-                            Edit
-                        </button>
-                    
+				<td id = "td-button">
+                    <form method="POST">
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal1"><a id="editbtn">Edit</a></button>
+                        
                         <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -66,20 +62,24 @@
                                         <h1 class="modal-title fs-5" id="exampleModalLabel">Sửa thông tin</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <form action = "" method="POST">
-                                        {{ form.hidden_tag() }}
-                                        {{ form.id.label }} {{ form.id() }}
-                                        {{ form.username.label }} {{ form.username() }}
-                                        {{ form.email.label }} {{ form.email() }}
-                                        {{ form.password.label }} {{ form.password() }}
-                                        {{ form.submit() }}
-                                    </form>
+                                    <div class="modal-body">
+                                        {{ edit_form.hidden_tag() }}
+                                        {{ edit_form.id.label }} {{edit_form.id(value="{{user.User.id}}") }}
+                                        {{ edit_form.username.label }} {{ edit_form.username(value="{{user.User.username}}") }}
+                                        {{ edit_form.email.label }} {{ edit_form.email(value="{{user.User.email}}") }}
+                                        {{ edit_form.password.label }} {{edit_form.password(value="{{user.User.password}}") }}
+                                    </div>
+                                    <div class="modal-footer">
+                                        {{ edit_form.submit() }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-					<button><a id="deletebtn">delete</a></button>
-					<!-- <input type="text" value="{{user.User.username}}" name="name"> -->
+                    </form>
+                    <form method="POST">
+                        <input type="hidden" name="user_id" value="{{ user.User.id }}">
+                        <button type="submit" ><a id="deletebtn">delete</a></button>
+                    </form>
 				</td>
 			</tr>
 			{% endfor %}
