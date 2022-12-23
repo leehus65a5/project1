@@ -27,6 +27,7 @@
     color: white;
     text-align: center;
 }
+
 .row1 {
     display: grid;
     grid-template-columns: auto auto;
