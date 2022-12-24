@@ -55,9 +55,9 @@ def showdata():
 
 
 
+
 @user.route('/check', methods=['GET', 'POST'])
 def check():
-     
      uid = session.get('user_id')
      listTable = db.session.execute(select(Udata.tableid).where(Udata.userid == uid))
      listTable = [i.tableid for i in listTable]
