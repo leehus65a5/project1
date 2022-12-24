@@ -1,5 +1,9 @@
 {% extends 'admin/base.html' %}
 
+{% for mess in get_flashed_messages() %}
+<div class="flash">flash messeger : {{ mess }}</div>
+{% endfor %}
+
 {% block content %}
     <div class="add-buton">
         <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><a id="addbtn">Add</a></button>
@@ -13,11 +17,13 @@
                     </div>
                     <form method="POST">
                         <div class="modal-body">
-                                {{ add_form.hidden_tag() }}
-                                {{ add_form.username.label }} {{ add_form.username() }}
-                                {{ add_form.userid.label }} {{ add_form.userid() }}
-                                {{ add_form.email.label }} {{ add_form.email() }}
-                                {{ add_form.password.label }} {{ add_form.password() }}
+                                {{ add_form.hidden_tag() }}<br>
+                                {{ add_form.userid.label }} {{ add_form.userid() }}<br>
+                                {{ add_form.username.label }} {{ add_form.username() }} <br>
+                                {{ add_form.email.label }} {{ add_form.email() }} <br>
+                                {{ add_form.role.label }} {{ add_form.role() }} <br>
+                                {{ add_form.ngquanly.label }} {{ add_form.ngquanly() }} <br>
+                                {{ add_form.password.label }} {{ add_form.password() }} <br>
                         </div>
                         <div class="modal-footer">
                             {{ add_form.submit(class="btn btn-primary") }}
@@ -27,10 +33,6 @@
             </div>
         </div>
     </div>
-
-    {% for mess in get_flashed_messages() %}
-        <div class="flash">flash messeger : {{ mess }}</div>
-    {% endfor %}
 
     <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
@@ -68,10 +70,12 @@
                                     </div>
                                     <div class="modal-body">
                                         {{ edit_form.hidden_tag() }}
-                                        {{ edit_form.id.label }} {{edit_form.id(value="{{user.User.id}}") }}
-                                        {{ edit_form.username.label }} {{ edit_form.username(value="{{user.User.username}}") }}
-                                        {{ edit_form.email.label }} {{ edit_form.email(value="{{user.User.email}}") }}
-                                        {{ edit_form.password.label }} {{edit_form.password(value="{{user.User.password}}") }}
+                                        {{ edit_form.id.label }} {{edit_form.id() }}
+                                        {{ edit_form.username.label }} {{ edit_form.username() }}
+                                        {{ edit_form.role.label }} {{ edit_form.role() }}
+                                        {{ edit_form.email.label }} {{ edit_form.email() }}
+                                        {{ edit_form.ngquanly.label }} {{ edit_form.ngquanly() }}
+                                        {{ edit_form.password.label }} {{edit_form.password() }}
                                     </div>
                                     <div class="modal-footer">
                                         {{ edit_form.submit() }}
