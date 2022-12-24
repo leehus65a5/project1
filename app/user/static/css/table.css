@@ -6,22 +6,8 @@ body{
     /* overflow: scroll; */
 }
 
-.container1 {
-    margin: 0;
-    padding: 0;
-    display: grid;
-    min-height: 50vh;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 60px 1.5fr 1.5fr 1.5fr;
-    grid-template-areas:
-  "nav nav nav nav nav"
-  "left main main main main"
-  "left main main main main"
-  "left main main main main";
-}
 
 nav {
-    grid-area: nav;
     border-bottom: opx;
     background-color: #002f96;
     color: rgb(255, 255, 255);

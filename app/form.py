@@ -11,16 +11,20 @@ class LoginForm(FlaskForm):
      submit = SubmitField("Đăng nhập")
 
 class InsertForm(FlaskForm):
+     userid = StringField("ID", validators=[DataRequired()])
+     role = StringField("Chức vụ",validators=[DataRequired()])
+     email = StringField("Email",validators=[DataRequired()])
      username = StringField("Tên Nhân Viên", validators=[DataRequired()])
-     userid = StringField("id", validators=[DataRequired()])
-     email = StringField("email",validators=[DataRequired()])
+     ngquanly = StringField("Người quản lý",validators=[DataRequired()])
      password = PasswordField('Mật khẩu', validators=[DataRequired()])
      submit = SubmitField("Thêm nhân viên")
      
 class UpdateForm(FlaskForm):
-     id = StringField("id", validators=[DataRequired()])
+     id = StringField("ID", validators=[DataRequired()])
      username = StringField("Tên Nhân Viên")
-     email = StringField("email")
+     role = StringField("Chức vụ")
+     email = StringField("Email")
+     ngquanly = StringField("Người quản lý")
      password = PasswordField('Mật khẩu')
      submit = SubmitField("Update nhân viên")
 
