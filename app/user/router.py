@@ -57,14 +57,16 @@ def showdata():
 
 @user.route('/check', methods=['GET', 'POST'])
 def check():
+     
+     uid = session.get('user_id')
+     listTable = db.session.execute(select(Udata.tableid).where(Udata.userid == uid))
+     listTable = [i.tableid for i in listTable]
+     
      data = None
      listk = None
      form = request.form
      check_table = session.get('table')
      
-     print('form = ', form)
-     print(dir(form))
-     print(form.__dict__)
      print('check table', check_table)
      
      if 'name' not in form and not check_table:
@@ -80,8 +82,9 @@ def check():
                data = db.session.execute(select(tb_cls)).fetchall()
                listk = [i.name for i in tb_cls.columns]
                listk = sorted(listk)
-               print(listk)
-               return render_template('user/check.html', datas = data, listkey = listk)
+               print('check1')
+               print(session['table'])
+               # return render_template('user/check.html', datas = data, listkey = listk)
           elif 'start' in form:
                print('check 2 name not in table, get selected collums')
                print(form)
@@ -90,19 +93,24 @@ def check():
                tb_cls = db.Table(session['table'], db.metadata,autoload=True,autoload_with=db.engine)
                sql = select(*[getattr(tb_cls.c, i) for i in listk]).where(and_(tb_cls.c.DEPT >= form['start'], tb_cls.c.DEPT <= form['stop']))
                data = db.session.execute(sql).fetchall()
-               return render_template('user/check.html', datas = data, listkey = listk)
+               print('check2')
+               # return render_template('user/check.html', datas = data, listkey = listk)
           else:
                tb_cls = db.Table(session['table'], db.metadata,autoload=True,autoload_with=db.engine)
                data = db.session.execute(select(tb_cls)).fetchall()
                listk = [i.name for i in tb_cls.columns]
                listk = sorted(listk)
                print(listk)
-               return render_template('user/check.html', datas = data, listkey = listk)
-               
+               print('check3')
+               # return render_template('user/check.html', datas = data, listkey = listk)
+          
+          print('check4')
+          
      # a10 = db.Table('a10', db.metadata,autoload=True,autoload_with=db.engine)
      # sql = select(a10)
      # r = db.session.execute(sql).fetchall()
      # for i in r:
      #      print(i)
      
-     return render_template('user/check.html', datas = data, listkey = listk)
+     print('check5')
+     return render_template('user/check.html', datas = data, listkey = listk, listTable = listTable)
