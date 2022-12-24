@@ -56,15 +56,18 @@ main{
 }
 
 main{
-    padding-top: 5%;
-}
-
-.row3{
-    display: grid;
-    grid-template-columns: auto auto;
+    padding-top: 2%;
 }
 
 #td-button {
     display: grid;
-    grid-template-columns: 25% 25%;
+    grid-template-columns: 35% 35%;
+}
+
+.paginate_button{
+    padding: 5px;
+}
+
+.pagination{
+    float: left;
 }
