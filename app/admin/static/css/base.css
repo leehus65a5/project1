@@ -26,6 +26,7 @@ a:hover{
 
 #sidebar-container{
     min-height: 100vh;
+    transition: 0.5s;
 }
 
 #sidebar-container .logo{

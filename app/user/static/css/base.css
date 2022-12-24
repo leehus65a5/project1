@@ -5,7 +5,7 @@ body{
     -webkit-tap-highlight-color: transparent;
 }
 
-.container1 {
+.container1{
     margin: 0;
     padding: 0;
     display: grid;
@@ -21,7 +21,7 @@ body{
 
 nav {
     grid-area: nav;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     border-bottom: opx;
 }
 
@@ -30,19 +30,15 @@ main {
     /* overflow-x: auto; */
     position: static;
     grid-area: main;
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
 .left {
     margin: 0;
     padding: 20px;
     grid-area: left;
-    border: 1px solid black;
-}
-
-.right {
-    grid-area: right;
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
 @media screen and (max-height: 450px){}
+
