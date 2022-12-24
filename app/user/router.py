@@ -70,8 +70,8 @@ def check():
      if 'name' not in form and not check_table:
           print('no name and check table')
           return render_template('user/check.html', datas = None, listkey = None)
-     
      print('here')
+     
      
      if request.method == 'POST':
           if 'name' in form and len(form['name']) >= 1:
@@ -104,5 +104,7 @@ def check():
      # r = db.session.execute(sql).fetchall()
      # for i in r:
      #      print(i)
-     
+
+     # return render_template('user/test.html', datas = a10_data2, listkey = listkey, listTable = listTable)
+
      return render_template('user/check.html', datas = data, listkey = listk)
