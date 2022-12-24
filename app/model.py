@@ -72,8 +72,6 @@ class A10(db.Model):
      
      def to_dict(self):
           return {c.name: getattr(self, c.name) for c in self.__table__.columns}
-     # def __repr__(self) -> str:
-     #      return f'A10 = ({self.DEPT} : {self.PERM})'
 
 class Udata(db.Model):
      __table__ = db.metadata.tables['truycapdata']
