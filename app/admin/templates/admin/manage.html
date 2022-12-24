@@ -34,22 +34,26 @@
 
     <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
-	<script type="text/javascript" charset="utf8" src="/user/static/js/bootstrapTable.js"></script>
+    <script type="text/javascript" charset="utf8" src="/user/static/js/bootstrapTable.js"></script>
 
     <table class="table table-striped" id="data">
 		<thead class="table-active">
 			<tr>
 				<th scope="col">ID</th>
+				<th scope="col">ROLE</th>
 				<th scope="col">USERNAME</th>
-				<th scope="col">EMAIL</th>
-				<th scope="col">OPTIONS</th>
+				<th scope="col">NGQUANLY</th>
+                <th scope="col">EMAIL</th>
+                <th scope="col">OPTION</th>
 			</tr>
 		</thead>
 		<tbody>
 			{% for user in users_add %}
 			<tr>
 				<td>{{ user.User.id }} </td> 
+                <td>{{ user.User.role}}</td>
 				<td>{{ user.User.username }}</td>
+				<td>{{ user.User.ngquanly }}</td>
 				<td>{{ user.User.email }}</td>
 				<td id = "td-button">
                     <form method="POST">
@@ -88,14 +92,12 @@
 
     <script>
         $(document).ready(function () {
-            $('#data').DataTable({
-                columns: [
-                    {orderable: true, searchable: true},
-                    {searchable: true},
-                    {orderable: false, searchable: false},
-                    {orderable: false, searchable: false},
-                ],
-            });
+        var table = $('#data').DataTable();
+     
+        $('#data tbody').on('click', 'tr', function () {
+            var data = table.row(this).data();
+            alert('You clicked on ' + data[0] + "'s row");
         });
+    });
     </script>
 {% endblock %}
