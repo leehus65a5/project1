@@ -34,9 +34,10 @@ main {
 }
 
 .left {
+    margin: 0;
     padding: 20px;
     grid-area: left;
-     border: 1px solid black;
+    border: 1px solid black;
 }
 
 .right {
