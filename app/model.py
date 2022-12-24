@@ -78,3 +78,6 @@ class Udata(db.Model):
 
 class Files2(db.Model):
      __table__ = db.metadata.tables['files2']
+     
+class FileLog(db.Model):
+     __table__ = db.metadata.tables['filelog']

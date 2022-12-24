@@ -11,14 +11,18 @@
 	{{ form.submit_upload() }}
 </form>
 
-{%if listf%}
+
+{%if sendfiles%}
+<h2>UPLOADING FILES</h2>
 	<table>
-		{%for data in listf%}
+		{%for data in sendfiles%}
 			<tr>
-				<th>{{data.userid}}</th>
+				<th>{{data.uploader}}</th>
+				<th>{{data.reviewer}}</th>
 				<th>{{data.wellid}}</th>
 				<th>{{data.status}}</th>
 				<th><form method="POST">
+					{%if g.user.User.role in ['admin','data','review']%}
 					<input type="checkbox" name="all" id ='all'>
 					<label for="all">reject</label>
 
@@ -27,9 +31,23 @@
 
 					<input type="checkbox" name="todb" id ='todb'>
 					<label for="all">to database</label>
-
+					{%endif%}
 					<input type="submit">
 				</form></th>
+			</tr>
+		{%endfor%}
+	</table>
+{%endif%}
+
+{%if hist%}
+<h2>HISTORY</h2>
+	<table>
+		{%for data in hist%}
+			<tr>
+				<th>{{data.uploader}}</th>
+				<th>{{data.reviewer}}</th>
+				<th>{{data.wellid}}</th>
+				<th>{{data.status}}</th>
 			</tr>
 		{%endfor%}
 	</table>
