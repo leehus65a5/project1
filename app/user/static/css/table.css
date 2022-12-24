@@ -1,3 +1,66 @@
+body{
+    padding: 0;
+    margin: 0;
+    -webkit-text-size-adjust: 0%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.container1 {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    min-height: 50vh;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 60px 1.5fr 1.5fr 1.5fr;
+    grid-template-areas:
+  "nav nav nav nav nav"
+  "left main main main right"
+  "left main main main right"
+  "left main main main right";
+}
+
+nav {
+    grid-area: nav;
+    border-bottom: opx;
+    background-color: #002f96;
+    color: rgb(255, 255, 255);
+}
+
+.nav-item .nav-link { 
+    color: rgb(255, 255, 255);
+}
+
+a.nav-link.dropdown-toggle{
+    padding-top: 8px;
+}
+
+i.bi.bi-envelope{
+    size: 200%;
+}
+main {
+    overflow: hidden;
+    position: static;
+    margin-top: 10px;
+    padding: 1%;
+    grid-area: main;
+    background: #f1f1f1;
+}
+
+.left {
+    padding: 20px;
+    grid-area: left;
+    margin: 10px 10px 0 10px;
+    background: #f1f1f1;
+}
+
+.right {
+    grid-area: right;
+    margin: 10px 10px 0 10px;
+    background: #f1f1f1;
+}
+
+@media screen and (max-height: 450px){}
+
 .flash {
     text-align: center;
     box-sizing: border-box;
@@ -23,11 +86,10 @@
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #04AA6D;
+    background-color: #002f96;
     color: white;
     text-align: center;
 }
-
 .row1 {
     display: grid;
     grid-template-columns: auto auto;
@@ -52,6 +114,27 @@
     text-decoration: none;
     list-style-type: none;
 }
+.button-style{
+    float: right;
+}
+.button{
+    border-style: none;
+    padding: 7px 6px;
+    font-size: 90%;
+    background-color: #002f96;
+    color:rgb(255, 255, 255);
+    border-radius: 7px;
+}
 
+table#data tr:nth-child(even) {
+    background-color: #DDEBF7;
+}
+table#data tr:nth-child(odd) {
+    background-color:#BDD7EE;
+}
+table#data th {
+    background-color: #002f96;
+    color: white;
+}
 
 
