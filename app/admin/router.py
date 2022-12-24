@@ -185,3 +185,7 @@ def check():
      
      print('chech5')
      return render_template('admin/data.html', datas = data, listkey = listk, listTable = listTable)
+
+@admin.route('/plot')
+def plot():
+     return render_template('admin/plotdata.html')
