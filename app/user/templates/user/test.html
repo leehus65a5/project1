@@ -22,19 +22,18 @@
 
     {% if datas %}
         <form method="POST">
-            <p>
-                <input type="submit" value="Toàn bộ bảng" name="all">
-                <input type="submit" value="Lưu file csv" name="save">
+            <p  class="button-style">
+                <input class="button" type="submit" value="Toàn bộ bảng" name="all">
+                <input class="button" type="submit" value="Lưu file csv" name="save">
             </p>
 
-            <input type="text" name="start" placeholder="start"/>
-            <input type="text" name="stop" placeholder="stop"/>
-            <br>
+            <p>Tìm kiếm: <input style="margin-left: 5px; margin-right: 7px;" type="text" name="start" placeholder="Bắt đầu"/> <input type="text" name="stop" placeholder="Kết thúc"/><input style="margin-left: 15px;" type="submit"/><p>
+            
             {% for i in listkey %}
                 <input type="checkbox" name="{{ i }}" id="{{ i }}"/>
                 <label for="{{ i }}">{{ i }}</label>
             {% endfor %}
-            <input type="submit"/>
+            
         </form>
 
         <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -42,32 +41,41 @@
                 src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
         <script type="text/javascript" charset="utf8"
                 src="/user/static/js/bootstrapTable.js"></script>
-        <table id="data">
-            {% for data in datas %}
-                <tr>
-                    <td>{{ data.DEPT }}</td>
-                    <td>{{ data.PERM }}</td>
-                    <td>{{ data.GAMMA }}</td>
-                    <td>{{ data.POROSITY }}</td>
-                    <td>{{ data.FLUVIALFACIES }}</td>
-                    <td>{{ data.NETGROSS }}</td>
-                </tr>
-            {% endfor %}
-        </table>
-        <script>
-            $(document).ready(function () {
-                $('#data').DataTable({
-                    columns: [
-                        {orderable: true, searchable: true},
-                        {orderable: false, searchable: false},
-                        {orderable: false, searchable: false},
-                        {orderable: false, searchable: false},
-                        {orderable: false, searchable: false},
-                        {orderable: false, searchable: false},
-                    ],
+                <table id="data">
+                    <thead>
+                        <tr>
+                            <td>DEPT</td>
+                            <td>PERM</td>
+                            <td>GAMMA</td>
+                            <td>POROSITY</td>
+                            <td>FLUVIALFACIES</td>
+                            <td>NETGROSS</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for data in datas %}
+                        <tr>
+                            <td>{{ data.DEPT }}</td>
+                            <td>{{ data.PERM }}</td>
+                            <td>{{ data.GAMMA }}</td>
+                            <td>{{ data.POROSITY }}</td>
+                            <td>{{ data.FLUVIALFACIES }}</td>
+                            <td>{{ data.NETGROSS }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <script>
+                    $(document).ready(function () {
+                    var table = $('#data').DataTable();
+                 
+                    $('#data tbody').on('click', 'tr', function () {
+                        var data = table.row(this).data();
+                        alert('You clicked on ' + data[0] + "'s row");
+                    });
                 });
-            });
-        </script>
+                </script>
+
     {% endif %}
 
 {% endblock %}
