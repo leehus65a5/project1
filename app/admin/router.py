@@ -20,48 +20,69 @@ def dashboard():
 
 @admin.route('/manage', methods=['GET','POST'])
 def quan_ly_nhan_vien():
-     form = InsertForm()
+     add_form = InsertForm()
+     edit_form = UpdateForm()
      users = db.session.execute(select(User)).fetchall()
+     get_all_user = User.query.all()
      print(users)
-     if form.validate_on_submit() and request.method == 'POST':
-          passw = generate_password_hash(form.password.data)
-          new_user = User(id=form.userid.data, email=form.email.data, username=form.username.data,password=passw)
+     if add_form.validate_on_submit() and request.method == 'POST':
+          passw = generate_password_hash(add_form.password.data)
+          new_user = User(id=add_form.userid.data, email=add_form.email.data, username=add_form.username.data,password=passw)
           mess, flag = new_user.creatUser()
           if not flag:
                mess = 'có lỗi khi nhập dữ liệu'
           flash(mess)
           return redirect(url_for('admin.quan_ly_nhan_vien'))
-     
-     return render_template('admin/manage.html',form=form, users=users)
 
-@admin.route('/update', methods=['GET', 'POST'])
-def update_nhan_vien():
-     get_all_user = User.query.all()
-     form = UpdateForm()
-     if request.method == 'POST' and form.validate_on_submit():
-          print(form.data)
+     if request.method == 'POST' and edit_form.validate_on_submit():
+          print(edit_form.data)
           print('----------------')
           update = {}
           for i in User.__table__.columns:
-               if form.data[i.key]:
-                    update[i.key] = form.data[i.key]
+               if edit_form.data[i.key]:
+                    update[i.key] = edit_form.data[i.key]
           print(update)
           mess = User.updateUser(**update)[0]
           flash(mess)
-          return redirect(url_for('admin.update_nhan_vien'))
-     return render_template('admin/update.html', users=get_all_user, form = form)
+          return redirect(url_for('admin.quan_ly_nhan_vien'))
 
-@admin.route('/delete', methods = ['GET','POST'])
-def delete_nhan_vien():
-     get_all_user = User.query.all()
      if request.method == 'POST':
           details = request.form
           user_id = details['user_id']
           mess = User.deleteUser(str(user_id))[0]
           flash(mess)
-          return redirect(url_for('admin.delete_nhan_vien'))
+          return redirect(url_for('admin.quan_ly_nhan_vien'))
           
-     return render_template('admin/delete.html', users=get_all_user)
+     return render_template('admin/manage.html', users_add=users, users_edit = get_all_user, edit_form = edit_form, add_form = add_form)
+
+# @admin.route('/update', methods=['GET', 'POST'])
+# def update_nhan_vien():
+#      get_all_user = User.query.all()
+#      form = UpdateForm()
+#      if request.method == 'POST' and form.validate_on_submit():
+#           print(form.data)
+#           print('----------------')
+#           update = {}
+#           for i in User.__table__.columns:
+#                if form.data[i.key]:
+#                     update[i.key] = form.data[i.key]
+#           print(update)
+#           mess = User.updateUser(**update)[0]
+#           flash(mess)
+#           return redirect(url_for('admin.update_nhan_vien'))
+#      return render_template('admin/update.html', users=get_all_user, form = form)
+
+# @admin.route('/delete', methods = ['GET','POST'])
+# def delete_nhan_vien():
+#      get_all_user = User.query.all()
+#      if request.method == 'POST':
+#           details = request.form
+#           user_id = details['user_id']
+#           mess = User.deleteUser(str(user_id))[0]
+#           flash(mess)
+#           return redirect(url_for('admin.delete_nhan_vien'))
+          
+#      return render_template('admin/delete.html', users=get_all_user)
 
 #-------------CHECK ZONE CODE----------------------
 
@@ -102,3 +123,5 @@ def check():
      x1 = 'close'
      
      return f'<p> {rtt} </p> <h2> check </h2> <p> {x1} </p> <h2> check2 </h2> <p> {cxx} </p>'
+
+     

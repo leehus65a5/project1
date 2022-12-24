@@ -27,6 +27,7 @@ nav {
 }
 
 main {
+    padding: 10px;
     overflow: hidden;
     position: static;
     grid-area: main;

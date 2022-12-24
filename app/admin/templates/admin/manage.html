@@ -1,27 +1,90 @@
 {% extends 'admin/base.html' %}
-{% block script %}
-    <link rel="stylesheet" type="text/css" href="/user/static/css/bootstrapTable.css">
-{% endblock %}
-
-{%block cssfile%}
-    <link href="/user/static/css/table.css" rel="stylesheet">
-    <link href="/admin/static/css/add_button.css" type="text/css" rel="stylesheet">
-    <link href="/admin/static/css/edit_button.css" type="text/css" rel="stylesheet">
-{%endblock%}
 
 {% block content %}
+    <div class="add-buton">
+        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><a id="addbtn">Add</a></button>
 
-
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm nhân viên</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form method="POST">
+                        <div class="modal-body">
+                                {{ add_form.hidden_tag() }}
+                                {{ add_form.username.label }} {{ add_form.username() }}
+                                {{ add_form.userid.label }} {{ add_form.userid() }}
+                                {{ add_form.email.label }} {{ add_form.email() }}
+                                {{ add_form.password.label }} {{ add_form.password() }}
+                        </div>
+                        <div class="modal-footer">
+                            {{ add_form.submit(class="btn btn-primary") }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     {% for mess in get_flashed_messages() %}
         <div class="flash">flash messeger : {{ mess }}</div>
     {% endfor %}
 
-    
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+	<script type="text/javascript" charset="utf8" src="/user/static/js/bootstrapTable.js"></script>
 
-    <script src="/admin/static/js/add_button.js" type="text/javascript"></script>
-    <script src="/admin/static/js/edit_button.js" type="text/javascript"></script>
-
+    <table class="table table-striped" id="data">
+		<thead class="table-active">
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">USERNAME</th>
+				<th scope="col">EMAIL</th>
+				<th scope="col">OPTIONS</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in users_add %}
+			<tr>
+				<td>{{ user.User.id }} </td> 
+				<td>{{ user.User.username }}</td>
+				<td>{{ user.User.email }}</td>
+				<td id = "td-button">
+                    <form method="POST">
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal1"><a id="editbtn">Edit</a></button>
+                        
+                        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Sửa thông tin</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {{ edit_form.hidden_tag() }}
+                                        {{ edit_form.id.label }} {{edit_form.id(value="{{user.User.id}}") }}
+                                        {{ edit_form.username.label }} {{ edit_form.username(value="{{user.User.username}}") }}
+                                        {{ edit_form.email.label }} {{ edit_form.email(value="{{user.User.email}}") }}
+                                        {{ edit_form.password.label }} {{edit_form.password(value="{{user.User.password}}") }}
+                                    </div>
+                                    <div class="modal-footer">
+                                        {{ edit_form.submit() }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <form method="POST">
+                        <input type="hidden" name="user_id" value="{{ user.User.id }}">
+                        <button type="submit" ><a id="deletebtn">delete</a></button>
+                    </form>
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
     <script>
         $(document).ready(function () {

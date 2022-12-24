@@ -35,6 +35,36 @@ a:hover{
 #sidebar-container .menu{
     width: 200px;
 }
+
 main{
     padding: 20px;
+}
+
+.add-buton{
+    float: right;
+}
+.row1 {
+    display: grid;
+    grid-template-columns: auto auto;
+    /* float: left; */
+}
+
+
+.row3{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+main{
+    padding-top: 5%;
+}
+
+.row3{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+#td-button {
+    display: grid;
+    grid-template-columns: 25% 25%;
 }
