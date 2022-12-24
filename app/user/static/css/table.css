@@ -1,8 +1,9 @@
 body{
     padding: 0;
     margin: 0;
-    -webkit-text-size-adjust: 0%;
+    -webkit-text-size-adjust: none;
     -webkit-tap-highlight-color: transparent;
+    /* overflow: scroll; */
 }
 
 .container1 {
@@ -38,7 +39,7 @@ i.bi.bi-envelope{
     size: 200%;
 }
 main {
-    overflow: hidden;
+    overflow: scroll;
     position: static;
     margin-top: 10px;
     padding: 1%;

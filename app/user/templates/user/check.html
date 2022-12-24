@@ -4,10 +4,15 @@
 {%block list_of_wells%}
 	<form method="POST" autocomplete="off" class="wellname">
 		<label for="getwellname">Nhập tên giếng</label>
-		<input type="text" name="name" id="getwellname">
+		<input type="text" name="name" id="getwellname" list="wells">
+		{%if listTable%}
+			<datalist id="wells"> 
+				{%for i in listTable%}<option>{{i}}</option>{%endfor%}
+			</datalist>
+    	{%endif%}  
 		<input type="submit"/>
 	</form>
-	
+
 	<form method="POST" autocomplete="off" class="wellname1">
 	<p>
 		<input type="checkbox" name="all" id ='all'>

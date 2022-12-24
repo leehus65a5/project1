@@ -112,5 +112,5 @@ def check():
      # for i in r:
      #      print(i)
      
-     print('check5')
+     print('chech5')
      return render_template('user/check.html', datas = data, listkey = listk, listTable = listTable)
