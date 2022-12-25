@@ -1,0 +1,51 @@
+{%for mess in get_flashed_messages()%}
+<div class="flash">{{mess}}</div>
+{%endfor%}
+
+<form method="POST", enctype="multipart/form-data">
+	{{ form.hidden_tag() }}
+	{{ form.fileup.lable }} {{ form.fileup()}} 
+	{{ form.submit_upload() }}
+</form>
+
+
+{%if sendfiles%}
+<h2>UPLOADING FILES</h2>
+	<table>
+		{%for data in sendfiles%}
+			<tr>
+				<th>{{data.uploader}}</th>
+				<th>{{data.reviewer}}</th>
+				<th>{{data.wellid}}</th>
+				<th>{{data.status}}</th>
+				<th><form method="POST">
+					{%if g.user.User.role in ['admin','data','review']%}
+					<input type="checkbox" name="all" id ='all'>
+					<label for="all">reject</label>
+
+					<input type="checkbox" name="accept" id ='accept'>
+					<label for="all">accept</label>
+
+					<input type="checkbox" name="todb" id ='todb'>
+					<label for="all">to database</label>
+					<input type="submit">
+					{%endif%}
+				</form></th>
+			</tr>
+		{%endfor%}
+	</table>
+{%endif%}
+
+{%if hist%}
+<h2>HISTORY</h2>
+	<table>
+		{%for data in hist%}
+			<tr>
+				<th>{{data.uploader}}</th>
+				<th>{{data.reviewer}}</th>
+				<th>{{data.wellid}}</th>
+				<th>{{data.status}}</th>
+			</tr>
+		{%endfor%}
+	</table>
+{%endif%}
