@@ -14,7 +14,7 @@ from sqlalchemy.orm import mapper
 @user.route('/')
 @user.route('/dashboard')
 def dashboard():
-    return render_template('user/dashboard.html')
+    return render_template('user/base.html')
 
 
 @user.route('/test', methods=['GET', 'POST'])

@@ -84,3 +84,7 @@ table#data th {
     background-color: #002f96;
     color: white;
 }
+
+#receive-file{
+    float: left;
+}

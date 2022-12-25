@@ -1,13 +1,13 @@
-{%extends 'datamanager/base.html'%}
+{%extends 'admin/base.html'%}
 
-{%block content%}
+{%block content %}
 {%for mess in get_flashed_messages()%}
 <div class="flash">{{mess}}</div>
 {%endfor%}
 
 {%if recives%}
 <h2>RECIVE FILES</h2>
-	<table>
+	<table id = "recieve-file">
 		{%for data in recives%}
 			<tr>
 				<th>{{data.uploader}}</th>
