@@ -2,23 +2,26 @@
 <div class="flash">{{mess}}</div>
 {%endfor%}
 
+
 <form method="POST", enctype="multipart/form-data">
 	{{ form.hidden_tag() }}
 	{{ form.fileup.lable }} {{ form.fileup()}} 
 	{{ form.submit_upload() }}
 </form>
+<br>
 
+<!-- <h2>UPLOADING FILES</h2> -->
 
 {%if sendfiles%}
 <h2>UPLOADING FILES</h2>
-	<table>
+	<table id="upload" style="position: fixed; width:80%; height:100%;">
 		{%for data in sendfiles%}
-			<tr>
-				<th>{{data.uploader}}</th>
-				<th>{{data.reviewer}}</th>
-				<th>{{data.wellid}}</th>
-				<th>{{data.status}}</th>
-				<th><form method="POST">
+			<tr id="upload">
+				<td id="upload">{{data.uploader}}</td>
+				<td id="upload">{{data.reviewer}}</td>
+				<td id="upload">{{data.wellid}}</td>
+				<td id="upload">{{data.status}}</td>
+				<td id="upload"><form method="POST">
 					{%if g.user.User.role in ['admin','data','review']%}
 					<input type="checkbox" name="all" id ='all'>
 					<label for="all">reject</label>
@@ -30,7 +33,7 @@
 					<label for="all">to database</label>
 					<input type="submit">
 					{%endif%}
-				</form></th>
+				</form></td>
 			</tr>
 		{%endfor%}
 	</table>
@@ -38,13 +41,13 @@
 
 {%if hist%}
 <h2>HISTORY</h2>
-	<table>
+	<table id="history" style="position: fixed; width:80%; height:100%;">
 		{%for data in hist%}
-			<tr>
-				<th>{{data.uploader}}</th>
-				<th>{{data.reviewer}}</th>
-				<th>{{data.wellid}}</th>
-				<th>{{data.status}}</th>
+			<tr id="history">
+				<td id="history">{{data.uploader}}</td>
+				<td id="history">{{data.reviewer}}</td>
+				<td id="history">{{data.wellid}}</td>
+				<td id="history">{{data.status}}</td>
 			</tr>
 		{%endfor%}
 	</table>
