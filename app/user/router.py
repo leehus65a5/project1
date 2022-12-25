@@ -133,9 +133,12 @@ def check():
                print(form)
                listk = [i for i in form if i not in ['start', 'stop']]
                print(listk)
+               
                tb_cls = db.Table(session['table'], db.metadata,autoload=True,autoload_with=db.engine)
-               sql = select(*[getattr(tb_cls.c, i) for i in listk]).where(and_(tb_cls.c.DEPT >= form['start'], tb_cls.c.DEPT <= form['stop']))
+               sql = select(*[getattr(tb_cls.c, i) for i in listk]).where(
+                    and_(tb_cls.c.DEPT >= form['start'], tb_cls.c.DEPT <= form['stop']))
                data = db.session.execute(sql).fetchall()
+               
                print('check2')
                # return render_template('user/check.html', datas = data, listkey = listk)
           else:
