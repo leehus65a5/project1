@@ -1,5 +1,5 @@
 from app import db, mySql
-from app.model import User, Udata
+from app.model import User, Udata, Files2
 from flask import render_template, url_for, flash, redirect, g, request,session
 
 from app.admin import admin
@@ -189,3 +189,11 @@ def check():
 @admin.route('/plot')
 def plot():
      return render_template('admin/plotdata.html')
+
+@admin.route('/recive', methods=['GET', 'POST'])
+def manage_recivefile():
+     
+     list_recive_file = select(Files2.uploader,Files2.reviewer, Files2.wellid, Files2.status).where(and_(Files2.reviewer == g.user.User.id, Files2.status == 'pending'))
+     get_list_recive = db.session.execute(list_recive_file).fetchall()
+     
+     return render_template('admin/receive.html', recives = get_list_recive)

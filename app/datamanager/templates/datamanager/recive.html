@@ -1,37 +1,5 @@
-{%extends 'admin/base.html'%}
+{%extends 'datamanager/base.html'%}
 
 {%block content %}
-{%for mess in get_flashed_messages()%}
-<div class="flash">{{mess}}</div>
-{%endfor%}
-
-{%if recives%}
-<h2>RECIVE FILES</h2>
-	<table id = "recieve-file">
-		{%for data in recives%}
-			<tr>
-				<th>{{data.uploader}}</th>
-				<th>{{data.reviewer}}</th>
-				<th>{{data.wellid}}</th>
-				<th>{{data.status}}</th>
-				<th><form method="POST">
-					<input type="checkbox" name="all" id ='all'>
-					<label for="all">reject</label>
-
-					<input type="checkbox" name="accept" id ='accept'>
-					<label for="all">accept</label>
-					
-					{%if g.user.User.role in ['admin', 'data']%}
-					<input type="checkbox" name="todb" id ='todb'>
-					<label for="all">to database</label>
-					{%endif%}
-					
-					<input type="submit">
-				</form></th>
-			</tr>
-		{%endfor%}
-	</table>
-{%endif%}
-
-
+{% include 'datamanager/receive-content.html' %}
 {%endblock%}
