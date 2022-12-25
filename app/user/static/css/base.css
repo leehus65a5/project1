@@ -43,32 +43,4 @@ main {
 @media screen and (max-height: 450px){}
 
 
-#upload{
-		/* position:fixed; */
-
-border-collapse: collapse;
-
-width: 100%;
-height: 100%;
-}
-
-
-tr #upload ,td #upload{
-padding: 20px;
-text-align: left;
-border-bottom: 1px solid #ddd;
-}
-
-
-
-#history{
-
-border-collapse: collapse;
-width: 100%;
-height: 100%;
-}
-tr #history ,td #history{
-padding: 20px;
-text-align: left;
-border-bottom: 1px solid #ddd;
-}
+/*  */
