@@ -1,7 +1,7 @@
 from app import db, mySql, app
 from flask import render_template, url_for, flash, redirect, g, request, jsonify, session
 from app.user import user
-from app.model import A10, Udata, Files2, FileLog
+from app.model import A10, Udata, Files2, FileLog, Files
 from sqlalchemy import select, and_
 from app.form import UpLoadForm
 from app import tools
@@ -14,7 +14,7 @@ from sqlalchemy.orm import mapper
 @user.route('/')
 @user.route('/dashboard')
 def dashboard():
-    return render_template('user/dashboard.html')
+    return render_template('user/base.html')
 
 
 @user.route('/test', methods=['GET', 'POST'])
@@ -99,7 +99,7 @@ def uploadfiles2():
           
      return render_template('user/upload.html', form=form, sendfiles = get_list_send, hist = get_list_hist) 
 
-@user.route('/check', methods=['GET', 'POST'])
+@user.route('/data_well_log', methods=['GET', 'POST'])
 def check():
      uid = session.get('user_id')
      listTable = db.session.execute(select(Udata.tableid).where(Udata.userid == uid))
@@ -114,7 +114,7 @@ def check():
      
      if 'name' not in form and not check_table:
           print('no name and check table')
-          return render_template('user/check.html', datas = None, listkey = None)
+          return render_template('user/data_well_log.html', datas = None, listkey = None)
      print('here')
      
      
@@ -159,7 +159,7 @@ def check():
      #      print(i)
      
      print('chech5')
-     return render_template('user/check.html', datas = data, listkey = listk, listTable = listTable)
+     return render_template('user/data_well_log.html', datas = data, listkey = listk, listTable = listTable)
 
 
 

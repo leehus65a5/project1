@@ -1,9 +1,10 @@
-from app import db, mySql
-from app.model import User, Udata
+from app import db, mySql, tools
+from app.model import User, Udata, Files2, FileLog
 from flask import render_template, url_for, flash, redirect, g, request,session
-
+from werkzeug.utils import secure_filename
 from app.admin import admin
-from app.form import InsertForm, UpdateForm
+import csv, os
+from app.form import InsertForm, UpdateForm, UpLoadForm
 from werkzeug.security import generate_password_hash
 from sqlalchemy import select, or_,and_
 
@@ -194,3 +195,53 @@ def check():
 @admin.route('/plot')
 def plot():
      return render_template('admin/plotdata.html')
+
+@admin.route('/recive', methods=['GET', 'POST'])
+def manage_recivefile():
+     
+     list_recive_file = select(Files2.uploader,Files2.reviewer, Files2.wellid, Files2.status).where(and_(Files2.reviewer == g.user.User.id, Files2.status == 'pending'))
+     get_list_recive = db.session.execute(list_recive_file).fetchall()
+     
+     return render_template('admin/receive.html', recives = get_list_recive)
+
+@admin.route('/upload', methods = ['GET','POST'])
+def uploadfiles2():
+     
+     form = UpLoadForm()
+     list_file_send = select(Files2.uploader,Files2.reviewer, Files2.wellid, Files2.status).where(Files2.uploader == g.user.User.id)
+     get_list_send = db.session.execute(list_file_send).fetchall()
+     
+     list_hist = select(FileLog.uploader, FileLog.reviewer, FileLog.wellid, FileLog.status).where(FileLog.uploader == g.user.User.id)
+     get_list_hist = db.session.execute(list_hist).fetchall()
+     
+     print(get_list_send, get_list_hist)
+     
+     print('uid', g.user.User.id)
+     print('role', g.user.User.role)
+     
+     print(request.form)
+     if form.validate_on_submit() and request.method == 'POST':
+          file1 = form.fileup.data
+          # file1 = request.files['fileup']
+          file1_data = request.files['fileup'].read()
+          file1.stream.seek(0)
+          # file1.save(os.path.join(os.getcwd(), 'app' ,app.config['UPLOAD_FOLDER'],secure_filename(file1.filename)))
+          path = os.path.join(app.root_path, 'static', 'files', secure_filename(file1.filename))
+          file1.save(path)
+          print('path = ' , path)
+          curinfo, wellinfo, df = tools.convert_lasio(path)
+          fileUp = Files2(
+               uploader = g.user.User.id,
+               reviewer = g.user.User.ngquanly,
+               wellid = file1.filename.split('.')[0],
+               cur_info = curinfo,
+               well_info = wellinfo,
+               data = df.to_json(),
+               status = 'pending',
+          )
+          db.session.add(fileUp)
+          db.session.commit()         
+          print('ok here')
+          return redirect(url_for('admin.uploadfiles2'))
+          
+     return render_template('admin/upload.html', form=form, sendfiles = get_list_send, hist = get_list_hist) 

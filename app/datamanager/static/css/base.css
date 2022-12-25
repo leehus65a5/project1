@@ -1,5 +1,5 @@
 :root{
-    --primary: #00008B;
+    --primary: #111854;
     --light: #ffffff;
     --grey: #efefef;
     padding: 0;
@@ -26,7 +26,6 @@ a:hover{
 
 #sidebar-container{
     min-height: 100vh;
-    transition: 0.5s;
 }
 
 #sidebar-container .logo{
@@ -34,41 +33,19 @@ a:hover{
 }
 
 #sidebar-container .menu{
-    width: 200px;
+    width: 218.98px;
 }
-
 main{
     padding: 20px;
 }
 
-.add-buton{
-    float: right;
-}
-.row1 {
-    display: grid;
-    grid-template-columns: auto auto;
-    /* float: left; */
+#recieve-file{
+    border-collapse: collapse;
+    width: 100%;
 }
 
-
-.row3{
-    display: grid;
-    grid-template-columns: auto auto;
-}
-
-main{
-    padding-top: 2%;
-}
-
-#td-button {
-    display: grid;
-    grid-template-columns: 35% 35%;
-}
-
-.paginate_button{
-    padding: 5px;
-}
-
-.pagination{
-    float: left;
+tr #receive, td #receive{
+    padding: 20px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
 }
