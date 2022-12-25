@@ -38,3 +38,14 @@ a:hover{
 main{
     padding: 20px;
 }
+
+#recieve-file{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+tr #receive, td #receive{
+    padding: 20px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
