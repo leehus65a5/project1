@@ -32,7 +32,7 @@ def uploadfile():
           file1.stream.seek(0)
           # file1.save(os.path.join(os.getcwd(), 'app' ,app.config['UPLOAD_FOLDER'],secure_filename(file1.filename)))
           file1.save(os.path.join(app.root_path, 'static', 'files', secure_filename(file1.filename)))
-          fileUp = Files(id = str(file1.filename.split('.')[0]), filename = file1.filename, data = file1_data)
+          fileUp = Files2(id = str(file1.filename.split('.')[0]), filename = file1.filename, data = file1_data)
           mess = fileUp.upFile()[1]          
           flash(mess)
           return redirect(url_for('datamanager.uploadfile'))
