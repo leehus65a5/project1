@@ -29,7 +29,12 @@ def quan_ly_nhan_vien():
      print(users)
      if add_form.validate_on_submit() and request.method == 'POST':
           passw = generate_password_hash(add_form.password.data)
-          new_user = User(id=add_form.userid.data,role=add_form.role.data,email=add_form.email.data,username=add_form.username.data,ngquanly=add_form.ngquanly.data,password=passw)
+          new_user = User(id=add_form.userid.data,
+                         role=add_form.role.data,
+                         email=add_form.email.data,
+                         username=add_form.username.data,
+                         ngquanly=add_form.ngquanly.data,
+                         password=passw)
           mess, flag = new_user.creatUser()
           if not flag:
                mess = 'có lỗi khi nhập dữ liệu'
