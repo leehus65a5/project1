@@ -149,7 +149,7 @@ def check():
      
      if 'name' not in form and not check_table:
           print('no name and check table')
-          return render_template('admin/data.html', datas = None, listkey = None)
+          return render_template('admin/data.html', datas = None, listkey = None, listTable = listTable)
      print('here')
      
      

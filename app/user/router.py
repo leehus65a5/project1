@@ -101,9 +101,12 @@ def uploadfiles2():
 
 @user.route('/data_well_log', methods=['GET', 'POST'])
 def check():
+     
      uid = session.get('user_id')
      listTable = db.session.execute(select(Udata.tableid).where(Udata.userid == uid))
      listTable = [i.tableid for i in listTable]
+     print(uid)
+     print(listTable)
      
      data = None
      listk = None
@@ -114,7 +117,7 @@ def check():
      
      if 'name' not in form and not check_table:
           print('no name and check table')
-          return render_template('user/data_well_log.html', datas = None, listkey = None)
+          return render_template('user/data_well_log.html', datas = None, listkey = None, listTable = listTable )
      print('here')
      
      
