@@ -10,17 +10,21 @@
 </form>
 <br>
 
-
-
-
-
-
 <!-- <h2>UPLOADING FILES</h2> -->
 
 {%if sendfiles%}
-<h2>UPLOADING FILES</h2>
+<h3>FILE ĐANG CHỜ</h3>
 
 	<table id = "recieve-file">
+		<thead>
+			<tr>
+				<th>Người Upload File</th>
+				<th>Người Quản Lý</th>
+				<th>Tên File</th>
+				<th>Trạng Thái</th>
+				<th>Option</th>
+			</tr>
+		</thead>
 		{%for data in sendfiles%}
 			<tr id="receive">
 				<td id="receive">{{data.uploader}}</td>
@@ -46,8 +50,16 @@
 {%endif%}
 
 {%if hist%}
-<h2>HISTORY</h2>
+<h3>LỊCH SỬ FILE</h3>
 	<table id = "recieve-file">
+		<thead>
+			<tr>
+				<th>Người Upload File</th>
+				<th>Người Quản Lý</th>
+				<th>Tên File</th>
+				<th>Trạng Thái</th>
+			</tr>
+		</thead>
 		{%for data in hist%}
 			<tr id="history">
 				<td id="receive">{{data.uploader}}</td>

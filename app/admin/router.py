@@ -1,10 +1,11 @@
-from app import db, mySql, tools
-from app.model import User, Udata, Files2, FileLog
-from flask import render_template, url_for, flash, redirect, g, request,session
+from app import db, mySql, tools, app
+from app.model import User, Udata, Files2, FileLog, Files
+from flask import render_template, url_for, flash, redirect, g, request,session, send_file
 from werkzeug.utils import secure_filename
 from app.admin import admin
 import csv, os
-from app.form import InsertForm, UpdateForm, UpLoadForm
+from io import BytesIO
+from app.form import InsertForm, UpdateForm, UpLoadForm, DownloadForm
 from werkzeug.security import generate_password_hash
 from sqlalchemy import select, or_,and_
 
@@ -245,3 +246,16 @@ def uploadfiles2():
           return redirect(url_for('admin.uploadfiles2'))
           
      return render_template('admin/upload.html', form=form, sendfiles = get_list_send, hist = get_list_hist) 
+
+@admin.route('/download', methods=['GET', 'POST'])
+def downloadfile():
+     form = DownloadForm()
+     if form.validate_on_submit() and request.method == 'POST':
+          file_id = form.file_id.data
+          get_file = Files.downloadFile(file_id)
+          if not get_file:
+               flash('no file to download')
+               return redirect(url_for('admin.downloadfile'))
+          flash('download file thành công')
+          return send_file(BytesIO(get_file.data),download_name=get_file.filename,as_attachment=True)
+     return render_template('admin/download.html', form=form)

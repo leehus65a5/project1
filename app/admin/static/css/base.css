@@ -1,5 +1,5 @@
 :root{
-    --primary: #00008B;
+    --primary: #111854;
     --light: #ffffff;
     --grey: #efefef;
     padding: 0;
@@ -58,6 +58,7 @@ main{
 
 main{
     padding-top: 2%;
+    border: 1ch;
 }
 
 #td-button {

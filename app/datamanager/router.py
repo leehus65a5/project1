@@ -8,7 +8,6 @@ from app import tools
 from werkzeug.utils import secure_filename
 import csv, os
 from io import BytesIO
-from sqlalchemy import select, and_
 
 
 @datamanager.before_request

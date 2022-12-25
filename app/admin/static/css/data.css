@@ -18,18 +18,18 @@
     margin-left: 35%;
 }
 
-#data {
+#data, #recieve-file {
     border-collapse: collapse;
     width: 100%;
 }
 
-#data td, #data th {
+#data td, #data th, #recieve-file td, #recieve-file th {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
 }
 
-#data th {
+#data th, #recieve-file th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
@@ -74,15 +74,13 @@
     border-radius: 7px;
 }
 
-table#data tr:nth-child(even) {
+table#data tr:nth-child(even), table#recieve-file tr:nth-child(even) {
     background-color: #DDEBF7;
 }
-table#data tr:nth-child(odd) {
+table#data tr:nth-child(odd), table#recieve-file tr:nth-child(odd) {
     background-color:#BDD7EE;
 }
-table#data th {
-    background-color: #002f96;
-    color: white;
+
+h3{
+    text-align: center;
 }
-
-
