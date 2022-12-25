@@ -35,7 +35,7 @@
                                 <a class="nav-link" aria-current="page" href="{{url_for('user.check')}}">HOME</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="#">UpLoad file</a>
+                                <a class="nav-link" aria-current="page" href="{{url_for('user.uploadfiles2')}}">UpLoad file</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{url_for('user.plot')}}">Trực Quan hóa dữ liệu</a>
@@ -67,14 +67,10 @@
 
     {%block content%}
     {%endblock%}
+
     {%block plot%}
     {%endblock%}
 
-
-    
-    {#    <footer>#}
-    {#        <p>Footer ở chỗ này</p>#}
-    {#    </footer>#}
 
 
 
