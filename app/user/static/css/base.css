@@ -5,24 +5,16 @@ body{
     -webkit-tap-highlight-color: transparent;
 }
 
-.container1{
-    margin: 0;
-    padding: 0;
-    display: grid;
-    min-height: 50vh;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 60px 1.5fr 1.5fr 1.5fr;
-    grid-template-areas:
-  "nav nav nav nav nav"
-  "left main main main main"
-  "left main main main main"
-  "left main main main main";
+.nav-item .nav-link { 
+    color: rgb(255, 255, 255);
 }
 
-nav {
-    grid-area: nav;
-    /* border: 1px solid black; */
-    border-bottom: opx;
+a.nav-link:hover{
+    color: gray;
+}
+
+a.nav-link.dropdown-toggle{
+    padding-top: 8px;
 }
 
 main {
@@ -32,15 +24,3 @@ main {
     grid-area: main;
     /* border: 1px solid black; */
 }
-
-.left {
-    margin: 0;
-    padding: 20px;
-    grid-area: left;
-    /* border: 1px solid black; */
-}
-
-@media screen and (max-height: 450px){}
-
-
-/*  */
