@@ -43,7 +43,7 @@ main {
 @media screen and (max-height: 450px){}
 
 
-.upload{
+#upload{
 		/* position:fixed; */
 
 border-collapse: collapse;
@@ -61,7 +61,7 @@ border-bottom: 1px solid #ddd;
 
 
 
-.history{
+#history{
 
 border-collapse: collapse;
 width: 100%;
