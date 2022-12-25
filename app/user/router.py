@@ -1,7 +1,7 @@
 from app import db, mySql, app
 from flask import render_template, url_for, flash, redirect, g, request, jsonify, session
 from app.user import user
-from app.model import A10, Udata, Files2, FileLog
+from app.model import A10, Udata, Files2, FileLog, Files
 from sqlalchemy import select, and_
 from app.form import UpLoadForm
 from app import tools
