@@ -33,10 +33,9 @@
 				<td id="receive">{{data.wellid}}</td>
 				<td id="receive">{{data.status}}</td>
 				<td id="receive"><form method="POST">
-					{%if g.user.User.role in ['admin','data','review']%}
+					{%if g.user.User.role in ['review','admin','data']%}
 					<input type="checkbox" name="all" id ='all'>
 					<label for="all">reject</label>
-
 					<input type="checkbox" name="accept" id ='accept'>
 					<label for="all">accept</label>
 
