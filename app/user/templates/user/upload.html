@@ -1,5 +1,9 @@
-{%extends 'user/base.html'%}
 
-{%block content%}
-{% include 'user/upload-content.html' %}
-{%endblock%}
+{% if {{g.user.User.role}}=="user" %}
+    {%extends 'user/base.html'%}
+
+    {%block content%}
+    {{g.user.User.role}}
+    {% include 'user/upload-content.html' %}
+    {%endblock%}
+{% endif %}
