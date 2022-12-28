@@ -56,7 +56,6 @@ def showdata():
      
      return render_template('user/test.html', datas = a10_data2, listkey = listkey, listTable = listTable)
 
-
 @user.route('/upload', methods = ['GET','POST'])
 def uploadfiles2():
      
@@ -163,8 +162,6 @@ def check():
      
      print('chech5')
      return render_template('user/data_well_log.html', datas = data, listkey = listk, listTable = listTable)
-
-
 
 @user.route('/plot')
 def plot():
