@@ -1,9 +1,12 @@
 
-{% if {{g.user.User.role}}=="user" %}
+{% if g.user.User.role == "user" %}
     {%extends 'user/base.html'%}
-
-    {%block content%}
-    {{g.user.User.role}}
-    {% include 'user/upload-content.html' %}
-    {%endblock%}
+{% elif g.user.User.role == "review" %}
+    {%extends 'datamanager/base.html'%}
+{% else %}
+    {%extends 'admin/base.html'%}
 {% endif %}
+
+{%block content%}
+{% include 'user/upload-content.html' %}
+{%endblock%}
