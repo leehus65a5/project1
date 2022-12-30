@@ -6,9 +6,11 @@ from sqlalchemy import select, and_
 from app.form import UpLoadForm
 from app import tools
 from werkzeug.utils import secure_filename
-import csv, os
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import mapper
+import csv, os
+import pandas as pd
+
 
 
 @user.route('/')
@@ -166,3 +168,21 @@ def check():
 @user.route('/plot')
 def plot():
      return render_template('user/plotdata.html')
+
+@user.route('/test2', methods=['GET', 'POST'])
+def test():
+     print('we are in test')
+     uid = session.get('user_id')
+     listTable = db.session.execute(select(Udata.tableid).where(Udata.userid == uid))
+     listTable = [i.tableid for i in listTable]
+     print(uid)
+     print(listTable)
+     
+     a10 = db.Table('a10', db.metadata , autoload=True, autoload_with=db.engine)
+     sql = select(a10)
+     print('sql = ' , sql)
+     dataframe = pd.read_sql_query(sql, db.engine)
+     print('dataframe = ',  dataframe)
+     js_data = dataframe.to_json()
+     
+     return render_template('user/test2.html', listTable = listTable, js_data = js_data)
