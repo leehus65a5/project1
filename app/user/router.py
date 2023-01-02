@@ -183,6 +183,6 @@ def test():
      print('sql = ' , sql)
      dataframe = pd.read_sql_query(sql, db.engine)
      print('dataframe = ',  dataframe)
-     js_data = dataframe.to_json()
-     
+     js_data = dataframe.to_json(orient="index")
+  
      return render_template('user/test2.html', listTable = listTable, js_data = js_data)
