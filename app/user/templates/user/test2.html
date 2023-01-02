@@ -1,0 +1,23 @@
+{% extends 'user/base.html' %}
+
+{%block data %}
+
+<h3>List table</h3>
+{%if listTable%}
+	{%for i in listTable%}
+		<p>{{ i }}</p>
+	{%endfor%}
+{%endif%}
+<h3>Nhiệm vụ:
+	<p>Render json về bảng dữ liệu</p>
+	<p>Có nút download để tải dữ liệu json về dạng csv</p>
+</h3>
+
+<h3> Test json data </h3>
+
+{%if js_data%}
+	<p>có dữ liệu json</p>
+	<p>{{js_data}}</p>
+{%endif%}
+
+{%endblock%}
