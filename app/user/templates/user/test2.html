@@ -16,8 +16,12 @@
 <h3> Test json data </h3>
 
 {%if js_data%}
-	<p>có dữ liệu json</p>
-	<p>{{js_data}}</p>
+	<!-- {%for i in js_data.items%}
+		<p>{{i}}</p>
+	{%endfor%} -->
+	{% for i in js_data%}
+		<p>{{i}}</p>
+	{% endfor %}
 {%endif%}
 
 {%endblock%}

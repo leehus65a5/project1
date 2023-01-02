@@ -1,3 +1,4 @@
+import json
 from app import db, mySql, app
 from flask import render_template, url_for, flash, redirect, g, request, jsonify, session
 from app.user import user
@@ -184,5 +185,5 @@ def test():
      dataframe = pd.read_sql_query(sql, db.engine)
      print('dataframe = ',  dataframe)
      js_data = dataframe.to_json()
-     
-     return render_template('user/test2.html', listTable = listTable, js_data = js_data)
+     json_string = json.dumps(js_data)
+     return render_template('user/test2.html', listTable = listTable, js_data=json_string)
