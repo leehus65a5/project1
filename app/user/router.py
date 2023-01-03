@@ -10,6 +10,7 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import mapper
 import csv, os
 import pandas as pd
+import json
 
 
 
@@ -186,3 +187,16 @@ def test():
      js_data = dataframe.to_json()
      
      return render_template('user/test2.html', listTable = listTable, js_data = js_data)
+
+@user.route('/kiemtra', methods = ['GET','POST'])
+def kiemtra():
+     cls = select(Files2.data).where(and_(Files2.wellid == 'A8', Files2.uploader == 'AD001'))
+     print(cls)
+     results = db.session.execute(cls).fetchone()
+     print(type(results[0]))
+     get_js = json.loads(results[0])
+     print(type(get_js))
+     df = pd.read_json(results[0])
+     print(type(df))
+     print(df)
+     return render_template('user/kiemtra.html')
