@@ -186,8 +186,7 @@ def test():
      dataframe = pd.read_sql_query(sql, db.engine)
      print('dataframe = ',  dataframe)
      js_data = dataframe.to_json(orient="records")
-     js_data2 = dataframe.to_json()
-     return render_template('user/test2.html', listTable = listTable, js_data = js_data, js_data2 = js_data2)
+     return render_template('user/test2.html', listTable = listTable, js_data = js_data)
 
 @user.route('/kiemtra', methods = ['GET','POST'])
 def kiemtra():

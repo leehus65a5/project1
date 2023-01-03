@@ -23,43 +23,47 @@
 </script>
 
 <h3> Test json data </h3>
-
+<input type="text" id="myVar" name="variable" value="{{ js_data}}">
 
 {%if js_data%}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <table class="table table-striped">
-	<tr class="bg-info">
-		<th>DEPT</th>
-		<th>PERM</th>
-		<th>GAMMA</th>
-		<th>POROSITY</th>
-		<th>FLUVIALFACIES</th>
-		<th>NETGROSS</th>
-	</tr>
-	<tbody class="myTable">
+    <tr  class="bg-info">
+        <th>DEPT</th>
+        <th>PERM</th>
+        <th>GAMMA</th>
+        <th>POROSITY</th>
+        <th>FLUVIALFACIES</th>
+        <th>NETGROSS</th>
+    </tr>
 
-	</tbody>
+    <tbody id="myTable">
+        
+    </tbody>
 </table>
 
-<script type="text/javascript">
-	var myArray = "${js_data}"
+<script>
+	var myArray = "{{js_data}}"
 	
 	buildTable(myArray)
 
 	function buildTable(data){
 		var table = document.getElementById('myTable')
+		table.innerHTML += console.log(typeof data)
+		table.innerHTML += data.length
 
 		for (var i = 0; i < data.length; i++){
 			var row = `<tr>
 							<td>${data[i].DEPT}</td>
-							<td>${data[i].PERM}</td>
 							<td>${data[i].GAMMA}</td>
 							<td>${data[i].POROSITY}</td>
 							<td>${data[i].FLUVIALFACIES}</td>
 							<td>${data[i].NETGROSS}</td>
+							<td>${data[i].POROSITY}</td>
 					  </tr>`
 			table.innerHTML += row
+
+
 		}
 	}
 
