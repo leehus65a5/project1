@@ -8,6 +8,7 @@
 		<p>{{ i }}</p>
 	{%endfor%}
 {%endif%}
+
 <h3>Nhiệm vụ:
 	<p>Render json về bảng dữ liệu</p>
 	<p>Có nút download để tải dữ liệu json về dạng csv</p>
@@ -23,51 +24,8 @@
 </script>
 
 <h3> Test json data </h3>
-<input type="text" id="myVar" name="variable" value="{{ js_data}}">
 
 {%if js_data%}
-
-<table class="table table-striped">
-    <tr  class="bg-info">
-        <th>DEPT</th>
-        <th>PERM</th>
-        <th>GAMMA</th>
-        <th>POROSITY</th>
-        <th>FLUVIALFACIES</th>
-        <th>NETGROSS</th>
-    </tr>
-
-    <tbody id="myTable">
-        
-    </tbody>
-</table>
-
-<script>
-	var myArray = document.getElementById('myVar').value;
-	
-	eval('var obj='+myArray);
-	
-	buildTable(myArray)
-
-	function buildTable(data){
-		var table = document.getElementById('myTable')
-		table.innerHTML += console.log(typeof data)
-		table.innerHTML += data.length
-
-		for (var i = 0; i < 100; i++){
-			var row = `<tr>
-							<td>${data[i].DEPT}</td>
-							<td>${data[i].GAMMA}</td>
-							<td>${data[i].POROSITY}</td>
-							<td>${data[i].FLUVIALFACIES}</td>
-							<td>${data[i].NETGROSS}</td>
-							<td>${data[i].POROSITY}</td>
-					  </tr>`
-			table.innerHTML += row
-		}
-	}
-
-</script>
 
 {%endif%}
 
