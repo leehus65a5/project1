@@ -14,15 +14,12 @@
 				<td id="receive">{{data.wellid}}</td>
 				<td id="receive">{{data.status}}</td>
 				<td id="receive"><form method="POST">
-					<input type="checkbox" name="all" id ='all'>
-					<label for="all">reject</label>
+					<input type="radio" name="all" id ='all' value="reject"> reject
 
-					<input type="checkbox" name="accept" id ='accept'>
-					<label for="all">accept</label>
+					<input type="radio" name="accept" id ='accept' value="accept"> accept
 					
 					{%if g.user.User.role in ['admin', 'data']%}
-					<input type="checkbox" name="todb" id ='todb'>
-					<label for="all">to database</label>
+					<input type="radio" name="todb" id ='todb' value="to database"> to database
 					{%endif%}
 					
 					<input type="submit">
