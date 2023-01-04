@@ -18,12 +18,7 @@
 					<label for="all">reject</label>
 
 					<input type="checkbox" name="accept" id ='accept'>
-					<label for="all">accept</label>
-					
-					{%if g.user.User.role in ['admin', 'data']%}
-					<input type="checkbox" name="todb" id ='todb'>
-					<label for="all">to database</label>
-					{%endif%}
+					<label for="accept">accept</label>
 					
 					<input type="submit">
 				</form></td>
