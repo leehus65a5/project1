@@ -43,7 +43,9 @@
 </table>
 
 <script>
-	var myArray = "{{js_data}}"
+	var myArray = document.getElementById('myVar').value;
+	
+	eval('var obj='+myArray);
 	
 	buildTable(myArray)
 
@@ -52,7 +54,7 @@
 		table.innerHTML += console.log(typeof data)
 		table.innerHTML += data.length
 
-		for (var i = 0; i < data.length; i++){
+		for (var i = 0; i < 100; i++){
 			var row = `<tr>
 							<td>${data[i].DEPT}</td>
 							<td>${data[i].GAMMA}</td>
@@ -62,8 +64,6 @@
 							<td>${data[i].POROSITY}</td>
 					  </tr>`
 			table.innerHTML += row
-
-
 		}
 	}
 
