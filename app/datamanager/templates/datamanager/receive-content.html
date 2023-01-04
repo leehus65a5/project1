@@ -16,11 +16,8 @@
 				<td id="receive"><form method="POST">
 					<input type="radio" name="all" id ='all' value="reject"> reject
 
-					<input type="radio" name="accept" id ='accept' value="accept"> accept
-					
-					{%if g.user.User.role in ['admin', 'data']%}
-					<input type="radio" name="todb" id ='todb' value="to database"> to database
-					{%endif%}
+					<input type="checkbox" name="accept" id ='accept'>
+					<label for="accept">accept</label>
 					
 					<input type="submit">
 				</form></td>
