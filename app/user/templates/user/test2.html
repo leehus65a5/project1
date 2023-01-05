@@ -13,12 +13,52 @@
 	<p>Render json về bảng dữ liệu</p>
 	<p>Có nút download để tải dữ liệu json về dạng csv</p>
 </h3>
-
-<h3>test js_Data2 </h3>
-
-<!-- note -->
-<h3> Test json data </h3>
+<br><br>
+<a href="#" onclick="download_table_as_csv('dataframe');">Download as CSV</a>
 
 {{ dataframe.to_html(index=False, classes="table table-striped table-hover")|safe}}
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" charset="utf8"
+		src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>	
+<script type="text/javascript" charset="utf8"src="/user/static/js/bootstrapTable.js"></script>
+
+
+<script>
+	$(document).ready(function () {
+	var table = $('.dataframe').DataTable();
+});
+</script>
+
+<script type="text/javascript">
+function download_table_as_csv(table_id, separator = ',') {
+    // Select rows from table_id
+    var rows = document.querySelectorAll('table.' + table_id + ' tr');
+    // Construct csv
+    var csv = [];
+    for (var i = 0; i < rows.length; i++) {
+        var row = [], cols = rows[i].querySelectorAll('td, th');
+        for (var j = 0; j < cols.length; j++) {
+            // Clean innertext to remove multiple spaces and jumpline (break csv)
+            var data = cols[j].innerText.replace(/(\r\n|\n|\r)/gm, '').replace(/(\s\s)/gm, ' ')
+            // Escape double-quote with double-double-quote (see https://stackoverflow.com/questions/17808511/properly-escape-a-double-quote-in-csv)
+            data = data.replace(/"/g, '""');
+            // Push escaped string
+            row.push('"' + data + '"');
+        }
+        csv.push(row.join(separator));
+    }
+    var csv_string = csv.join('\n');
+    // Download it
+    var filename = 'export_' + table_id + '_' + new Date().toLocaleDateString() + '.csv';
+    var link = document.createElement('a');
+    link.style.display = 'none';
+    link.setAttribute('target', '_blank');
+    link.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv_string));
+    link.setAttribute('download', filename);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+</script>
 
 {%endblock%}

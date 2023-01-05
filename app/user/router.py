@@ -189,7 +189,8 @@ def test():
      # print('dataframe = ',  dataframe)
      # js_data = dataframe.to_json(orient="records")
      # return render(request, 'user/test2.html', context)
-     return render_template('user/test2.html', listTable = listTable, dataframe = dataframe)
+     csv = dataframe.to_csv()
+     return render_template('user/test2.html', listTable = listTable, dataframe = dataframe, csv = csv)
 
 @user.route('/kiemtra', methods = ['GET','POST'])
 def kiemtra():
