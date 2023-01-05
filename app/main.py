@@ -28,7 +28,8 @@ def check_route_access():
      if not request.endpoint:
           print('no request')
           return
-     elif any([request.endpoint.startswith('static'), g.user,  getattr(app.view_functions[request.endpoint],'is_public',False)]):
+     elif any([request.endpoint.startswith('static'), g.user,  
+               getattr(app.view_functions[request.endpoint],'is_public',False)]):
           return 
      else:
           return redirect(url_for('login'))

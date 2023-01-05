@@ -79,14 +79,14 @@ class Udata(db.Model):
 class Files2(db.Model):
      __table__ = db.metadata.tables['files2']
      
-     def reject(uploader, reviewer, wellid, cur_info, wellinfo):
+     def update(uploader, reviewer, wellid, cur_info, wellinfo, status):
           file_log = FileLog(uploader = uploader, reviewer = reviewer, wellid = wellid,
-                      cur_info = cur_info, wellinfo = wellinfo, status = 'reject')
+                      cur_info = cur_info, wellinfo = wellinfo, status = status)
           db.session.add(file_log)
           sql = delete(Files2).where(and_(Files2.uploader == uploader, Files2.wellid == wellid))
           db.session.execute(sql)
           db.session.commit()
-          return True
+          return True     
      
 class FileLog(db.Model):
      __table__ = db.metadata.tables['filelog']

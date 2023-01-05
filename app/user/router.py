@@ -3,7 +3,7 @@ from app import db, mySql, app
 from flask import render_template, url_for, flash, redirect, g, request, jsonify, session
 from app.user import user
 from app.model import A10, Udata, Files2, FileLog, Files
-from sqlalchemy import select, and_
+from sqlalchemy import select, and_, update
 from app.form import UpLoadForm
 from app import tools
 from werkzeug.utils import secure_filename
@@ -77,6 +77,7 @@ def uploadfiles2():
      print('role', g.user.User.role)
      
      print('form = ' ,request.form)
+     
      if form.validate_on_submit() and request.method == 'POST':
           file1 = form.fileup.data
           # file1 = request.files['fileup']
@@ -103,20 +104,43 @@ def uploadfiles2():
 
      if request.method == 'POST':
           get_form = request.form
-          if 'reject' in get_form:
-               print('here')
-               uploader = get_form['upload']
-               wellid = get_form['wellid']
-               get_file = select(Files2.reviewer, Files2.cur_info, Files2.well_info).where(
-                    and_(Files2.uploader == uploader, Files2.wellid == wellid))
-               files = db.session.execute(get_file).fetchone()
-               check = Files2.reject(uploader=uploader, reviewer=files.reviewer, wellid=wellid, cur_info=files.cur_info, wellinfo= files.well_info)
+          uploader = get_form['upload']
+          wellid = get_form['wellid']
+          get_file = select(Files2.reviewer, Files2.cur_info, Files2.well_info, Files2.data).where(
+          and_(Files2.uploader == uploader, Files2.wellid == wellid))
+          files = db.session.execute(get_file).fetchone()
+          
+          if 'choose' in get_form and get_form['choose'] == 'reject':
+               print('reject')
+               check = Files2.update(uploader=uploader,
+                                     reviewer=files.reviewer, 
+                                     wellid=wellid, 
+                                     cur_info=files.cur_info, 
+                                     wellinfo= files.well_info,
+                                     status='reject')
                if check:
                     flash('reject sucssesfull')
-               
                return redirect(url_for('user.uploadfiles2'))
+
+          if 'choose' in get_form and get_form['choose'] == 'accept':
+               print('accpept')
+               if g.user.User.role in ['admin','data']:
+                    well_data_df = pd.read_json(files.data)
+                    print(well_data_df)
+                    try:
+                         well_data_df.to_sql(con=db.engine, name=str.lower(wellid), if_exists='replace')
+                         check = Files2.update(uploader=uploader, 
+                                     reviewer=files.reviewer, 
+                                     wellid=wellid, 
+                                     cur_info=files.cur_info, 
+                                     wellinfo= files.well_info,
+                                     status='accept')
+                         flash('to database successfull')
+                         return redirect(url_for('user.uploadfiles2'))
+                    except:
+                         flash('error while update file to database')
+                         return redirect(url_for('user.uploadfiles2'))
                
-          
      return render_template('user/upload.html', form=form, sendfiles = get_list_send, hist = get_list_hist) 
 
 @user.route('/data_well_log', methods=['GET', 'POST'])

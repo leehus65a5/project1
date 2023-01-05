@@ -2,11 +2,12 @@ from app import db, mySql, app, tools
 from flask import render_template, url_for, flash, redirect, g, request, jsonify, session, send_file
 from app.datamanager import datamanager
 from app.model import A10, Udata, Files2, FileLog, Files
-from sqlalchemy import select, and_
+from sqlalchemy import select, and_, update
 from app.form import UpLoadForm, DownloadForm
 from app import tools
 from werkzeug.utils import secure_filename
 import csv, os
+import pandas as pd
 from io import BytesIO
 
 
@@ -45,14 +46,53 @@ def manage_recivefile():
      list_recive_file = select(Files2.uploader,Files2.reviewer, Files2.wellid, Files2.status).where(and_(Files2.reviewer == g.user.User.id, Files2.status == 'pending'))
      get_list_recive = db.session.execute(list_recive_file).fetchall()
      
-     form = request.form
+     print(request.form)
      
      if request.method == 'POST':
-          print('have some request')
-          print(form)
-          if 'all' in form:
-               print('all')
-          pass
+          get_form = request.form
+          uploader = get_form['upload']
+          wellid = get_form['wellid']
+          get_file = select(Files2.reviewer, Files2.cur_info, Files2.well_info, Files2.data).where(
+          and_(Files2.uploader == uploader, Files2.wellid == wellid))
+          files = db.session.execute(get_file).fetchone()
+          
+          if 'choose' in get_form and get_form['choose'] == 'reject':
+               print('reject')
+               check = Files2.update(uploader=uploader, 
+                                     reviewer=files.reviewer, 
+                                     wellid=wellid, 
+                                     cur_info=files.cur_info, 
+                                     wellinfo= files.well_info,
+                                     status='reject')
+               if check:
+                    flash('reject sucssesfull')
+               return redirect(url_for('datamanager.manage_recivefile'))
+
+          if 'choose' in get_form and get_form['choose'] == 'accept':
+               print('accpept')
+               if g.user.User.role in ['admin','data']:
+                    well_data_df = pd.read_json(files.data)
+                    print(well_data_df)
+                    try:
+                         well_data_df.to_sql(con=db.engine, name=str.lower(wellid), if_exists='replace')
+                         check = Files2.update(uploader=uploader, 
+                                     reviewer=files.reviewer, 
+                                     wellid=wellid, 
+                                     cur_info=files.cur_info, 
+                                     wellinfo= files.well_info,
+                                     status='accept')
+                         flash('to database successfull')
+                         return redirect(url_for('datamanager.manage_recivefile'))
+                    except:
+                         flash('error while update file to database')
+                         return redirect(url_for('datamanager.manage_recivefile'))
+               else:
+                    reciver_id = g.user.User.ngquanly
+                    sql = update(Files2).where(and_(Files2.uploader == uploader, Files2.wellid == wellid)).values(reviewer=reciver_id)
+                    db.session.execute(sql)
+                    db.session.commit()
+                    flash('updated')
+                    return redirect(url_for('datamanager.manage_recivefile'))
      
      return render_template('datamanager/recive.html', recives = get_list_recive)
 
