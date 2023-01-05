@@ -12,7 +12,6 @@ from sqlalchemy.orm import mapper
 import csv, os
 import pandas as pd
 import json
-from django.shortcuts import render
 
 
 @user.route('/')
