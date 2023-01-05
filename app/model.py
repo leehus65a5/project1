@@ -1,5 +1,5 @@
 from app import db, app
-from sqlalchemy import select
+from sqlalchemy import select, delete, and_
 
 
 with app.app_context():
@@ -79,5 +79,19 @@ class Udata(db.Model):
 class Files2(db.Model):
      __table__ = db.metadata.tables['files2']
      
+     def reject(uploader, reviewer, wellid, cur_info, wellinfo):
+          file_log = FileLog(uploader = uploader, reviewer = reviewer, wellid = wellid,
+                      cur_info = cur_info, wellinfo = wellinfo, status = 'reject')
+          db.session.add(file_log)
+          sql = delete(Files2).where(and_(Files2.uploader == uploader, Files2.wellid == wellid))
+          db.session.execute(sql)
+          db.session.commit()
+          return True
+     
 class FileLog(db.Model):
      __table__ = db.metadata.tables['filelog']
+     
+     def add_log(self):
+          db.session.add(self)
+          db.session.commit()
+          return f'add log successfull', True

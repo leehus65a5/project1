@@ -34,8 +34,10 @@
 				<td id="receive">{{data.status}}</td>
 				<td id="receive"><form method="POST">
 					{%if g.user.User.role in ['review','admin','data']%}
-					<input name="rej" type="radio" value="reject" /> reject
-					<input name="acpt" type="radio" value="accept" /> accept			
+					<input name="reject" type="radio" value="reject" /> reject
+					<input name="accpept" type="radio" value="accept" /> accept	
+					<input name="upload" type="hidden" value="{{data.uploader}}">
+					<input name="wellid" type="hidden" value="{{data.wellid}}">		
 					<input type="submit">
 					{%endif%}
 				</form></td>

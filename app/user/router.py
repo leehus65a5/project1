@@ -12,7 +12,6 @@ from sqlalchemy.orm import mapper
 import csv, os
 import pandas as pd
 import json
-from django.shortcuts import render
 
 
 @user.route('/')
@@ -101,6 +100,22 @@ def uploadfiles2():
           db.session.commit()         
           print('ok here')
           return redirect(url_for('user.uploadfiles2'))
+
+     if request.method == 'POST':
+          get_form = request.form
+          if 'reject' in get_form:
+               print('here')
+               uploader = get_form['upload']
+               wellid = get_form['wellid']
+               get_file = select(Files2.reviewer, Files2.cur_info, Files2.well_info).where(
+                    and_(Files2.uploader == uploader, Files2.wellid == wellid))
+               files = db.session.execute(get_file).fetchone()
+               check = Files2.reject(uploader=uploader, reviewer=files.reviewer, wellid=wellid, cur_info=files.cur_info, wellinfo= files.well_info)
+               if check:
+                    flash('reject sucssesfull')
+               
+               return redirect(url_for('user.uploadfiles2'))
+               
           
      return render_template('user/upload.html', form=form, sendfiles = get_list_send, hist = get_list_hist) 
 
@@ -119,6 +134,7 @@ def check():
      check_table = session.get('table')
      
      print('check table', check_table)
+     print('form = ',form)
      
      if 'name' not in form and not check_table:
           print('no name and check table')
