@@ -12,7 +12,7 @@ from sqlalchemy.orm import mapper
 import csv, os
 import pandas as pd
 import json
-
+from django.shortcuts import render
 
 
 @user.route('/')
@@ -186,9 +186,10 @@ def test():
      sql = select(a10)
      print('sql = ' , sql)
      dataframe = pd.read_sql_query(sql, db.engine)
-     print('dataframe = ',  dataframe)
-     js_data = dataframe.to_json(orient="records")
-     return render_template('user/test2.html', listTable = listTable, js_data = js_data, dataframe = dataframe)
+     # print('dataframe = ',  dataframe)
+     # js_data = dataframe.to_json(orient="records")
+     # return render(request, 'user/test2.html', context)
+     return render_template('user/test2.html', listTable = listTable, dataframe = dataframe)
 
 @user.route('/kiemtra', methods = ['GET','POST'])
 def kiemtra():

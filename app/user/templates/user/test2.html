@@ -1,5 +1,5 @@
 {% extends 'user/base.html' %}
-
+<link href="/user/static/css/data.css" rel="stylesheet">
 {%block data %}
 
 <h3>List table</h3>
@@ -16,17 +16,9 @@
 
 <h3>test js_Data2 </h3>
 
-<p id="demo12"></p>
-<script>
-	const obj = JSON.parse('{{js_data|tojson}}');
-	let text = "hello";
-	document.getElementById("demo12").innerHTML = text;
-</script>
-
+<!-- note -->
 <h3> Test json data </h3>
 
-{%if js_data%}
-
-{%endif%}
+{{ dataframe.to_html(index=False, classes="table table-striped table-hover")|safe}}
 
 {%endblock%}
