@@ -34,10 +34,8 @@
 				<td id="receive">{{data.status}}</td>
 				<td id="receive"><form method="POST">
 					{%if g.user.User.role in ['review','admin','data']%}
-					<input type="checkbox" name="all" id ='all'>
-					<label for="all">reject</label>
-					<input type="checkbox" name="accept" id ='accept'>
-					<label for="accept">accept</label>
+					<input name="acpt" type="radio" value="reject" /> reject
+					<input name="acpt" type="radio" value="accept" /> accept			
 					<input type="submit">
 					{%endif%}
 				</form></td>
