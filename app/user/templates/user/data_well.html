@@ -39,12 +39,15 @@
 	<div class="flash">flash messeger : {{ mess }}</div>
 	{% endfor %}
 
+    
+    {%if datas%}
     {%set max = datas|max%}
     {%set min = datas|min%}
+   
 
 	<form method="POST" autocomplete="off">
-		<input type="text" name="start" placeholder=">= {{min.DEPT}}"/>
-		<input type="text" name="stop" placeholder="<= {{max.DEPT}}"/>
+		<input type="text" name="start" placeholder=">= {{min.DEPT}}" value="{{min.DEPT}}"/>
+		<input type="text" name="stop" placeholder="<= {{max.DEPT}}" value="{{max.DEPT}}"/>
 		<br>
 		{%if listkey%}
 		{% for i in listkey %}
@@ -54,6 +57,8 @@
 		{%endif%}
 		<input type="submit"/>
 	</form>
+
+    {%endif%}
 
 	{%if datas%}
 	<table id="data">
