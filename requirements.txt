@@ -1,8 +1,9 @@
-flask==2.2.2
-flask_mysqldb==1.0.1
-flask_sqlalchemy==3.0.2
-sqlalchemy==1.4.44
-numpy==1.23.5
-lasio==1.0.1
-flask_wtf==1.0.1
-dash==2.7.1
+flask
+flask_mysqldb
+flask_sqlalchemy
+sqlalchemy
+numpy
+flask_wtf
+dash
+lasio
+pandas
