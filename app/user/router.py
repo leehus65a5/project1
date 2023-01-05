@@ -64,10 +64,12 @@ def showdata():
 def uploadfiles2():
      
      form = UpLoadForm()
-     list_file_send = select(Files2.uploader,Files2.reviewer, Files2.wellid, Files2.status).where(Files2.uploader == g.user.User.id)
+     list_file_send = select(Files2.uploader,Files2.reviewer, Files2.wellid, Files2.status).where(
+          Files2.uploader == g.user.User.id)
      get_list_send = db.session.execute(list_file_send).fetchall()
      
-     list_hist = select(FileLog.uploader, FileLog.reviewer, FileLog.wellid, FileLog.status).where(FileLog.uploader == g.user.User.id)
+     list_hist = select(FileLog.uploader, FileLog.reviewer, FileLog.wellid, FileLog.status).where(
+          FileLog.uploader == g.user.User.id)
      get_list_hist = db.session.execute(list_hist).fetchall()
      
      print(get_list_send, get_list_hist)
@@ -75,11 +77,11 @@ def uploadfiles2():
      print('uid', g.user.User.id)
      print('role', g.user.User.role)
      
-     print(request.form)
+     print('form = ' ,request.form)
      if form.validate_on_submit() and request.method == 'POST':
           file1 = form.fileup.data
           # file1 = request.files['fileup']
-          file1_data = request.files['fileup'].read()
+          # file1_data = request.files['fileup'].read()
           file1.stream.seek(0)
           # file1.save(os.path.join(os.getcwd(), 'app' ,app.config['UPLOAD_FOLDER'],secure_filename(file1.filename)))
           path = os.path.join(app.root_path, 'static', 'files', secure_filename(file1.filename))
@@ -186,7 +188,7 @@ def test():
      dataframe = pd.read_sql_query(sql, db.engine)
      print('dataframe = ',  dataframe)
      js_data = dataframe.to_json(orient="records")
-     return render_template('user/test2.html', listTable = listTable, js_data = js_data)
+     return render_template('user/test2.html', listTable = listTable, js_data = js_data, dataframe = dataframe)
 
 @user.route('/kiemtra', methods = ['GET','POST'])
 def kiemtra():

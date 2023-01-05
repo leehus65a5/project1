@@ -34,7 +34,7 @@
 				<td id="receive">{{data.status}}</td>
 				<td id="receive"><form method="POST">
 					{%if g.user.User.role in ['review','admin','data']%}
-					<input name="acpt" type="radio" value="reject" /> reject
+					<input name="rej" type="radio" value="reject" /> reject
 					<input name="acpt" type="radio" value="accept" /> accept			
 					<input type="submit">
 					{%endif%}
