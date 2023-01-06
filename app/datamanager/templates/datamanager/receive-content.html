@@ -7,13 +7,23 @@
 {%if recives%}
 <h3>RECIVE FILES</h3>
 	<table id = "recieve-file">
+		<thead>
+			<tr>
+				<th>Người Upload File</th>
+				<th>Người Quản Lý</th>
+				<th>Tên File</th>
+				<th>Trạng Thái</th>
+				<th>Option</th>
+			</tr>
+		</thead>
+		<tbody>
 		{%for data in recives%}
-			<tr id="receive">
-				<td id="receive">{{data.uploader}}</td>
-				<td id="receive">{{data.reviewer}}</td>
-				<td id="receive">{{data.wellid}}</td>
-				<td id="receive">{{data.status}}</td>
-				<td id="receive"><form method="POST">
+			<tr>
+				<td>{{data.uploader}}</td>
+				<td>{{data.reviewer}}</td>
+				<td>{{data.wellid}}</td>
+				<td>{{data.status}}</td>
+				<td><form method="POST">
 					<input name="choose" type="radio" value="reject" /> reject
 					<input name="choose" type="radio" value="accept" /> accept	
 					<input name="upload" type="hidden" value="{{data.uploader}}">
@@ -22,5 +32,6 @@
 				</form></td>
 			</tr>
 		{%endfor%}
+		</tbody>
 	</table>
 {%endif%}
