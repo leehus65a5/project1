@@ -24,12 +24,16 @@
 				<td>{{data.wellid}}</td>
 				<td>{{data.status}}</td>
 				<td><form method="POST">
-					<input name="choose" type="radio" value="reject" /> reject
-					<input name="choose" type="radio" value="accept" /> accept	
-					<input name="upload" type="hidden" value="{{data.uploader}}">
-					<input name="wellid" type="hidden" value="{{data.wellid}}">		
-					<input type="submit">
-				</form></td>
+					{%if g.user.User.role in ['review','admin','data']%}
+						<input name="choose" type="radio" value="review" /> review
+						<input name="choose" type="radio" value="reject" /> reject
+						<input name="choose" type="radio" value="accept" /> accept	
+						<input name="upload" type="hidden" value="{{data.uploader}}">
+						<input name="wellid" type="hidden" value="{{data.wellid}}">		
+						<input type="submit">
+					{%endif%}
+					</form>
+				</td>
 			</tr>
 		{%endfor%}
 		</tbody>

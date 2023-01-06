@@ -146,7 +146,8 @@ def uploadfiles2():
                well = files.well_info
                df = pd.read_json(files.data)
                df = df.to_html()
-               return redirect(url_for('user.preview'))
+               # return redirect(url_for('user.preview'))
+               return render_template('user/preview.html', df = df)
      
           
           print('check')

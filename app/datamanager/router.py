@@ -93,6 +93,14 @@ def manage_recivefile():
                     db.session.commit()
                     flash('updated')
                     return redirect(url_for('datamanager.manage_recivefile'))
+          
+          if 'choose' in get_form and get_form['choose'] == 'review':
+               cur = files.cur_info
+               well = files.well_info
+               df = pd.read_json(files.data)
+               df = df.to_html()
+               # return redirect(url_for('user.preview'))
+               return render_template('user/preview.html', df = df)
      
      return render_template('datamanager/recive.html', recives = get_list_recive)
 
