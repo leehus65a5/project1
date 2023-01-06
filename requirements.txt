@@ -1,9 +1,9 @@
 flask
 flask_mysqldb
 flask_sqlalchemy
+flask_wtf
 sqlalchemy
 numpy
-flask_wtf
-dash
-lasio
 pandas
+lasio
+dash
