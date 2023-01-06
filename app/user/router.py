@@ -17,7 +17,7 @@ import json
 @user.route('/')
 @user.route('/dashboard')
 def dashboard():
-    return render_template('user/base.html')
+    return render_template('user/data_well_log.html')
 
 
 @user.route('/test', methods=['GET', 'POST'])
