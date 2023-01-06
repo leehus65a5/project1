@@ -1,7 +1,7 @@
 
 {% if g.user.User.role == "user" %}
     {%extends 'user/base.html'%}
-{% elif g.user.User.role == "review" %}
+    {% elif g.user.User.role in ['review', 'data']%}
     {%extends 'datamanager/base.html'%}
 {% else %}
     {%extends 'admin/base.html'%}
