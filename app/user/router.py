@@ -140,8 +140,22 @@ def uploadfiles2():
                     except:
                          flash('error while update file to database')
                          return redirect(url_for('user.uploadfiles2'))
+          
+          if 'review' in get_form:
+               cur = files.cur_info
+               well = files.well_info
+               df = pd.read_json(files.data)
+               df = df.to_html()
+               # return redirect(url_for('user.preview'))
+               return render_template('user/preview.html', df = df)
+          
+          print('check')
                
-     return render_template('user/upload.html', form=form, sendfiles = get_list_send, hist = get_list_hist) 
+     return render_template('user/upload.html', form = form, sendfiles = get_list_send, hist = get_list_hist) 
+
+@user.route('/preview')
+def preview():
+     return render_template('user/preview.html')
 
 @user.route('/data_well_log', methods=['GET', 'POST'])
 def check():
