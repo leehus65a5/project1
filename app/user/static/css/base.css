@@ -47,7 +47,6 @@ main{
 .row1 {
     display: grid;
     grid-template-columns: auto auto;
-    /* float: left; */
 }
 
 
