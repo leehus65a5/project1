@@ -141,13 +141,13 @@ def uploadfiles2():
                          flash('error while update file to database')
                          return redirect(url_for('user.uploadfiles2'))
           
-          if 'review' in get_form:
+          if 'choose' in get_form and get_form['choose'] == 'review':
                cur = files.cur_info
                well = files.well_info
                df = pd.read_json(files.data)
                df = df.to_html()
-               # return redirect(url_for('user.preview'))
-               return render_template('user/preview.html', df = df)
+               return redirect(url_for('user.preview'))
+     
           
           print('check')
                
