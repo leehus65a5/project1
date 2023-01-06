@@ -8,18 +8,18 @@
     margin-left: 35%;
 }
 
-#data, #recieve-file {
+#data, #recieve-file{
     border-collapse: collapse;
     width: 100%;
 }
 
-.dataframe td, .dataframe th, #data td, #data th, #recieve-file td, #recieve-file th {
+#recieve-file td, .dataframe td, .dataframe th, #data td, #data th, #recieve-file td, #recieve-file th {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
 }
 
-.dataframe th, #data th, #recieve-file th {
+#recieve-file th, .dataframe th, #data th, #recieve-file th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
@@ -74,10 +74,10 @@
     border-radius: 7px;
 }
 
-.dataframe, table#data tr:nth-child(even), table#recieve-file tr:nth-child(even) {
+#recieve-file, .dataframe, table#data tr:nth-child(even), table#recieve-file tr:nth-child(even) {
     background-color: #DDEBF7;
 }
-.dataframe, table#data tr:nth-child(odd), table#recieve-file tr:nth-child(odd) {
+#recieve-file, .dataframe, table#data tr:nth-child(odd), table#recieve-file tr:nth-child(odd) {
     background-color:#BDD7EE;
 }
 
