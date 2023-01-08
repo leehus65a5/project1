@@ -106,6 +106,7 @@ def manage_recivefile():
 
 @datamanager.route('/download', methods=['GET', 'POST'])
 def downloadfile():
+     msg = ""
      form = DownloadForm()
      if form.validate_on_submit() and request.method == 'POST':
           file_id = form.file_id.data
@@ -113,9 +114,9 @@ def downloadfile():
           if not get_file:
                flash('no file to download')
                return redirect(url_for('datamanager.downloadfile'))
-          flash('download file thành công')
+          msg = 'download file thành công'
           return send_file(BytesIO(get_file.data),download_name=get_file.filename,as_attachment=True)
-     return render_template('datamanager/downloadfile.html', form=form)
+     return render_template('datamanager/downloadfile.html', form=form, msg = msg)
 
 @datamanager.route('/test', methods = ['GET','POST'])
 def test():

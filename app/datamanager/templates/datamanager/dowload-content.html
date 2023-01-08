@@ -1,9 +1,14 @@
-{%for mess in get_flashed_messages()%}
-<div class="flash">{{mess}}</div>
-{%endfor%}
-
-<form method="POST">
+<div id="message"> {{msg}} </div>
+<form method="POST" action="{{ url_for('datamanager.downloadfile') }}">
 	{{ form.hidden_tag() }}
-	{{ form.file_id.lable }} {{ form.file_id() }} 
+	{{ form.file_id.lable }} {{ form.file_id() }}
+	
 	{{ form.submit_download() }}
+
+	<script>
+		setTimeout(() => {
+		const box = document.getElementById('message');
+		box.style.display = 'none';
+		}, 3000);
+	</script>
 </form>
