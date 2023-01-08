@@ -1,13 +1,11 @@
-{%for mess in get_flashed_messages()%}
-<div class="flash">{{mess}}</div>
+{% for mess in get_flashed_messages() %}
+<div id="message"> {{mess}} </div>
 {%endfor%}
-
 <script>
-	$(document).ready(function() {
-		setTimeout(function() {
-			$('.flash').fadeOut('slow');
-		}, 2000);
-	});
+    setTimeout(() => {
+    const box = document.getElementById('message');
+    box.style.display = 'none';
+    }, 3000);
 </script>
 
 

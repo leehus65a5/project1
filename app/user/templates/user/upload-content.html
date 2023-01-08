@@ -1,8 +1,15 @@
-{%for mess in get_flashed_messages()%}
-<div class="flash">{{mess}}</div>
-{%endfor%}
-
 <link href="/user/static/css/data.css" rel="stylesheet">
+
+{% for mess in get_flashed_messages() %}
+<div id="message"> {{mess}} </div>
+{%endfor%}
+<script>
+    setTimeout(() => {
+    const box = document.getElementById('message');
+    box.style.display = 'none';
+    }, 3000);
+</script>
+
 
 <form method="POST", enctype="multipart/form-data">
 	{{ form.hidden_tag() }}

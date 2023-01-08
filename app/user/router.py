@@ -98,7 +98,8 @@ def uploadfiles2():
                status = 'pending',
           )
           db.session.add(fileUp)
-          db.session.commit()         
+          db.session.commit()
+          flash('Cập nhật file thành công')         
           print('ok here')
           return redirect(url_for('user.uploadfiles2'))
 
