@@ -6,7 +6,20 @@
     {%extends 'admin/base.html'%}
 {% endif %}
 
+
+
 {%block content%}
+
+{%for mess in get_flashed_messages()%}
+<div class="flash">{{mess}}</div>
+{%endfor%}
+
+<script>
+    setTimeout(() => {
+    const box = document.getElementById('message');
+    box.style.display = 'none';
+    }, 3000);
+</script>
 
 {% include 'datamanager/dowload-content.html' %}
 

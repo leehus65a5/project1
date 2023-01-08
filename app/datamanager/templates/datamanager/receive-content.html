@@ -2,6 +2,13 @@
 <div class="flash">{{mess}}</div>
 {%endfor%}
 
+<script>
+	$(document).ready(function() {
+		setTimeout(function() {
+			$('.flash').fadeOut('slow');
+		}, 2000);
+	});
+</script>
 
 
 {%if recives%}

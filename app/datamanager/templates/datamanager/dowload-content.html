@@ -1,7 +1,3 @@
-{%for mess in get_flashed_messages()%}
-<div class="flash">{{mess}}</div>
-{%endfor%}
-
 <form method="POST">
 	{{ form.hidden_tag() }}
 	{{ form.file_id.lable }} {{ form.file_id() }} 
