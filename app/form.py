@@ -34,4 +34,4 @@ class UpLoadForm(FlaskForm):
       
 class DownloadForm(FlaskForm):
      file_id = StringField('Nhập tên file', validators=[DataRequired()])
-     submit_download = SubmitField('Donwload file')
+     submit_download = SubmitField('Download file')
