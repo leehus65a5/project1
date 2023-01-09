@@ -2,8 +2,6 @@ from flask import Flask
 from app.config import Config
 from flask_mysqldb import MySQL
 from flask_sqlalchemy import SQLAlchemy
-# import dash
-# from dash import html
 
 app = Flask(__name__)
 app.config.from_object(Config)
