@@ -1,10 +1,18 @@
 {% extends 'admin/base.html' %}
 
-{% for mess in get_flashed_messages() %}
-<div class="flash">flash messeger : {{ mess }}</div>
-{% endfor %}
-
 {% block content %}
+
+{% for mess in get_flashed_messages() %}
+<div id="message"> {{mess}} </div>
+{%endfor%}
+<script>
+    setTimeout(() => {
+    const box = document.getElementById('message');
+    box.style.display = 'none';
+    }, 3000);
+</script>
+
+
     <div class="add-buton">
         <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><a id="addbtn">Add</a></button>
 

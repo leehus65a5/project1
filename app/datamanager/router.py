@@ -93,11 +93,20 @@ def manage_recivefile():
                     db.session.commit()
                     flash('updated')
                     return redirect(url_for('datamanager.manage_recivefile'))
+          
+          if 'choose' in get_form and get_form['choose'] == 'review':
+               cur = files.cur_info
+               well = files.well_info
+               df = pd.read_json(files.data)
+               df = df.to_html()
+               # return redirect(url_for('user.preview'))
+               return render_template('user/preview.html', df = df)
      
      return render_template('datamanager/recive.html', recives = get_list_recive)
 
 @datamanager.route('/download', methods=['GET', 'POST'])
 def downloadfile():
+     msg = ""
      form = DownloadForm()
      if form.validate_on_submit() and request.method == 'POST':
           file_id = form.file_id.data
@@ -105,9 +114,9 @@ def downloadfile():
           if not get_file:
                flash('no file to download')
                return redirect(url_for('datamanager.downloadfile'))
-          flash('download file thành công')
+          msg = 'download file thành công'
           return send_file(BytesIO(get_file.data),download_name=get_file.filename,as_attachment=True)
-     return render_template('datamanager/downloadfile.html', form=form)
+     return render_template('datamanager/downloadfile.html', form=form, msg = msg)
 
 @datamanager.route('/test', methods = ['GET','POST'])
 def test():

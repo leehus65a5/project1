@@ -1,8 +1,15 @@
-{%for mess in get_flashed_messages()%}
-<div class="flash">{{mess}}</div>
-{%endfor%}
-
 <link href="/user/static/css/data.css" rel="stylesheet">
+
+{% for mess in get_flashed_messages() %}
+<div id="message"> {{mess}} </div>
+{%endfor%}
+<script>
+    setTimeout(() => {
+    const box = document.getElementById('message');
+    box.style.display = 'none';
+    }, 3000);
+</script>
+
 
 <form method="POST", enctype="multipart/form-data">
 	{{ form.hidden_tag() }}
@@ -32,20 +39,22 @@
 				<td id="receive">{{data.reviewer}}</td>
 				<td id="receive">{{data.wellid}}</td>
 				<td id="receive">{{data.status}}</td>
-				<td id="receive"><form method="POST">
+				<td id="receive">
+				<form method="POST">
 					{%if g.user.User.role in ['review','admin','data']%}
-					<input name="review" type="radio" value="review" /> review
-					<input name="choose" type="radio" value="reject" /> reject
-					<input name="choose" type="radio" value="accept" /> accept	
-					<input name="upload" type="hidden" value="{{data.uploader}}">
-					<input name="wellid" type="hidden" value="{{data.wellid}}">		
-					<input type="submit">
+						<input name="choose" type="radio" value="review" /> review
+						<input name="choose" type="radio" value="reject" /> reject
+						<input name="choose" type="radio" value="accept" /> accept	
+						<input name="upload" type="hidden" value="{{data.uploader}}">
+						<input name="wellid" type="hidden" value="{{data.wellid}}">		
+						<input type="submit">
 					{%endif%}
 				</form></td>
 			</tr>
 		{%endfor%}
 	</table>
 {%endif%}
+
 
 {%if hist%}
 <br>

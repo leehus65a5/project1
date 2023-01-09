@@ -1,3 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+.flash {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    text-align: center; 
+    margin: auto;
+    height: 10%;
+    width: 20%;
+    font-family: 'Roboto'; 
+    color: white; 
+    background-color: #212529; 
+    border-radius: 8px 8px;
+    font-weight: 20%;
+}
+
 .left {
     padding: 20px;
     grid-area: left;
@@ -7,16 +23,6 @@
 
 
 @media screen and (max-height: 450px){}
-
-.flash {
-    text-align: center;
-    box-sizing: border-box;
-    background:mediumseagreen;
-    width: 400px;
-    justify-items: center;
-    border-radius: 20px;
-    margin-left: 35%;
-}
 
 #data, #recieve-file {
     border-collapse: collapse;

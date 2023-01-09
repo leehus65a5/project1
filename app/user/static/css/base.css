@@ -1,3 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+#message{
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    text-align: center; 
+    margin: auto;
+    height: 10%;
+    width: 20%;
+    font-family: 'Roboto'; 
+    color: white; 
+    background-color: #212529; 
+    border-radius: 8px 8px;
+    font-weight: 20%;
+}
+
 :root{
     --primary: #111854;
     --light: #ffffff;
@@ -72,3 +88,5 @@ main{
 .pagination{
     float: left;
 }
+
+
