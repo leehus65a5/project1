@@ -1,4 +1,6 @@
+
 <div id="message"> {{msg}} </div>
+
 <form method="POST" action="{{ url_for('datamanager.downloadfile') }}">
 	{{ form.hidden_tag() }}
 	{{ form.file_id.lable }} {{ form.file_id() }}

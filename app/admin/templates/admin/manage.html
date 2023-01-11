@@ -67,9 +67,9 @@
 				<td>{{ user.User.email }}</td>
 				<td id = "td-button">
                     <form method="POST">
-                        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal1"><a id="editbtn">Edit</a></button>
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal{{user.User.id}}"><a id="editbtn">Edit</a></button>
                         
-                        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="exampleModal{{user.User.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -78,11 +78,11 @@
                                     </div>
                                     <div class="modal-body" style="width:150px;">
                                         {{ edit_form.hidden_tag() }}
-                                        {{ edit_form.id.label }} {{edit_form.id() }}
-                                        {{ edit_form.username.label }} {{ edit_form.username() }}
-                                        {{ edit_form.role.label }} {{ edit_form.role() }}
-                                        {{ edit_form.email.label }} {{ edit_form.email() }}
-                                        {{ edit_form.ngquanly.label }} {{ edit_form.ngquanly() }}
+                                        {{ edit_form.id.label }}{{edit_form.id(value=user.User.id)}}
+                                        {{ edit_form.username.label }}{{ edit_form.username(value=user.User.username) }}
+                                        {{ edit_form.role.label }}{{ edit_form.role(value=user.User.role) }}
+                                        {{ edit_form.email.label }}{{ edit_form.email(value=user.User.email) }}
+                                        {{ edit_form.ngquanly.label }}{{ edit_form.ngquanly(value=user.User.ngquanly) }}
                                         {{ edit_form.password.label }} {{edit_form.password() }}
                                     </div>
                                     <div class="modal-footer">
