@@ -2,6 +2,7 @@ from flask import Flask
 from app.config import Config
 from flask_mysqldb import MySQL
 from flask_sqlalchemy import SQLAlchemy
+import os
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -17,9 +18,10 @@ app.register_blueprint(datamanager)
 from app.user import user
 app.register_blueprint(user)
 
+filenames = next(os.walk('app/static/files'), (None, None, []))[2]
 with app.app_context():
      from .dashboard import init_dashboard
-     app = init_dashboard(app)
+     app = init_dashboard(app, filenames)
 
 # dash_app = dash.Dash(server = app, requests_pathname_prefix='/dash1/')
 # dash_app.layout = html.Div("hello world")
